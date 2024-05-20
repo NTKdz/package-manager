@@ -1,16 +1,8 @@
 import { Checkbox } from "@/components/ui/checkbox";
+import { Package } from "@/redux/interface/packageInterface";
 import { ColumnDef } from "@tanstack/react-table";
 
-export type Delivery = {
-  id: string;
-  waybill: number;
-  company: string;
-  status: "pending" | "processing" | "success" | "failed";
-  cpn: string;
-  department: string;
-};
-
-export const columns: ColumnDef<Delivery>[] = [
+export const columns: ColumnDef<Package>[] = [
   {
     id: "select",
     header: ({ table }) => (
