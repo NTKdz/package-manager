@@ -3,7 +3,6 @@ import { Package } from "../interface/packageInterface";
 
 const initialState = {
   package: {
-    stt: "",
     waybill: 0,
     company: "",
     status: "pending",

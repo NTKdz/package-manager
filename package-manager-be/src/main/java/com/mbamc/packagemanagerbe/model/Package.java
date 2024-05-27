@@ -14,6 +14,14 @@ public class Package {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long waybill;
 
+    public Package(long waybill, String company, PackageStatus status, String cpn, String department) {
+        this.waybill = waybill;
+        this.company = company;
+        this.status = status;
+        this.cpn = cpn;
+        this.department = department;
+    }
+
     private String company;
 
     @Enumerated(EnumType.STRING)

@@ -7,6 +7,5 @@ import java.util.List;
 
 @Repository
 public interface PackageRepository extends JpaRepository<Package, Long> {
-    List<Package> findByDepartmentName(String departmentName);
-
+    List<Package> findByDepartment(String department);
 }

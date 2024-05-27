@@ -12,7 +12,7 @@ export default function HomePage() {
         // const response: Payment[] = await axios.get(`/`);
         const response: Package[] = [
           {
-            stt: "1",
+           
             waybill: 1234567890,
             company: "FastTrack Logistics",
             status: "pending",
@@ -20,7 +20,7 @@ export default function HomePage() {
             department: "Sales",
           },
           {
-            stt: "1",
+           
             waybill: 9876543210,
             company: "Global Express",
             status: "processing",
@@ -28,7 +28,7 @@ export default function HomePage() {
             department: "Marketing",
           },
           {
-            stt: "1",
+            
             waybill: 5551212345,
             company: "Swift Delivery Co.",
             status: "success",
@@ -36,7 +36,7 @@ export default function HomePage() {
             department: "Finance",
           },
           {
-            stt: "1",
+           
             waybill: 1118887777,
             company: "Reliable Shipping",
             status: "failed",
