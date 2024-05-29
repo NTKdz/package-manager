@@ -19,7 +19,7 @@ export function CustomDialog({
       <DialogTrigger asChild className={style}>
         <Button variant="outline">{title}</Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px]">
+      <DialogContent className="sm:max-w-[600px]">
         {dialogContent}
       </DialogContent>
     </Dialog>

@@ -1,8 +1,7 @@
 import { useEffect } from "react";
 import "./App.css";
-import HomePage from "./views/HomePage";
+import Analytics from "./services/analytics";
 import LayOut from "./views/LayOut";
-import Analytics from "./services/Analytics";
 
 function App() {
   const { getPackageData } = Analytics();

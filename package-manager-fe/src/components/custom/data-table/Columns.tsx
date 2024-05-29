@@ -1,5 +1,5 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import { Package } from "@/redux/interface/packageInterface";
+import { Package } from "@/interface/packageInterface";
 import { ColumnDef } from "@tanstack/react-table";
 
 export const columns: ColumnDef<Package>[] = [
@@ -32,19 +32,27 @@ export const columns: ColumnDef<Package>[] = [
     header: "Mã vận đơn",
   },
   {
-    accessorKey: "company",
-    header: "Mã công ty",
+    accessorKey: "user",
+    header: "Người gửi",
   },
   {
-    accessorKey: "status",
-    header: "Trạng thái",
+    accessorKey: "department",
+    header: "Phòng ban",
+  },
+  {
+    accessorKey: "company",
+    header: "Mã công ty",
   },
   {
     accessorKey: "cpn",
     header: "Đơn vị CPN",
   },
   {
-    accessorKey: "department",
-    header: "Phòng ban",
+    accessorKey: "priority",
+    header: "Độ khẩn",
+  },
+  {
+    accessorKey: "Confidentiality",
+    header: "Độ mật",
   },
 ];

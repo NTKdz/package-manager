@@ -3,9 +3,11 @@ import HomePage from "./HomePage";
 
 export default function LayOut() {
   return (
-    <div>
+    <div className="flex">
       <NavBar />
-      <HomePage />
+      <div className="mt-4 w-full">
+        <HomePage />
+      </div>
     </div>
   );
 }

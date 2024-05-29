@@ -1,5 +1,5 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Package } from "../interface/packageInterface";
+import { Package } from "../../interface/packageInterface";
 
 const initialState = {
   package: {
