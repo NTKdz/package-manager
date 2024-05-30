@@ -1,6 +1,7 @@
 export interface PackageInterface {
   waybill: number;
   user: string;
+  requestedDate: string;
   department: string;
   company: string;
   cpn: string;
@@ -8,7 +9,7 @@ export interface PackageInterface {
   Confidentiality: string;
 }
 
-function generatePackage() {
+function generatePackage(): PackageInterface {
   const companies = [
     "Acme Corp",
     "Big Box Inc",
@@ -20,19 +21,17 @@ function generatePackage() {
   const confidentialityOptions = ["Standard", "Confidential"];
 
   return {
-    waybill: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000, // Random waybill between 100000 and 999999
-    user: `User ${Math.floor(Math.random() * 100) + 1}`, // User + random number between 1 and 100
-    department: departments[Math.floor(Math.random() * departments.length)], // Random department
-    company: companies[Math.floor(Math.random() * companies.length)], // Random company
-    cpn: `CPN-${Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000}`, // Random CPN between CPN-1000 and CPN-9999
-    priority: priorities[Math.floor(Math.random() * priorities.length)], // Random priority
-    Confidentiality:
-      confidentialityOptions[
-        Math.floor(Math.random() * confidentialityOptions.length)
-      ], // Random confidentiality
+    waybill: Math.floor(Math.random() * (999999 - 100000 + 1)) + 100000,
+    user: `User ${Math.floor(Math.random() * 100) + 1}`,
+    requestedDate: new Date().toISOString(),
+    department: departments[Math.floor(Math.random() * departments.length)],
+    company: companies[Math.floor(Math.random() * companies.length)],
+    cpn: `CPN-${Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000}`,
+    priority: priorities[Math.floor(Math.random() * priorities.length)],
+    Confidentiality: confidentialityOptions[Math.floor(Math.random() * confidentialityOptions.length)],
   };
 }
 
-export const mockPackages = Array(10).fill(null).map(generatePackage);
+export const mockPackages: PackageInterface[] = Array(10).fill(null).map(generatePackage);
 
 console.log(mockPackages);

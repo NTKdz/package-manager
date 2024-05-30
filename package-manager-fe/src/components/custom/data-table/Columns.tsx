@@ -35,6 +35,7 @@ export const columns: ColumnDef<Package>[] = [
     accessorKey: "user",
     header: "Người gửi",
   },
+  { accessorKey: "requestedDate", header: "Ngày yêu cầu" },
   {
     accessorKey: "department",
     header: "Phòng ban",

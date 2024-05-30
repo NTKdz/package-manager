@@ -1,10 +1,12 @@
 import { columns } from "@/components/custom/data-table/Columns";
 import { DataTable } from "@/components/custom/data-table/DataTable";
-import RequestPackageDialog from "@/components/custom/homepage/RequestPackageDialog";
+import RequestPackageDialog from "@/components/custom/homeview/RequestPackageDialog";
+import DataVisualization from "@/components/custom/managementview/DataVisualization";
+import { Button } from "@/components/ui/button";
 import { PackageInterface, mockPackages } from "@/interface/packageInterface";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 
-export default function HomePage() {
+export default function ManagementView() {
   const [data, setData] = useState<PackageInterface[]>([]);
   useEffect(() => {
     const data = async () => {
@@ -26,7 +28,8 @@ export default function HomePage() {
   }
   return (
     <div className="container mx-auto mt-10">
-      <RequestPackageDialog />
+      <DataVisualization />
+      
       <DataTable columns={columns} data={data} />
     </div>
   );

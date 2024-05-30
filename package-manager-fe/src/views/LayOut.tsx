@@ -1,12 +1,27 @@
 import NavBar from "@/components/custom/nav-bar/NavBar";
-import HomePage from "./HomePage";
+import HomePage from "./HomeView";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export default function LayOut() {
+  const location = useLocation();
+
+  const getTitle = () => {
+    if (location.pathname.startsWith("/order") || location.pathname === "/") {
+      return "Trang chủ";
+    } else if (location.pathname.startsWith("/user")) {
+      return "Người dùng";
+    } else if (location.pathname.startsWith("/manage")) {
+      return "Thông số";
+    }
+  };
   return (
     <div className="flex">
       <NavBar />
       <div className="mt-4 w-full">
-        <HomePage />
+        <div className="w-full pl-10">
+          <h1 className="text-2xl font-bold">{getTitle()}</h1>
+        </div>
+        <Outlet />
       </div>
     </div>
   );

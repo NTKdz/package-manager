@@ -1,7 +1,93 @@
-import { Label } from "@radix-ui/react-label";
-
+import { useState } from "react";
+import { FaArrowLeft, FaArrowRight, FaRegUserCircle } from "react-icons/fa";
+import { IoIosStats } from "react-icons/io";
+import { GoPackage } from "react-icons/go";
+import "./styles.css";
+import { useNavigate } from "react-router-dom";
+const navOptions = ["Đơn hàng", "Người dùng", "Quản lý"];
 export default function NavBar() {
-  return <div className="w-[200px] mb-0 h-[100vh] bg-primary">
-    <h1 className="text-primary-foreground scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">helo</h1>
-  </div>;
+  const navigate = useNavigate();
+  const [selectedTab, setSelectedTab] = useState<string>("Đơn hàng");
+  const [isMinimized, setIsMinimized] = useState<boolean>(false);
+
+  function getIcon(option: string) {
+    switch (option) {
+      case "Người dùng":
+        return <FaRegUserCircle />;
+
+      case "Quản lý":
+        return <IoIosStats />;
+
+      case "Đơn hàng":
+        return <GoPackage />;
+    }
+  }
+
+  function navigateToPage(option: string) {
+    switch (option) {
+      case "Người dùng":
+        navigate("/user");
+        break;
+
+      case "Quản lý":
+        navigate("/manage");
+        break;
+
+      case "Đơn hàng":
+        navigate("/order");
+        break;
+    }
+  }
+  return (
+    <div>
+      <div
+        className={`fixed ${
+          isMinimized ? "w-16" : "w-[200px]"
+        } mb-0 h-full bg-primary p-2 transition-all`}
+      >
+        <div
+          className={`w-full h-10 font-bold rounded-sm flex justify-end items-center mb-2 hover:cursor-pointer hover:opacity-90 ${
+            isMinimized && "justify-center"
+          }`}
+          onClick={() => {
+            setIsMinimized(!isMinimized);
+          }}
+        >
+          {isMinimized ? (
+            <FaArrowLeft className="text-white w-6 h-6" />
+          ) : (
+            <FaArrowRight className="text-white w-6 h-6" />
+          )}
+        </div>
+        {navOptions.map((option) => (
+          <div
+            key={option}
+            className={`w-full h-10 ${
+              selectedTab === option ? "bg-primary-foreground" : "text-white"
+            } font-bold rounded-sm flex gap-2 items-center ${
+              !isMinimized && "pl-2"
+            } mb-2 hover:cursor-pointer hover:opacity-90 hover:bg-primary-foreground hover:text-primary ${
+              isMinimized && "justify-center"
+            } transition-all`}
+            onClick={() => {
+              setSelectedTab(option);
+              navigateToPage(option);
+            }}
+          >
+            {getIcon(option)}
+
+            {!isMinimized && (
+              <span
+                className={`fadeIn
+              `}
+              >
+                {option}
+              </span>
+            )}
+          </div>
+        ))}
+      </div>
+      <div className={`w-${isMinimized ? "16" : "[200px]"} transition-all float-left`}></div>
+    </div>
+  );
 }

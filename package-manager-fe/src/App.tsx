@@ -1,7 +1,8 @@
 import { useEffect } from "react";
+import { RouterProvider } from "react-router-dom";
 import "./App.css";
+import { router } from "./routes";
 import Analytics from "./services/analytics";
-import LayOut from "./views/LayOut";
 
 function App() {
   const { getPackageData } = Analytics();
@@ -10,7 +11,7 @@ function App() {
   }, []);
   return (
     <>
-      <LayOut />
+      <RouterProvider router={router}></RouterProvider>
     </>
   );
 }
