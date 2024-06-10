@@ -1,6 +1,5 @@
 import NavBar from "@/components/custom/nav-bar/NavBar";
-import HomePage from "./HomeView";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 
 export default function LayOut() {
   const location = useLocation();
@@ -17,6 +16,7 @@ export default function LayOut() {
   return (
     <div className="flex">
       <NavBar />
+
       <div className="mt-4 w-full">
         <div className="w-full pl-10">
           <h1 className="text-2xl font-bold">{getTitle()}</h1>

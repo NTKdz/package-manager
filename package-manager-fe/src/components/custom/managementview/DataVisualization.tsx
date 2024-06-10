@@ -242,23 +242,25 @@ const data3 = [
 ];
 export default function DataVisualization() {
   return (
-    <div className="w-full bg-primary mb-4 rounded-sm p-4">
-      <div className="w-full bg-primary-foreground rounded-sm p-2 mb-4">
+    <div className="w-full mb-4 rounded-lg">
+      <div className="w-full bg-primary-foreground rounded-md p-2 mb-4">
         <div className="flex items-center gap-2">
-          <DateRangePicker /> 
+          <DateRangePicker />
         </div>
       </div>
       <div className="w-full flex gap-4">
-        <div className="h-[480px] bg-primary-foreground p-4 rounded-sm flex-[3]">
+        <div className="h-[400px] bg-primary-foreground p-4 rounded-md flex-[3]">
           <SimpleAreaChart data={data} />
         </div>
       </div>
 
       <div className="flex mt-4 gap-4">
-        <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-sm flex-[2]">
+        <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-md flex-[2]">
+          testing
           <SimplePieChart data={data1} />
         </div>
-        <div className="w-full bg-primary-foreground p-4 rounded-sm flex-[3]">
+        <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-md flex-[3]">
+          testing
           <SimpleBarChart data={data3} />
         </div>
       </div>
