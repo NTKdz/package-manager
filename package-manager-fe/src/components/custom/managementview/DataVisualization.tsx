@@ -1,267 +1,58 @@
-import React from "react";
-import SimpleAreaChart from "../custom-chart/SimpleAreaChart";
-import { SimplePieChart } from "../custom-chart/SimplePieChart";
+import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { useState } from "react";
 import SimpleBarChart from "../custom-chart/SimpleBarChart";
+import SimpleLineChart from "../custom-chart/SimpleLineChart";
+import { SimplePieChart } from "../custom-chart/SimplePieChart";
 import { DateRangePicker } from "../custom-date-picker/CustomDateRangePicker";
+import { barData, data1, pieData } from "./data";
 
-const data = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
-
-const data1 = [
-  { name: "Group A", value: 400 },
-  { name: "Group B", value: 300 },
-  { name: "Group C", value: 300 },
-  { name: "Group D", value: 200 },
-];
-
-const data3 = [
-  {
-    name: "Page A",
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: "Page B",
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: "Page C",
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: "Page D",
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: "Page E",
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: "Page F",
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-  {
-    name: "Page G",
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
 export default function DataVisualization() {
+  const [barMode, setBarMode] = useState<"stacked" | "grouped">("grouped");
   return (
-    <div className="w-full mb-4 rounded-lg">
-      <div className="w-full bg-primary-foreground rounded-md p-2 mb-4">
+    <div className="w-full mb-4 rounded-lg min-w-0">
+      <div className="h-[400px] bg-primary-foreground p-4 rounded-md flex-[3]">
         <div className="flex items-center gap-2">
           <DateRangePicker />
         </div>
-      </div>
-      <div className="w-full flex gap-4">
-        <div className="h-[400px] bg-primary-foreground p-4 rounded-md flex-[3]">
-          <SimpleAreaChart data={data} />
-        </div>
+        <SimpleLineChart data={data1} />
       </div>
 
-      <div className="flex mt-4 gap-4">
+      <div className="flex mt-4 gap-4 min-w-0">
         <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-md flex-[2]">
-          testing
-          <SimplePieChart data={data1} />
+          <DateRangePicker />
+          <SimplePieChart data={pieData} />
         </div>
-        <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-md flex-[3]">
-          testing
-          <SimpleBarChart data={data3} />
+        <div className="w-full min-w-0 h-[360px] bg-primary-foreground p-4 rounded-md flex-[3]">
+          <div className="w-full flex justify-between">
+            <DateRangePicker />
+            <Tabs defaultValue="grouped" className="w-[200px]">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger
+                  value="grouped"
+                  onClick={() => {
+                    setBarMode("grouped");
+                  }}
+                >
+                  Tách
+                </TabsTrigger>
+                <TabsTrigger
+                  value="stacked"
+                  onClick={() => {
+                    setBarMode("stacked");
+                  }}
+                >
+                  Chồng
+                </TabsTrigger>
+              </TabsList>
+            </Tabs>
+          </div>
+
+          <SimpleBarChart
+            data={barData}
+            keys={["hot dog", "burger", "sandwich", "kebab", "fries", "donut"]}
+            indexBy={"country"}
+            groupMode={barMode}
+          />
         </div>
       </div>
     </div>

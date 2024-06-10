@@ -1,7 +1,7 @@
 import { createBrowserRouter } from "react-router-dom";
 import LayOut from "./views/LayOut";
-import HomeView from "./views/HomeView";
-import ManagementView from "./views/ManagementView";
+import HomeView from "./views/home-view/HomeView";
+import ManagementView from "./views/management-view/ManagementView";
 
 export const router = createBrowserRouter([
   {
@@ -21,7 +21,7 @@ export const router = createBrowserRouter([
         element: <HomeView />,
       },
       {
-        path: "/manage",
+        path: "/manage/:route",
         element: <ManagementView />,
       },
     ],

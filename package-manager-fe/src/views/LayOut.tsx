@@ -17,7 +17,7 @@ export default function LayOut() {
     <div className="flex">
       <NavBar />
 
-      <div className="mt-4 w-full">
+      <div className="mt-4 w-full min-w-0">
         <div className="w-full pl-10">
           <h1 className="text-2xl font-bold">{getTitle()}</h1>
         </div>

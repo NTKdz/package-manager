@@ -30,7 +30,7 @@ export default function NavBar() {
         break;
 
       case "Quản lý":
-        navigate("/manage");
+        navigate("/manage/chart");
         break;
 
       case "Đơn hàng":
