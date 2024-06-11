@@ -3,7 +3,8 @@ import { DataTable } from "@/components/custom/data-table/DataTable";
 import DataVisualization from "@/components/custom/managementview/DataVisualization";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { PackageInterface, mockPackages } from "@/interface/packageInterface";
-import { useEffect, useLayoutEffect, useState } from "react";
+import Analytics from "@/services/analytics";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
 
@@ -15,14 +16,16 @@ export default function ManagementView() {
   );
   const [transition, setTransition] = useState(false);
   const [data, setData] = useState<PackageInterface[]>([]);
+  const { getPackageData } = Analytics();
 
-  useEffect(() => {setTransition(true);
+  useEffect(() => {
+    setTransition(true);
     const data = async () => {
       try {
         // const response: Payment[] = await axios.get(`/`);
         const response: PackageInterface[] = mockPackages;
 
-        console.log(response);
+        getPackageData().then((res) => console.log(res));
         setData(response);
       } catch (e) {
         console.log((e as Error).message);

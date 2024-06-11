@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class PackageService {
+public class PackageService{
 
     private final PackageRepository packageRepository;
 
@@ -39,7 +39,7 @@ public class PackageService {
                 .orElseThrow(RuntimeException::new);
         package1.setCpn(updatedPackage.getCpn());
         package1.setCompany(updatedPackage.getCompany());
-        package1.setStatus(updatedPackage.getStatus());
+
         return packageRepository.save(package1);
     }
 

@@ -5,36 +5,48 @@ import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Setter
 @Getter
-@Data
 @Entity
+@Table(name = "PACKAGES")
 public class Package {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long waybill;
+    private Long waybill;
 
-    public Package(long waybill, String company, PackageStatus status, String cpn, String department) {
-        this.waybill = waybill;
-        this.company = company;
-        this.status = status;
-        this.cpn = cpn;
-        this.department = department;
-    }
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "USER_ID", nullable = false)
+    private User user;
 
+    @Column(name = "DATE", nullable = false)
+    private Date date;
+
+    @Column(name = "COMPANY", nullable = false)
     private String company;
 
-    @Enumerated(EnumType.STRING)
-    private PackageStatus status;
-
+    @Column(name = "CPN", nullable = false)
     private String cpn;
-    private String department;
 
-    public enum PackageStatus {
-        PENDING,
-        PROCESSING,
-        SUCCESS,
-        FAILED
+    @Enumerated(EnumType.STRING)
+    @Column(name = "PRIORITY", nullable = false)
+    private Priority priority;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "CONFIDENTIALITY", nullable = false)
+    private Confidentiality confidentiality;
+
+    public enum Confidentiality {
+        NORMAL,
+        CONFIDENTIAL
     }
 
+    public enum Priority {
+        NORMAL,
+        FAST,
+        URGENT,
+        VERY_URGENT
+    }
 }

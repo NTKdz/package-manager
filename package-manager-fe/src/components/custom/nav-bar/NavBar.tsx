@@ -1,13 +1,22 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaRegUserCircle } from "react-icons/fa";
 import { IoIosStats } from "react-icons/io";
 import { GoPackage } from "react-icons/go";
 import "./styles.css";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 const navOptions = ["Đơn hàng", "Người dùng", "Quản lý"];
 export default function NavBar() {
   const navigate = useNavigate();
-  const [selectedTab, setSelectedTab] = useState<string>("Đơn hàng");
+  const location = useLocation();
+  const [selectedTab, setSelectedTab] = useState<string>(
+    location.pathname.startsWith("/order")
+      ? "Đơn hàng"
+      : location.pathname.startsWith("/user")
+      ? "Người dùng"
+      : location.pathname.startsWith("/manage")
+      ? "Quản lý"
+      : "Đơn hàng"
+  );
   const [isMinimized, setIsMinimized] = useState<boolean>(false);
 
   function getIcon(option: string) {
@@ -87,7 +96,11 @@ export default function NavBar() {
           </div>
         ))}
       </div>
-      <div className={`w-${isMinimized ? "16" : "[200px]"} transition-all float-left`}></div>
+      <div
+        className={`w-${
+          isMinimized ? "16" : "[200px]"
+        } transition-all float-left`}
+      ></div>
     </div>
   );
 }

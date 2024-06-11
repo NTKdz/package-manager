@@ -16,7 +16,6 @@ import java.util.stream.Collectors;
 @RestController  // Change @Controller to @RestController for REST APIs
 @RequestMapping("/packages") // Set a base path for package-related endpoints
 public class PackageController {
-
     private final PackageService packageService;
     private final ModelMapper modelMapper;
 
@@ -38,22 +37,10 @@ public class PackageController {
     // READ
     @GetMapping
     public List<PackageDto> getAllPackages() {
-//        List<Package> packages = packageService.getAllPackages();
-//        return ResponseEntity.ok(packages);
-//
-//        return packageService.getAllPackages().stream().map(newPackage -> modelMapper.map(newPackage, PackageDto.class)).
-//                collect(Collectors.toList());
+        List<Package> packages = packageService.getAllPackages();
 
-        List<Package> mockPackages = Arrays.asList(
-                new Package(1L, "Company A", Package.PackageStatus.PENDING, "CPN123", "Department X"),
-                new Package(2L, "Company B", Package.PackageStatus.PROCESSING, "CPN456", "Department Y"),
-                new Package(3L, "Company C", Package.PackageStatus.SUCCESS, "CPN789", "Department Z")
-        );
-
-        // Return mapped DTOs
-        return mockPackages.stream()
-                .map(packageItem -> modelMapper.map(packageItem, PackageDto.class))
-                .collect(Collectors.toList());
+        return packages.stream().map(packageItem -> modelMapper.map(packageItem, PackageDto.class)).
+                collect(Collectors.toList());
     }
 
     @GetMapping("/{id}")
