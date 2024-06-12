@@ -1,15 +1,16 @@
 package com.mbamc.packagemanagerbe.model;
 
 import jakarta.persistence.*;
-import lombok.Data;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.Date;
 
 @Setter
 @Getter
 @Entity
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "PACKAGES")
 public class Package {
 
@@ -17,12 +18,12 @@ public class Package {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long waybill;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID", nullable = false)
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "USER_ID")
     private User user;
 
-    @Column(name = "DATE", nullable = false)
-    private Date date;
+    @Column(name = "date_request", nullable = false)
+    private Date requestedDate;
 
     @Column(name = "COMPANY", nullable = false)
     private String company;
@@ -37,6 +38,8 @@ public class Package {
     @Enumerated(EnumType.STRING)
     @Column(name = "CONFIDENTIALITY", nullable = false)
     private Confidentiality confidentiality;
+
+
 
     public enum Confidentiality {
         NORMAL,

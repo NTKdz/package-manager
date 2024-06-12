@@ -53,7 +53,7 @@ export const columns: ColumnDef<Package>[] = [
     header: "Độ khẩn",
   },
   {
-    accessorKey: "Confidentiality",
+    accessorKey: "confidentiality",
     header: "Độ mật",
   },
 ];

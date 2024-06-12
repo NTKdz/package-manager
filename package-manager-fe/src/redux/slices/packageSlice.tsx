@@ -1,21 +1,24 @@
 import { PayloadAction, createSlice } from "@reduxjs/toolkit";
-import { Package } from "../../interface/packageInterface";
+import { PackageInterface } from "../../interface/packageInterface";
 
 const initialState = {
-  package: {
+  requestedPackage: [{
     waybill: 0,
-    company: "",
-    status: "pending",
-    cpn: "",
+    user: "",
+    requestedDate: "",
     department: "",
-  },
+    company: "",
+    cpn: "",
+    priority: "",
+    Confidentiality: "",
+  }],
 };
 export const packageSlice = createSlice({
   name: "package",
   initialState: initialState,
   reducers: {
-    setPackage: (state, action: PayloadAction<Package>) => {
-      state.package = action.payload;
+    setPackage: (state, action: PayloadAction<PackageInterface[]>) => {
+      state.requestedPackage = action.payload;
     },
   },
 });

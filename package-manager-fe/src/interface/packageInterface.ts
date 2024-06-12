@@ -28,10 +28,13 @@ function generatePackage(): PackageInterface {
     company: companies[Math.floor(Math.random() * companies.length)],
     cpn: `CPN-${Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000}`,
     priority: priorities[Math.floor(Math.random() * priorities.length)],
-    Confidentiality: confidentialityOptions[Math.floor(Math.random() * confidentialityOptions.length)],
+    Confidentiality:
+      confidentialityOptions[
+        Math.floor(Math.random() * confidentialityOptions.length)
+      ],
   };
 }
 
-export const mockPackages: PackageInterface[] = Array(10).fill(null).map(generatePackage);
-
-console.log(mockPackages);
+export const mockPackages: PackageInterface[] = Array(10)
+  .fill(null)
+  .map(generatePackage);

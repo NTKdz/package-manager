@@ -1,4 +1,4 @@
-package com.mbamc.packagemanagerbe.dto;
+package com.mbamc.packagemanagerbe.dto.tables;
 
 import com.mbamc.packagemanagerbe.model.Package;
 import com.mbamc.packagemanagerbe.model.User;
@@ -11,15 +11,13 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-
 public class PackageDto {
     private long waybill;
-    private String username;
-    private Date date;
+    private String user;
+    private Date requestedDate;
+    private String department;
     private String company;
     private String cpn;
-    private String department;
     private Package.Confidentiality confidentiality;
-    private Package.Confidentiality priority;
-
+    private Package.Priority priority;
 }
