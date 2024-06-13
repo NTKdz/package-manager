@@ -43,12 +43,15 @@ public class PackageService {
         return packageRepository.getAllPackageByCriteria(date, name, department, cpn, priority, confidentiality);
     }
 
+    public List<Package> getAllPackageByUserName(String username) {
+        return packageRepository.getAllPackageByUserName(username);
+    }
+
     // UPDATE
     public Package updatePackage(long id, Package updatedPackage) {
         Package package1 = packageRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
-        package1.setCpn(updatedPackage.getCpn());
-        package1.setCompany(updatedPackage.getCompany());
+
 
         return packageRepository.save(package1);
     }

@@ -4,7 +4,8 @@ import com.mbamc.packagemanagerbe.converter.PackageConverter;
 import com.mbamc.packagemanagerbe.dto.tables.PackageDto;
 import com.mbamc.packagemanagerbe.model.Package;
 import com.mbamc.packagemanagerbe.service.PackageService;
-import com.mbamc.packagemanagerbe.util.PackageExcelExporter;
+import com.mbamc.packagemanagerbe.service.UserService;
+import com.mbamc.packagemanagerbe.util.PackageExcelHandler;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,17 +26,19 @@ import java.text.SimpleDateFormat;
 public class PackageController {
     private final PackageService packageService;
     private final ModelMapper modelMapper;
+    private final UserService userService;
 
     @Autowired
-    public PackageController(PackageService packageService, ModelMapper modelMapper) {
+    public PackageController(PackageService packageService, ModelMapper modelMapper, UserService userService) {
         this.packageService = packageService;
         this.modelMapper = modelMapper;
+        this.userService = userService;
     }
 
     // CREATE
     @PostMapping
     public ResponseEntity<PackageDto> createPackage(@RequestBody PackageDto packageDto) {
-        Package packageRequest = modelMapper.map(packageDto, Package.class);
+        Package packageRequest = PackageConverter.toEntity(packageDto, userService);
         Package newPackage = packageService.createPackage(packageRequest);
         PackageDto packageRespond = modelMapper.map(newPackage, PackageDto.class);
         return new ResponseEntity<>(packageRespond, HttpStatus.CREATED);
@@ -50,7 +53,15 @@ public class PackageController {
     public ResponseEntity<List<PackageDto>> getAllPackages() {
         List<Package> packages = packageService.getAllPackages();
 
-        return ResponseEntity.ok(packages.stream().map(PackageConverter::toDto).
+        return ResponseEntity.ok(packages.stream().map(PackageConverter::toAminDto).
+                collect(Collectors.toList()));
+    }
+
+    @GetMapping("/user/{username}")
+    public ResponseEntity<List<PackageDto>> getAllPackageByUserName(@PathVariable String username) {
+        List<Package> packages = packageService.getAllPackageByUserName(username);
+
+        return ResponseEntity.ok(packages.stream().map(PackageConverter::toAminDto).
                 collect(Collectors.toList()));
     }
 
@@ -64,7 +75,7 @@ public class PackageController {
             @RequestParam(value = "confidentiality", required = false) Package.Confidentiality confidentiality) {
 
         List<Package> packages = packageService.getAllPackageByCriteria(date, name, department, cpn, priority, confidentiality);
-        return ResponseEntity.ok(packages.stream().map(PackageConverter::toDto).
+        return ResponseEntity.ok(packages.stream().map(PackageConverter::toAminDto).
                 collect(Collectors.toList()));
     }
 
@@ -87,7 +98,7 @@ public class PackageController {
         response.setHeader(headerKey, headerValue);
 
         List<Package> packages = packageService.getAllPackages();
-        PackageExcelExporter generator = new PackageExcelExporter(packages);
+        PackageExcelHandler generator = new PackageExcelHandler(packages);
         generator.export(response);
     }
 

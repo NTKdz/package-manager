@@ -14,6 +14,7 @@ import java.util.Date;
 public class PackageDto {
     private long waybill;
     private String user;
+    private String userFullName;
     private Date requestedDate;
     private String department;
     private String company;

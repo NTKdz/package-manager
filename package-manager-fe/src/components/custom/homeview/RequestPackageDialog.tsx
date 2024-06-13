@@ -1,17 +1,20 @@
-import React, { useState } from "react";
-import { CustomDialog } from "../custom-dialog/CustomDialog";
+import { Button } from "@/components/ui/button";
 import {
   DialogDescription,
   DialogFooter,
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Label } from "@radix-ui/react-label";
 import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
+import { RequestWaybillInterface } from "@/interface/packageInterface";
+import TableService from "@/services/TableService";
+import { Label } from "@radix-ui/react-label";
+import { useState } from "react";
+import { CustomDialog } from "../custom-dialog/CustomDialog";
 import { CustomDropdownMenu } from "../custom-dropdown-menu/CustomDropdownMenu";
 
 const column = [
+  "Tên đăng nhập",
   "Tên người gửi",
   "Phòng ban",
   "Công ty",
@@ -21,15 +24,20 @@ const column = [
 ];
 
 export default function RequestPackageDialog() {
-  const [user, setUser] = useState("");
+  const [user, setUser] = useState("os.khoint");
+  const [userFullName, setUserFullName] = useState("nguyen the khoi");
   const [department, setDepartment] = useState("");
   const [company, setCompany] = useState("");
-  const [priority, setPriority] = useState("");
-  const [confidentiality, setConfidentiality] = useState("");
+  const [priority, setPriority] = useState("NORMAL");
+  const [confidentiality, setConfidentiality] = useState("NORMAL");
   const [cpn, setCpn] = useState("");
+
+  const { requestWaybill } = TableService();
 
   function standardizeName(name: string) {
     switch (name) {
+      case "Tên đăng nhập":
+        return userFullName;
       case "Tên người gửi":
         return user;
       case "Phòng ban":
@@ -48,8 +56,10 @@ export default function RequestPackageDialog() {
 
   function standardizeSetName(name: string, value: string) {
     switch (name) {
-      case "Tên người gửi":
+      case "Tên đăng nhập":
         return setUser(value);
+      case "Tên người gửi":
+        return setUserFullName(value);
       case "Phòng ban":
         return setDepartment(value);
       case "Công ty":
@@ -102,11 +112,36 @@ export default function RequestPackageDialog() {
             onChange={(e) => {
               standardizeSetName(col, e.target.value);
             }}
+            disabled={col === "Tên đăng nhập" || col === "Tên người gửi"}
           />
         );
     }
   }
 
+  function handleSubmit() {
+    const requestedDate= new Date();
+    console.log({
+      user,
+      userFullName,
+      requestedDate,
+      department,
+      company,
+      cpn,
+      priority,
+      confidentiality,
+    })
+    const data:RequestWaybillInterface={
+      user,
+      userFullName,
+      requestedDate,
+      department,
+      company,
+      cpn,
+      priority,
+      confidentiality,
+    }
+    requestWaybill(data)
+  }
   return (
     <CustomDialog
       title="Yêu cầu mã"
@@ -117,8 +152,8 @@ export default function RequestPackageDialog() {
             <DialogTitle>Đơn xin mã vận đơn</DialogTitle>
             <DialogDescription>Điền đầy đủ thông tin.</DialogDescription>
           </DialogHeader>
-          <div>
-            {column.slice(0, 3).map((col) => {
+          <form>
+            {column.slice(0, 4).map((col) => {
               return (
                 <div key={col} className="mt-2">
                   <div className="mb-1">
@@ -128,9 +163,9 @@ export default function RequestPackageDialog() {
                 </div>
               );
             })}
-          </div>
+          </form>
           <div className="flex gap-2">
-            {column.slice(3).map((col) => {
+            {column.slice(4).map((col) => {
               return (
                 <div key={col} className="mt-2 flex-1">
                   <div className="mb-1">
@@ -145,7 +180,9 @@ export default function RequestPackageDialog() {
             <Button type="submit" className="bg-destructive">
               Hủy
             </Button>
-            <Button type="submit">Xác nhận</Button>
+            <Button type="submit" onClick={handleSubmit}>
+              Xác nhận
+            </Button>
           </DialogFooter>
         </div>
       }

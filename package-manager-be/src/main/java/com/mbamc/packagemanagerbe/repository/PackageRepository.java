@@ -26,4 +26,7 @@ public interface PackageRepository extends JpaRepository<Package, Long> {
                                           @Param("priority") Package.Priority priority,
                                           @Param("confidentiality") Package.Confidentiality confidentiality);
 
+    @Query("SELECT p FROM Package p " +
+            "WHERE (p.user.username = :username)")
+    List<Package> getAllPackageByUserName(@Param("username") String username);
 }

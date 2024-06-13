@@ -1,12 +1,24 @@
 export interface PackageInterface {
   waybill: number;
   user: string;
-  requestedDate: string;
+  userFullName: string;
+  requestedDate: Date;
   department: string;
   company: string;
   cpn: string;
   priority: string;
-  Confidentiality: string;
+  confidentiality: string;
+}
+
+export interface RequestWaybillInterface {
+  user: string;
+  userFullName: string;
+  requestedDate: Date;
+  department: string;
+  company: string;
+  cpn: string;
+  priority: string;
+  confidentiality: string;
 }
 
 function generatePackage(): PackageInterface {
@@ -28,7 +40,7 @@ function generatePackage(): PackageInterface {
     company: companies[Math.floor(Math.random() * companies.length)],
     cpn: `CPN-${Math.floor(Math.random() * (9999 - 1000 + 1)) + 1000}`,
     priority: priorities[Math.floor(Math.random() * priorities.length)],
-    Confidentiality:
+    confidentiality:
       confidentialityOptions[
         Math.floor(Math.random() * confidentialityOptions.length)
       ],

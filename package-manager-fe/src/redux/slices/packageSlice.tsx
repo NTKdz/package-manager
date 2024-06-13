@@ -2,16 +2,19 @@ import { PayloadAction, createSlice } from "@reduxjs/toolkit";
 import { PackageInterface } from "../../interface/packageInterface";
 
 const initialState = {
-  requestedPackage: [{
-    waybill: 0,
-    user: "",
-    requestedDate: "",
-    department: "",
-    company: "",
-    cpn: "",
-    priority: "",
-    Confidentiality: "",
-  }],
+  requestedPackage: [
+    {
+      waybill: 0,
+      user: "",
+      userFullName: "",
+      requestedDate: "",
+      department: "",
+      company: "",
+      cpn: "",
+      priority: "",
+      Confidentiality: "",
+    },
+  ],
 };
 export const packageSlice = createSlice({
   name: "package",

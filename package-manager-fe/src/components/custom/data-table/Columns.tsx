@@ -1,8 +1,8 @@
 import { Checkbox } from "@/components/ui/checkbox";
-import { Package } from "@/interface/packageInterface";
+import { PackageInterface } from "@/interface/packageInterface";
 import { ColumnDef } from "@tanstack/react-table";
 
-export const columns: ColumnDef<Package>[] = [
+export const columns: ColumnDef<PackageInterface>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -33,9 +33,26 @@ export const columns: ColumnDef<Package>[] = [
   },
   {
     accessorKey: "user",
+    header: "Tên đăng nhập",
+  },
+  {
+    accessorKey: "userFullName",
     header: "Người gửi",
   },
-  { accessorKey: "requestedDate", header: "Ngày yêu cầu" },
+  {
+    accessorKey: "requestedDate",
+    header: "Ngày yêu cầu",
+    cell: ({ row }) => {
+      try {
+        const formattedDate = new Date(row.original.requestedDate)
+          .toISOString()
+          .split("T")[0];
+        return <div>{formattedDate}</div>;
+      } catch (error) {
+        return <div>Invalid Date</div>;
+      }
+    },
+  },
   {
     accessorKey: "department",
     header: "Phòng ban",

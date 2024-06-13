@@ -25,9 +25,6 @@ public class Package {
     @Column(name = "date_request", nullable = false)
     private Date requestedDate;
 
-    @Column(name = "COMPANY", nullable = false)
-    private String company;
-
     @Column(name = "CPN", nullable = false)
     private String cpn;
 
@@ -38,8 +35,6 @@ public class Package {
     @Enumerated(EnumType.STRING)
     @Column(name = "CONFIDENTIALITY", nullable = false)
     private Confidentiality confidentiality;
-
-
 
     public enum Confidentiality {
         NORMAL,

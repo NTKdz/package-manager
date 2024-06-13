@@ -24,4 +24,8 @@ public class User {
 
     @Column(name = "DEPARTMENT",length=50)
     private String department;
+
+
+    @Column(name = "COMPANY", nullable = false)
+    private String company;
 }

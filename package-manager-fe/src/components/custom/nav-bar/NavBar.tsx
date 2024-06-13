@@ -1,9 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaRegUserCircle } from "react-icons/fa";
-import { IoIosStats } from "react-icons/io";
 import { GoPackage } from "react-icons/go";
-import "./styles.css";
+import { IoIosStats } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
+import "./styles.css";
 const navOptions = ["Đơn hàng", "Người dùng", "Quản lý"];
 export default function NavBar() {
   const navigate = useNavigate();

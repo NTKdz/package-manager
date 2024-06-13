@@ -2,9 +2,10 @@ import { columns } from "@/components/custom/data-table/Columns";
 import { DataTable } from "@/components/custom/data-table/DataTable";
 import DataVisualization from "@/components/custom/managementview/DataVisualization";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { PackageInterface, mockPackages } from "@/interface/packageInterface";
-import Analytics from "@/services/analytics";
+import { RootState } from "@/redux/store";
+import TableService from "@/services/TableService";
 import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
 
@@ -15,24 +16,12 @@ export default function ManagementView() {
     location.pathname.split("/")[2]
   );
   const [transition, setTransition] = useState(false);
-  const [data, setData] = useState<PackageInterface[]>([]);
-  const { getPackageData } = Analytics();
+  const { requestedPackage } = useSelector((state: RootState) => state.package);
+  const { getPackageData } = TableService();
 
   useEffect(() => {
-    setTransition(true);
-    const data = async () => {
-      try {
-        // const response: Payment[] = await axios.get(`/`);
-        const response: PackageInterface[] = mockPackages;
-
-        getPackageData().then((res) => console.log(res));
-        setData(response);
-      } catch (e) {
-        console.log((e as Error).message);
-      }
-    };
-    data();
-  }, [currentLayout]);
+    getPackageData();
+  }, []);
 
   function handleChangeLayout(layout: string) {
     if (currentLayout !== layout) {
@@ -82,7 +71,7 @@ export default function ManagementView() {
         </div>
       ) : (
         <div className={`${transition ? currentLayout : ""} w-full`}>
-          <DataTable columns={columns} data={data} />
+          <DataTable columns={columns} data={requestedPackage} />
         </div>
       )}
     </div>
