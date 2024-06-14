@@ -10,7 +10,7 @@ export default function DataVisualization() {
   const [barMode, setBarMode] = useState<"stacked" | "grouped">("grouped");
   return (
     <div className="w-full mb-4 rounded-lg min-w-0">
-      <div className="h-[400px] bg-primary-foreground p-4 rounded-md flex-[3]">
+      <div className="h-[400px] bg-primary-foreground p-4 rounded-xl flex-[3]">
         <div className="flex items-center gap-2">
           <DateRangePicker />
         </div>
@@ -18,11 +18,11 @@ export default function DataVisualization() {
       </div>
 
       <div className="flex mt-4 gap-4 min-w-0">
-        <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-md flex-[2]">
+        <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-xl flex-[2]">
           <DateRangePicker />
           <SimplePieChart data={pieData} />
         </div>
-        <div className="w-full min-w-0 h-[360px] bg-primary-foreground p-4 rounded-md flex-[3]">
+        <div className="w-full min-w-0 h-[360px] bg-primary-foreground p-4 rounded-xl flex-[3]">
           <div className="w-full flex justify-between">
             <DateRangePicker />
             <Tabs defaultValue="grouped" className="w-[200px]">

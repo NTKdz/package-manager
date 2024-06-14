@@ -1,12 +1,13 @@
 import { columns } from "@/components/custom/data-table/Columns";
 import { DataTable } from "@/components/custom/data-table/DataTable";
-import DataVisualization from "@/components/custom/managementview/DataVisualization";
+import DataVisualization from "@/components/custom/management-view/DataVisualization";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RootState } from "@/redux/store";
 import TableService from "@/services/TableService";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
+import StatisticsTableView from "./statistics-table-view/StatisticsTableView";
 import "./styles.css";
 
 export default function ManagementView() {
@@ -15,7 +16,9 @@ export default function ManagementView() {
   const [currentLayout, setCurrentLayout] = useState(
     location.pathname.split("/")[2]
   );
+
   const [transition, setTransition] = useState(false);
+
   const { requestedPackage } = useSelector((state: RootState) => state.package);
   const { getPackageData } = TableService();
 
@@ -23,17 +26,28 @@ export default function ManagementView() {
     getPackageData();
   }, []);
 
+  useEffect(() => {
+    const timeoutId: NodeJS.Timeout = setTimeout(() => {
+      setTransition(true);
+    }, 2000);
+
+    return () => {
+      clearTimeout(timeoutId);
+    };
+  }, [currentLayout]);
+
   function handleChangeLayout(layout: string) {
     if (currentLayout !== layout) {
-      setTransition(false);
       switch (currentLayout) {
         case "chart":
           navigate("/manage/table");
           setCurrentLayout("table");
+          setTransition(false);
           break;
         case "table":
           navigate("/manage/chart");
           setCurrentLayout("chart");
+          setTransition(false);
           break;
         default:
           break;
@@ -65,12 +79,16 @@ export default function ManagementView() {
           </TabsList>
         </Tabs>
       </div>
+
       {currentLayout === "chart" ? (
-        <div className={`${transition ? currentLayout : ""}`}>
+        <div>
+          <div>
+            <StatisticsTableView />
+          </div>
           <DataVisualization />
         </div>
       ) : (
-        <div className={`${transition ? currentLayout : ""} w-full`}>
+        <div>
           <DataTable columns={columns} data={requestedPackage} />
         </div>
       )}

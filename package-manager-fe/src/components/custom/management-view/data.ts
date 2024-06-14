@@ -16,7 +16,7 @@ export const pieData = [
     label: "skateboard",
     value: 84,
     color: "#79a7ff",
-  },
+  },  
   {
     id: "norway-others",
     label: "others",

@@ -1,4 +1,4 @@
-package com.mbamc.packagemanagerbe.dto.charts;
+package com.mbamc.packagemanagerbe.dto.statistics;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class TableChartDto {
-    String name;
+public class PieChartDto {
+    String id;
+    String label;
+    Long value;
 }

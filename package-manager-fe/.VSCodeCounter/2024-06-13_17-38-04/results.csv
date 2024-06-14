@@ -1,0 +1,59 @@
+"filename", "language", "JavaScript", "TypeScript", "JSON with Comments", "JSON", "Markdown", "XML", "HTML", "TypeScript JSX", "CSS", "comment", "blank", "total"
+"d:\KhoiDz\package-manager\package-manager-fe\.eslintrc.cjs", "JavaScript", 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 19
+"d:\KhoiDz\package-manager\package-manager-fe\README.md", "Markdown", 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 9, 31
+"d:\KhoiDz\package-manager\package-manager-fe\components.json", "JSON", 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 17
+"d:\KhoiDz\package-manager\package-manager-fe\index.html", "HTML", 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 1, 14
+"d:\KhoiDz\package-manager\package-manager-fe\package-lock.json", "JSON", 0, 0, 0, 5940, 0, 0, 0, 0, 0, 0, 1, 5941
+"d:\KhoiDz\package-manager\package-manager-fe\package.json", "JSON", 0, 0, 0, 59, 0, 0, 0, 0, 0, 0, 1, 60
+"d:\KhoiDz\package-manager\package-manager-fe\postcss.config.js", "JavaScript", 6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 7
+"d:\KhoiDz\package-manager\package-manager-fe\public\vite.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1
+"d:\KhoiDz\package-manager\package-manager-fe\src\App.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 3
+"d:\KhoiDz\package-manager\package-manager-fe\src\App.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 3, 16
+"d:\KhoiDz\package-manager\package-manager-fe\src\assets\react.svg", "XML", 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-chart\SimpleBarChart.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 123, 0, 0, 3, 126
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-chart\SimpleLineChart.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 89, 0, 0, 2, 91
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-chart\SimplePieChart.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 139, 0, 0, 3, 142
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-date-picker\CustomDateRangePicker.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 84, 0, 0, 5, 89
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-dialog\CustomDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 26, 0, 0, 2, 28
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-dropdown-menu\CustomDropdownMenu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 49, 0, 0, 4, 53
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-tabs\CustomTabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 4, 24
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\data-table\Columns.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 75, 0, 0, 2, 77
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\data-table\DataTable.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 74, 0, 0, 5, 79
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\homeview\RequestPackageDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 184, 0, 0, 8, 192
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\managementview\DataVisualization.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 57, 0, 0, 4, 61
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\managementview\data.ts", "TypeScript", 0, 405, 0, 0, 0, 0, 0, 0, 0, 0, 3, 408
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\nav-bar\NavBar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 99, 0, 0, 8, 107
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\nav-bar\styles.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 2, 13
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 6, 58
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\calendar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 66, 0, 0, 5, 71
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\checkbox.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 4, 29
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\dialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 108, 0, 0, 13, 121
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\dropdown-menu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 186, 0, 0, 18, 204
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\input.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 21, 0, 0, 5, 26
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\label.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 5, 25
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\popover.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 7, 32
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\select.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 150, 0, 0, 13, 163
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\table.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 110, 0, 0, 11, 121
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\tabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 47, 0, 0, 7, 54
+"d:\KhoiDz\package-manager\package-manager-fe\src\hooks\useCallData.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 2, 9
+"d:\KhoiDz\package-manager\package-manager-fe\src\index.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 56, 0, 21, 77
+"d:\KhoiDz\package-manager\package-manager-fe\src\interface\chartInterface.ts", "TypeScript", 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 3, 17
+"d:\KhoiDz\package-manager\package-manager-fe\src\interface\packageInterface.ts", "TypeScript", 0, 48, 0, 0, 0, 0, 0, 0, 0, 0, 5, 53
+"d:\KhoiDz\package-manager\package-manager-fe\src\lib\utils.ts", "TypeScript", 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"d:\KhoiDz\package-manager\package-manager-fe\src\main.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 2, 15
+"d:\KhoiDz\package-manager\package-manager-fe\src\redux\slices\loadingSlice.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 15, 0, 1, 4, 20
+"d:\KhoiDz\package-manager\package-manager-fe\src\redux\slices\packageSlice.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 28, 0, 1, 4, 33
+"d:\KhoiDz\package-manager\package-manager-fe\src\redux\store.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 2, 14
+"d:\KhoiDz\package-manager\package-manager-fe\src\routes.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 37, 0, 0, 2, 39
+"d:\KhoiDz\package-manager\package-manager-fe\src\services\TableService.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 6, 58
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\LayOut.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 25, 0, 0, 4, 29
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\auth-view\SignIn.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 2, 8
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\home-view\HomeView.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 20, 0, 0, 4, 24
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\management-view\ManagementView.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 0, 75, 0, 0, 5, 80
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\management-view\styles.css", "CSS", 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 1, 12
+"d:\KhoiDz\package-manager\package-manager-fe\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"d:\KhoiDz\package-manager\package-manager-fe\tailwind.config.js", "JavaScript", 76, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 77
+"d:\KhoiDz\package-manager\package-manager-fe\tsconfig.json", "JSON with Comments", 0, 0, 25, 0, 0, 0, 0, 0, 0, 2, 4, 31
+"d:\KhoiDz\package-manager\package-manager-fe\tsconfig.node.json", "JSON", 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 1, 12
+"d:\KhoiDz\package-manager\package-manager-fe\vite.config.ts", "TypeScript", 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"Total", "-", 100, 483, 25, 6027, 22, 2, 13, 2132, 81, 6, 243, 9134

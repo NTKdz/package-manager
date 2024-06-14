@@ -29,4 +29,6 @@ public interface PackageRepository extends JpaRepository<Package, Long> {
     @Query("SELECT p FROM Package p " +
             "WHERE (p.user.username = :username)")
     List<Package> getAllPackageByUserName(@Param("username") String username);
+
+    long countByUser_Department(String department);
 }
