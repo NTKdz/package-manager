@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class StatisticsService {
@@ -26,18 +27,11 @@ public class StatisticsService {
     public List<LineChartDto> getLineChartData() {
         List<DepartmentWithCount> departmentList = statisticsRepository.getDepartmentWithTotalResult();
         List<LineChartDto> lineChartDtos = new ArrayList<>();
-        int index = 0;
-        for (DepartmentWithCount department : departmentList) {
-            LineChartDto dto = new LineChartDto();
-            if (Objects.equals(department.getDepartmentName(), departmentList.get(index--).getDepartmentName()) || index == 0) {
-                lineChartDtos.get(lineChartDtos.size() - 1).getData().add(new LineChartPoint("department.getDate()", department.getCount()));
-            } else {
-                dto.setId(department.getDepartmentName());
-                dto.getData().add(new LineChartPoint("department.getDate()", department.getCount()));
-                lineChartDtos.add(dto);
-            }
-            index++;
-        }
+        Set<String> departmentName = departmentList.stream().map(DepartmentWithCount::getDepartmentName).collect(Collectors.toSet());
+        departmentName.forEach(d -> lineChartDtos.add(new LineChartDto(d, departmentList.stream()
+                .filter(de -> de.getDepartmentName().equals(d))
+                .map(dep -> new LineChartPoint(dep.getDate(), dep.getCount()))
+                .collect(Collectors.toList()))));
         return lineChartDtos;
     }
 }
