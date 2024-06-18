@@ -2,64 +2,49 @@ import axios from "axios";
 
 const baseUrl = "http://localhost:8080/statistics";
 export default function StatsService() {
-  async function getLineChartData() {
+  async function fetchData(endpoint:string,query?:string, type?:string) {
     try {
-      const response = await axios.get(baseUrl + "/line");
+      const response = await axios.get(`${baseUrl}${endpoint}`);
       if (response.status === 200) {
         console.log(response.data);
         return response.data;
+      } else {
+        console.error(`Error: Received status code ${response.status}`);
       }
     } catch (e) {
-      console.log(e);
+      console.error(`Error fetching data from ${endpoint}:`, e);
     }
+  }
+
+  async function getLineChartData() {
+    return await fetchData("/line");
   }
 
   async function getBarChartDataByConfiColumn() {
-    try {
-      const response = await axios.get(baseUrl + "/bar/confi");
-      if (response.status === 200) {
-        console.log(response.data);
-        return response.data;
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    return await fetchData("/bar/confi");
   }
 
   async function getBarChartDataByPriorityColumn() {
-    try {
-        const response = await axios.get(baseUrl + "/bar/priority");
-        if (response.status === 200) {
-            console.log(response.data);
-            return response.data;
-        }
-    } catch (e) {
-      console.log(e);
-    }
+    return await fetchData("/bar/priority");
   }
 
   async function getPieChartDate() {
-    try {
-      const response = await axios.get(baseUrl + "/pie");
-      if (response.status === 200) {
-        console.log(response.data);
-        return response.data;
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    return await fetchData("/pie");
   }
 
   async function getHighestByDate() {
-    try {
-      const response = await axios.get(baseUrl + "/table/hightest-packages");
-      if (response.status === 200) {
-        console.log(response.data);
-        return response.data;
-      }
-    } catch (e) {
-      console.log(e);
-    }
+    return await fetchData("/table/highest-packages");
   }
-  return { getLineChartData, getBarChartDataByConfiColumn,getBarChartDataByPriorityColumn, getPieChartDate,getHighestByDate };
+
+  async function getHighestByDepByDate() {
+    return await fetchData("/table/highest-dep");
+  }
+  return {
+    getLineChartData,
+    getBarChartDataByConfiColumn,
+    getBarChartDataByPriorityColumn,
+    getPieChartDate,
+    getHighestByDate,
+    getHighestByDepByDate,
+  };
 }

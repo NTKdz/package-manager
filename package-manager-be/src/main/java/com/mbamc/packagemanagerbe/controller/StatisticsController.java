@@ -50,7 +50,7 @@ public class StatisticsController {
         return ResponseEntity.ok(barCharts);
     }
 
-    @GetMapping("/table/hightest-packages")
+    @GetMapping("/table/highest-packages")
     public ResponseEntity<List<HighestByDateDto>> getHighestByDateData() {
         List<HighestByDateDto> statsList = statisticsService.getHighestByDate("month");
         return ResponseEntity.ok(statsList);
