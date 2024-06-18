@@ -1,4 +1,4 @@
-package com.mbamc.packagemanagerbe.dto.statistics;
+package com.mbamc.packagemanagerbe.dto.statistics.line;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -11,10 +11,10 @@ import java.util.Date;
 @AllArgsConstructor
 public class DepartmentWithCount {
 
-    private String departmentName;
+    public String departmentName;
 
-    private Date date;
+    public Date date;
 
-    private Long count;
+    public Long count;
 
 }

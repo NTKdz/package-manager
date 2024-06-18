@@ -1,6 +1,6 @@
 import { columns } from "@/components/custom/data-table/Columns";
 import { DataTable } from "@/components/custom/data-table/DataTable";
-import DataVisualization from "@/components/custom/management-view/DataVisualization";
+import DataVisualization from "@/components/custom/management-view/data-visualization/DataVisualization";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RootState } from "@/redux/store";
 import TableService from "@/services/TableService";

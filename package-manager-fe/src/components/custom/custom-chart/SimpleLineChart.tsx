@@ -1,5 +1,6 @@
 import { SimpleLineChartProps } from "@/interface/chartInterface";
 import { ResponsiveLine, Serie } from "@nivo/line";
+import { format } from "date-fns";
 
 export default function SimpleLineChart({ data }: { data: SimpleLineChartProps[] }) {
   const colors = [
@@ -19,32 +20,36 @@ export default function SimpleLineChart({ data }: { data: SimpleLineChartProps[]
   return (
     <ResponsiveLine
       data={data as Serie[] }
-      margin={{ top: 20, right: 110, bottom: 70, left: 44 }}
-      xScale={{ type: "point" }}
+      margin={{ top: 20, right: 110, bottom: 70, left: 50 }}
+      xScale={{  format: "%Y-%m-%dT%H:%M:%S.%L%Z", type: "time" }}
       yScale={{
         type: "linear",
         min: "auto",
         max: "auto",
-        stacked: true,
+        stacked: false,
         reverse: false,
       }}
       yFormat=" >-.2f"
+      xFormat={(value) => {return format(new Date(value), 'yyyy-MM-dd');}}
       axisTop={null}
       axisRight={null}
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "transportation",
+        legend: "Ngày",
         legendOffset: 36,
         legendPosition: "middle",
         truncateTickAt: 0,
+        format : (value) => {
+          return format(new Date(value), 'yyyy-MM-dd');
+        }
       }}
       axisLeft={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "count",
+        legend: "Số lượng",
         legendOffset: -40,
         legendPosition: "middle",
         truncateTickAt: 0,

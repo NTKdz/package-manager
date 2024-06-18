@@ -1,4 +1,4 @@
-package com.mbamc.packagemanagerbe.dto.statistics;
+package com.mbamc.packagemanagerbe.dto.statistics.pie;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

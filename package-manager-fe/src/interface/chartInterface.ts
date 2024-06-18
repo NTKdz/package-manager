@@ -1,7 +1,7 @@
 export interface SimpleLineChartProps {
   id: string;
   color?: string;
-  data: { x: string; y: number }[];
+  data: { x: Date; y: number }[];
 }
 
 export interface SimplePieChartProps {

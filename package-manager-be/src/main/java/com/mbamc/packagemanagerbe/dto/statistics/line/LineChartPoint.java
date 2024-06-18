@@ -1,4 +1,4 @@
-package com.mbamc.packagemanagerbe.dto.statistics;
+package com.mbamc.packagemanagerbe.dto.statistics.line;
 
 import lombok.AllArgsConstructor;
 
@@ -6,6 +6,6 @@ import java.util.Date;
 
 @AllArgsConstructor
 public class LineChartPoint {
-    Date date;
-    Long count;
+    public Date x;
+    public Long y;
 }

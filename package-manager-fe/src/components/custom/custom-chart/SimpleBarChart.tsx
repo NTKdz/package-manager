@@ -1,5 +1,6 @@
 import { SimpleBarChartProps } from "@/interface/chartInterface";
 import { ResponsiveBar } from "@nivo/bar";
+import { format } from "date-fns";
 
 export default function SimpleBarChart({
   data,
@@ -65,22 +66,26 @@ export default function SimpleBarChart({
         from: "color",
         modifiers: [["darker", 1.6]],
       }}
+      
       axisTop={null}
       axisRight={null}
       axisBottom={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "country",
+        legend: "Ngày",
         legendPosition: "middle",
         legendOffset: 32,
         truncateTickAt: 0,
+        format: (value) => {
+          return format(new Date(value), 'yyyy-MM-dd');
+        }
       }}
+
       axisLeft={{
         tickSize: 5,
         tickPadding: 5,
         tickRotation: 0,
-        legend: "food",
         legendPosition: "middle",
         legendOffset: -40,
         truncateTickAt: 0,
@@ -116,10 +121,6 @@ export default function SimpleBarChart({
         },
       ]}
       role="application"
-      ariaLabel="Nivo bar chart demo"
-      barAriaLabel={(e) =>
-        e.id + ": " + e.formattedValue + " in country: " + e.indexValue
-      }
     />
   );
 }
