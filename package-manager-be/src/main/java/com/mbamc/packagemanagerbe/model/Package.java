@@ -3,7 +3,8 @@ package com.mbamc.packagemanagerbe.model;
 import jakarta.persistence.*;
 import lombok.*;
 
-import java.util.Date;
+import java.sql.Date;
+import java.time.LocalDate;
 
 @Setter
 @Getter
@@ -25,9 +26,6 @@ public class Package {
     @Column(name = "date_request", nullable = false)
     private Date requestedDate;
 
-    @Column(name = "CPN", nullable = false)
-    private String cpn;
-
     @Enumerated(EnumType.STRING)
     @Column(name = "PRIORITY", nullable = false)
     private Priority priority;
@@ -37,14 +35,14 @@ public class Package {
     private Confidentiality confidentiality;
 
     public enum Confidentiality {
-        NORMAL,
-        CONFIDENTIAL
+        BINH_THUONG,
+        MAT
     }
 
     public enum Priority {
-        NORMAL,
-        FAST,
-        URGENT,
-        VERY_URGENT
+        BINH_THUONG,
+        HOA_TOC,
+        KHAN,
+        THUONG_KHAN
     }
 }

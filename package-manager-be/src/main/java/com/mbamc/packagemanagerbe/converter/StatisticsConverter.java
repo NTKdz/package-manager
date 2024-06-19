@@ -1,13 +1,8 @@
 package com.mbamc.packagemanagerbe.converter;
 
-import com.mbamc.packagemanagerbe.dto.statistics.bar.BarChartDto;
-import com.mbamc.packagemanagerbe.dto.statistics.bar.PriConQuery;
 import com.mbamc.packagemanagerbe.dto.statistics.line.LineChartDto;
-import com.mbamc.packagemanagerbe.dto.statistics.pie.LineChartQuery;
+import com.mbamc.packagemanagerbe.response.LineChartQuery;
 import com.mbamc.packagemanagerbe.dto.statistics.pie.PieChartDto;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class StatisticsConverter {
     public static LineChartDto lineToDto(LineChartDto lineChartDto){

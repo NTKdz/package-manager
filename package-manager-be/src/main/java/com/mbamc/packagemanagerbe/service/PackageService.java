@@ -3,10 +3,15 @@ package com.mbamc.packagemanagerbe.service;
 import com.mbamc.packagemanagerbe.model.Package;
 import com.mbamc.packagemanagerbe.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Limit;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PackageService {
@@ -28,19 +33,22 @@ public class PackageService {
         return packageRepository.findAll();
     }
 
+    public List<Package> getAllPackagesByPageAndSize(Integer pageNumber, Integer pageSize) {
+        Pageable limitOne = PageRequest.of(pageNumber, pageSize);
+        return packageRepository.findAll(limitOne).getContent();
+    }
+
     public Package getPackageById(long id) {
         return packageRepository.findById(id)
                 .orElseThrow(RuntimeException::new);
     }
 
-    public List<Package> getAllPackageByCriteria(Date date,
-                                                 String name,
-                                                 String department,
-                                                 String cpn,
-                                                 Package.Priority priority,
-                                                 Package.Confidentiality confidentiality) {
-
-        return packageRepository.getAllPackageByCriteria(date, name, department, cpn, priority, confidentiality);
+    public Page<Package> getAllPackageByCriteria( Date date,
+            String name,
+            String department,
+            Package.Priority priority,
+            Package.Confidentiality confidentiality, Pageable pageable) {
+        return packageRepository.getAllPackageByCriteria(date, name == null ? "" : name, department, priority, confidentiality, pageable);
     }
 
     public List<Package> getAllPackageByUserName(String username) {

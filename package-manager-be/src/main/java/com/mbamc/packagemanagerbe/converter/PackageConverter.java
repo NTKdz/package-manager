@@ -8,6 +8,8 @@ import com.mbamc.packagemanagerbe.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.sql.Date;
+
 @Component
 public class PackageConverter {
     public static PackageDto toUserDto(Package entity) {
@@ -25,10 +27,9 @@ public class PackageConverter {
     private static PackageDto getPackageDto(Package entity, PackageDto dto) {
         dto.setWaybill(entity.getWaybill());
         dto.setUserFullName(entity.getUser().getName());
-        dto.setRequestedDate(entity.getRequestedDate());
+        dto.setRequestedDate(entity.getRequestedDate().toLocalDate());
         dto.setDepartment(entity.getUser().getDepartment());
         dto.setCompany(entity.getUser().getCompany());
-        dto.setCpn(entity.getCpn());
         dto.setConfidentiality(entity.getConfidentiality());
         dto.setPriority(entity.getPriority());
         return dto;
@@ -39,8 +40,7 @@ public class PackageConverter {
         entity.setWaybill(dto.getWaybill());
         User user = userService.getUserByUsername(dto.getUser());
         entity.setUser(user);
-        entity.setRequestedDate(dto.getRequestedDate());
-        entity.setCpn(dto.getCpn());
+        entity.setRequestedDate(Date.valueOf(dto.getRequestedDate()));
         entity.setConfidentiality(dto.getConfidentiality());
         entity.setPriority(dto.getPriority());
         return entity;

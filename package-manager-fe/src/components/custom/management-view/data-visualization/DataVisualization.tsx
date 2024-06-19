@@ -33,7 +33,7 @@ export default function DataVisualization() {
 
     getBarChartDataByConfiColumn().then((res) => {
       setConfiBarData(
-        res.map((item) => ({
+        res?.map((item) => ({
           ...item.barchartProperty,
           date: format(new Date(item.date), "yyyy-MM-dd"),
         }))
@@ -41,7 +41,7 @@ export default function DataVisualization() {
     });
     getBarChartDataByPriorityColumn().then((res) => {
       setPriorityBarData(
-        res.map((item) => ({
+        res?.map((item) => ({
           ...item.barchartProperty,
           date: format(new Date(item.date), "yyyy-MM-dd"),
         }))
@@ -59,25 +59,29 @@ export default function DataVisualization() {
         <div className="flex items-center gap-2">
           <DateRangePicker />
         </div>
-        {lineData.length > 0 && <SimpleLineChart data={lineData} />}
+        {lineData && lineData.length > 0 && <SimpleLineChart data={lineData} />}
       </div>
 
       <div className="flex mt-4 gap-4 min-w-0">
         <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-xl flex-[1]">
           <DateRangePicker />
-          {pieData.length > 0 && <SimplePieChart data={pieData} />}
+          {pieData && pieData.length > 0 && <SimplePieChart data={pieData} />}
         </div>
         <div className="w-full min-w-0 h-[360px] bg-primary-foreground p-4 rounded-xl flex-[3]">
-          <BarChartCard
-            keys={["CONFIDENTIAL", "NORMAL"]}
-            barData={barConfiData}
-          />
+          {barConfiData && barConfiData.length > 0 && (
+            <BarChartCard
+              keys={["MAT", "BINH_THUONG"]}
+              barData={barConfiData}
+            />
+          )}
         </div>
         <div className="w-full min-w-0 h-[360px] bg-primary-foreground p-4 rounded-xl flex-[3]">
-          <BarChartCard
-            keys={["NORMAL", "FAST", "URGENT", "VERY_URGENT"]}
-            barData={barPriorityData}
-          />
+          {barPriorityData && barPriorityData.length > 0 && (
+            <BarChartCard
+              keys={["BINH_THUONG", "HOA_TOC", "KHAN", "THUONG_KHAN"]}
+              barData={barPriorityData}
+            />
+          )}
         </div>
       </div>
     </div>

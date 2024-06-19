@@ -1,4 +1,4 @@
-package com.mbamc.packagemanagerbe.dto.statistics.bar;
+package com.mbamc.packagemanagerbe.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

@@ -62,10 +62,6 @@ export const columns: ColumnDef<PackageInterface>[] = [
     header: "Mã công ty",
   },
   {
-    accessorKey: "cpn",
-    header: "Đơn vị CPN",
-  },
-  {
     accessorKey: "priority",
     header: "Độ khẩn",
   },

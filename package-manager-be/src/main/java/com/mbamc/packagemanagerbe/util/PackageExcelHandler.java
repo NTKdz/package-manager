@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.io.InputStream;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -22,7 +23,6 @@ import java.time.Instant;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.time.LocalDateTime;
@@ -38,7 +38,7 @@ public class PackageExcelHandler {
     }
 
     private void writeHeaderLine() {
-            sheet = workbook.createSheet("Packages");
+        sheet = workbook.createSheet("Packages");
 
         Row row = sheet.createRow(0);
 
@@ -54,9 +54,8 @@ public class PackageExcelHandler {
         createCell(row, 3, "Ngày yêu cầu", style);
         createCell(row, 4, "Phòng ban", style);
         createCell(row, 5, "Công ty", style);
-        createCell(row, 6, "CPN", style);
-        createCell(row, 7, "Độ mật", style);
-        createCell(row, 8, "Độ khẩn", style);
+        createCell(row, 6, "Độ mật", style);
+        createCell(row, 7, "Độ khẩn", style);
     }
 
     private void createCell(Row row, int columnCount, Object value, CellStyle style) {
@@ -92,7 +91,6 @@ public class PackageExcelHandler {
             createCell(row, columnCount++, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(requestPackage.getRequestedDate()), style);
             createCell(row, columnCount++, requestPackage.getUser().getDepartment(), style);
             createCell(row, columnCount++, requestPackage.getUser().getCompany(), style);
-            createCell(row, columnCount++, requestPackage.getCpn(), style);
             createCell(row, columnCount++, requestPackage.getConfidentiality().toString(), style);
             createCell(row, columnCount++, requestPackage.getPriority().toString(), style);
         }
@@ -132,8 +130,7 @@ public class PackageExcelHandler {
                 int cellIndex = 0;
                 while (currentCell.hasNext()) {
                     Cell cell = currentCell.next();
-                    String value = "";
-                    SimpleDateFormat dateFormatter = new SimpleDateFormat("dd-MM-yyyy");
+
                     switch (cellIndex) {
                         case 0:
                             newPackage.setWaybill((long) cell.getNumericCellValue());
@@ -142,16 +139,12 @@ public class PackageExcelHandler {
                             newPackage.setUser(userRepository.getUserByUsername(cell.getStringCellValue()));
                             break;
                         case 3:
-                            Date date = dateFormatter.parse(cell.getStringCellValue());
-                            newPackage.setRequestedDate(date);
+                            newPackage.setRequestedDate(Date.valueOf(LocalDate.parse(cell.getStringCellValue())));
                             break;
                         case 6:
-                            newPackage.setCpn(cell.getStringCellValue());
-                            break;
-                        case 7:
                             newPackage.setConfidentiality(Package.Confidentiality.valueOf(cell.getStringCellValue()));
                             break;
-                        case 8:
+                        case 7:
                             newPackage.setPriority(Package.Priority.valueOf(cell.getStringCellValue()));
                             break;
                         default:
@@ -165,7 +158,7 @@ public class PackageExcelHandler {
 
             workbook1.close();
             return packages;
-        } catch (IOException | ParseException e) {
+        } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }

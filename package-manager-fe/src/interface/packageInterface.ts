@@ -2,10 +2,9 @@ export interface PackageInterface {
   waybill: number;
   user: string;
   userFullName: string;
-  requestedDate: Date;
+  requestedDate: string;
   department: string;
   company: string;
-  cpn: string;
   priority: string;
   confidentiality: string;
 }
@@ -14,9 +13,6 @@ export interface RequestWaybillInterface {
   user: string;
   userFullName: string;
   requestedDate: Date;
-  department: string;
-  company: string;
-  cpn: string;
   priority: string;
   confidentiality: string;
 }

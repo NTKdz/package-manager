@@ -2,14 +2,14 @@ package com.mbamc.packagemanagerbe.service;
 
 import com.mbamc.packagemanagerbe.converter.StatisticsConverter;
 import com.mbamc.packagemanagerbe.dto.statistics.bar.BarChartDto;
-import com.mbamc.packagemanagerbe.dto.statistics.bar.PriConQuery;
-import com.mbamc.packagemanagerbe.dto.statistics.line.DepartmentWithCount;
+import com.mbamc.packagemanagerbe.response.PriConQuery;
+import com.mbamc.packagemanagerbe.response.DepartmentWithCount;
 import com.mbamc.packagemanagerbe.dto.statistics.line.LineChartDto;
 import com.mbamc.packagemanagerbe.dto.statistics.line.LineChartPoint;
 import com.mbamc.packagemanagerbe.dto.statistics.pie.PieChartDto;
-import com.mbamc.packagemanagerbe.dto.statistics.pie.LineChartQuery;
+import com.mbamc.packagemanagerbe.response.LineChartQuery;
 import com.mbamc.packagemanagerbe.dto.tables.HighestByDateDto;
-import com.mbamc.packagemanagerbe.dto.tables.HighestByDepartmentByDate;
+import com.mbamc.packagemanagerbe.dto.tables.HighestByDepartmentByDateDto;
 import com.mbamc.packagemanagerbe.model.Package;
 import com.mbamc.packagemanagerbe.repository.StatisticsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +31,10 @@ public class StatisticsService {
     }
 
     public List<LineChartDto> getLineChartData() {
-        List<DepartmentWithCount> departmentList = statisticsRepository.getDepartmentWithTotalResult();
+        List<DepartmentWithCount> departmentList = statisticsRepository.getDepartmentWithTotalResult(java.sql.Date.valueOf(LocalDate.of(2001, 1, 10)),
+                java.sql.Date.valueOf(LocalDate.of(2024, 10, 1)));
         List<LineChartDto> lineChartDtos = new ArrayList<>();
-        Set<String> departmentName = departmentList.stream().map(DepartmentWithCount::getDepartmentName).collect(Collectors.toSet());
+        Set<String> departmentName = departmentList.stream().map(DepartmentWithCount::getDepartmentName).collect(Collectors.toCollection(TreeSet::new));
         departmentName.forEach(d -> lineChartDtos.add(new LineChartDto(d, departmentList.stream()
                 .filter(de -> de.getDepartmentName().equals(d))
                 .map(dep -> new LineChartPoint(dep.getDate(), dep.getCount()))
@@ -47,19 +48,20 @@ public class StatisticsService {
         return pieChartList.stream().map(StatisticsConverter::pieToDto).collect(Collectors.toList());
     }
 
-    public List<HighestByDateDto> getHighestByDate(String type){
+    public List<HighestByDateDto> getHighestByDate(String type) {
         return statisticsRepository.getHighestByDate(type);
     }
 
-    public List<HighestByDepartmentByDate> getHighestByDepByDate(){
+    public List<HighestByDepartmentByDateDto> getHighestByDepByDate() {
         return statisticsRepository.getHighestByDepartmentByDate();
     }
+
     public List<BarChartDto> getBarChartDataByPriority() {
         List<PriConQuery<Package.Priority>> priorityQueryList = statisticsRepository.getPriorityCountByType(java.sql.Date.valueOf(LocalDate.of(2001, 1, 10)),
                 java.sql.Date.valueOf(LocalDate.of(2024, 10, 1)));
 
         List<BarChartDto> barChartDto = new ArrayList<>();
-        Set<Date> dateList = priorityQueryList.stream().map(PriConQuery::getDate).collect(Collectors.toSet());
+        Set<Date> dateList = priorityQueryList.stream().map(PriConQuery::getDate).collect(Collectors.toCollection(TreeSet::new));
 
         dateList.forEach(date -> {
             Map<String, Long> priorityMap = new HashMap<>();
@@ -77,7 +79,7 @@ public class StatisticsService {
                 java.sql.Date.valueOf(LocalDate.of(2024, 10, 1)));
 
         List<BarChartDto> barChartDto = new ArrayList<>();
-        Set<Date> dateList = confidentialityQueryList.stream().map(PriConQuery::getDate).collect(Collectors.toSet());
+        Set<Date> dateList = confidentialityQueryList.stream().map(PriConQuery::getDate).collect(Collectors.toCollection(TreeSet::new));
 
         dateList.forEach(date -> {
             Map<String, Long> priorityMap = new HashMap<>();

@@ -1,6 +1,8 @@
 package com.mbamc.packagemanagerbe.repository;
 
 import com.mbamc.packagemanagerbe.model.Package;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,16 +17,16 @@ public interface PackageRepository extends JpaRepository<Package, Long> {
     @Query("SELECT p FROM Package p " +
             "WHERE (cast(:date as date) IS NULL OR p.requestedDate > :date) " +
             "AND (:department IS NULL OR p.user.department = :department) " +
-            "AND (:cpn IS NULL OR p.cpn = :cpn) " +
             "AND (:priority IS NULL OR p.priority = :priority) " +
-            "AND (:confidentiality IS NULL OR p.confidentiality = :confidentiality)" +
-            "AND (:name IS NULL OR LOWER(p.user.name) LIKE CONCAT('%', LOWER(:name), '%'))")
-    List<Package> getAllPackageByCriteria(@Param("date") Date date,
-                                          @Param("name") String name,
-                                          @Param("department") String department,
-                                          @Param("cpn") String cpn,
-                                          @Param("priority") Package.Priority priority,
-                                          @Param("confidentiality") Package.Confidentiality confidentiality);
+            "AND (:confidentiality IS NULL OR p.confidentiality = :confidentiality) " +
+            "AND (:name IS NULL OR (LOWER(p.user.name) LIKE CONCAT('%', LOWER(:name), '%'))) " +
+            "ORDER BY p.requestedDate desc ")
+    Page<Package> getAllPackageByCriteria(
+            @Param("date") Date date,
+            @Param("name") String name,
+            @Param("department") String department,
+            @Param("priority") Package.Priority priority,
+            @Param("confidentiality") Package.Confidentiality confidentiality, Pageable pageable);
 
     @Query("SELECT p FROM Package p " +
             "WHERE (p.user.username = :username)")

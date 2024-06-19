@@ -5,7 +5,7 @@ import com.mbamc.packagemanagerbe.dto.statistics.bar.BarChartDto;
 import com.mbamc.packagemanagerbe.dto.statistics.line.LineChartDto;
 import com.mbamc.packagemanagerbe.dto.statistics.pie.PieChartDto;
 import com.mbamc.packagemanagerbe.dto.tables.HighestByDateDto;
-import com.mbamc.packagemanagerbe.dto.tables.HighestByDepartmentByDate;
+import com.mbamc.packagemanagerbe.dto.tables.HighestByDepartmentByDateDto;
 import com.mbamc.packagemanagerbe.service.StatisticsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -57,8 +57,8 @@ public class StatisticsController {
     }
 
     @GetMapping("/table/highest-dep")
-    public ResponseEntity<List<HighestByDepartmentByDate>> getHighestByDepByDate() {
-        List<HighestByDepartmentByDate> statsList = statisticsService.getHighestByDepByDate();
+    public ResponseEntity<List<HighestByDepartmentByDateDto>> getHighestByDepByDate() {
+        List<HighestByDepartmentByDateDto> statsList = statisticsService.getHighestByDepByDate();
         return ResponseEntity.ok(statsList);
     }
 }

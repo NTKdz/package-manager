@@ -9,7 +9,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @Getter
 @Setter
-public class HighestByDepartmentByDate {
+public class HighestByDepartmentByDateDto {
     public String depName;
     public Long count;
 }

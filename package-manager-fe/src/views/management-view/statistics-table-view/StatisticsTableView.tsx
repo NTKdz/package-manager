@@ -19,12 +19,15 @@ export default function StatisticsTableView() {
     });
   }, []);
   return (
-    <div className="w-full flex gap-4 mb-4 justify-end">
+    <div className="w-full flex gap-4 mb-4 justify-start">
       <div className="w-[400px]">
         <HighestUseTable data={highestData} />
       </div>
       <div className="w-[400px]">
         <HighestByDepByDate data={highestByDepByDate} />
+      </div>
+      <div className="w-[400px]">
+        <HighestUseTable data={highestData} />
       </div>
     </div>
   );

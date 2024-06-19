@@ -2,12 +2,15 @@ package com.mbamc.packagemanagerbe.controller;
 
 import com.mbamc.packagemanagerbe.converter.PackageConverter;
 import com.mbamc.packagemanagerbe.dto.tables.PackageDto;
+import com.mbamc.packagemanagerbe.dto.tables.PackageDtoTable;
 import com.mbamc.packagemanagerbe.model.Package;
 import com.mbamc.packagemanagerbe.service.PackageService;
 import com.mbamc.packagemanagerbe.service.UserService;
 import com.mbamc.packagemanagerbe.util.PackageExcelHandler;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -65,18 +68,22 @@ public class PackageController {
                 collect(Collectors.toList()));
     }
 
-    @GetMapping("/packages")
-    public ResponseEntity<List<PackageDto>> getAllPackagesByCriteria(
+    @GetMapping("/query")
+    public ResponseEntity<PackageDtoTable> getAllPackagesByCriteria(
             @RequestParam(value = "requestedDate", required = false) Date date,
             @RequestParam(value = "name", required = false) String name,
             @RequestParam(value = "department", required = false) String department,
-            @RequestParam(value = "cpn", required = false) String cpn,
             @RequestParam(value = "priority", required = false) Package.Priority priority,
-            @RequestParam(value = "confidentiality", required = false) Package.Confidentiality confidentiality) {
-
-        List<Package> packages = packageService.getAllPackageByCriteria(date, name, department, cpn, priority, confidentiality);
-        return ResponseEntity.ok(packages.stream().map(PackageConverter::toAminDto).
-                collect(Collectors.toList()));
+            @RequestParam(value = "confidentiality", required = false) Package.Confidentiality confidentiality,
+            Pageable pageable) {
+        PackageDtoTable packageDtoTable = new PackageDtoTable();
+        Page<Package> packages = packageService.getAllPackageByCriteria( date, name, department, priority, confidentiality, pageable);
+        List<PackageDto> packagesD = packages.getContent()
+                .stream().map(PackageConverter::toAminDto).
+                collect(Collectors.toList());
+        packageDtoTable.setData(packagesD);
+        packageDtoTable.setTotal(packages.getTotalElements());
+        return ResponseEntity.ok(packageDtoTable);
     }
 
     @GetMapping("/{id}")

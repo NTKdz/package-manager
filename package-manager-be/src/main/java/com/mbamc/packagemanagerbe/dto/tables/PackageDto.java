@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Data
@@ -15,7 +16,7 @@ public class PackageDto {
     private long waybill;
     private String user;
     private String userFullName;
-    private Date requestedDate;
+    private LocalDate requestedDate;
     private String department;
     private String company;
     private String cpn;

@@ -1,3 +1,12 @@
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { Button } from "@/components/ui/button";
 import {
   DialogDescription,
@@ -13,25 +22,19 @@ import { useState } from "react";
 import { CustomDialog } from "../custom-dialog/CustomDialog";
 import { CustomDropdownMenu } from "../custom-dropdown-menu/CustomDropdownMenu";
 
-const column = [
-  "Tên đăng nhập",
-  "Tên người gửi",
-  "Phòng ban",
-  "Công ty",
-  "Cpn",
-  "Độ khẩn",
-  "Độ mật",
-];
+const column = ["Tên đăng nhập", "Tên người gửi", "Độ khẩn", "Độ mật"];
 
 export default function RequestPackageDialog() {
   const [user, setUser] = useState("os.khoint");
   const [userFullName, setUserFullName] = useState("nguyen the khoi");
   const [department, setDepartment] = useState("");
   const [company, setCompany] = useState("");
-  const [priority, setPriority] = useState("NORMAL");
-  const [confidentiality, setConfidentiality] = useState("NORMAL");
+  const [priority, setPriority] = useState("Bình thường");
+  const [confidentiality, setConfidentiality] = useState("Bình thường");
   const [cpn, setCpn] = useState("");
-
+  const [alertOpen, setAlertOpen] = useState(false);
+  const [alertContent, setAlertContent] = useState("");
+  const [dialogOpen, setDialogOpen] = useState(false);
   const { requestWaybill } = TableService();
 
   function standardizeName(name: string) {
@@ -76,21 +79,17 @@ export default function RequestPackageDialog() {
 
   function handleReturnComponent(col: string) {
     switch (col) {
-      case "Cpn":
-        return (
-          <CustomDropdownMenu
-            title="Cpn"
-            value={standardizeName(col)}
-            menuItem={[{ title: "khoi", value: "khoi" }]}
-            onItemSelected={(value) => setCpn(value)}
-          />
-        );
       case "Độ khẩn":
         return (
           <CustomDropdownMenu
-            title="Cpn"
+            title="Đo khẩn"
             value={standardizeName(col)}
-            menuItem={[{ title: "khoi", value: "khoi" }]}
+            menuItem={[
+              { title: "Bình thường", value: "BINH_THUONG" },
+              { title: "Hỏa tốc", value: "HOA_TOC" },
+              { title: "Khẩn", value: "KHAN" },
+              { title: "Thượng khẩn", value: "THUONG_KHAN" },
+            ]}
             onItemSelected={(value) => setPriority(value)}
           />
         );
@@ -99,7 +98,10 @@ export default function RequestPackageDialog() {
           <CustomDropdownMenu
             title="Cpn"
             value={standardizeName(col)}
-            menuItem={[{ title: "khoi", value: "khoi" }]}
+            menuItem={[
+              { title: "Bình thường", value: "BINH_THUONG" },
+              { title: "Mật", value: "MAT" },
+            ]}
             onItemSelected={(value) => setConfidentiality(value)}
           />
         );
@@ -119,73 +121,107 @@ export default function RequestPackageDialog() {
   }
 
   function handleSubmit() {
-    const requestedDate= new Date();
+    const requestedDate = new Date();
     console.log({
       user,
       userFullName,
       requestedDate,
-      department,
-      company,
-      cpn,
       priority,
       confidentiality,
-    })
-    const data:RequestWaybillInterface={
+    });
+    const data: RequestWaybillInterface = {
       user,
       userFullName,
       requestedDate,
-      department,
-      company,
-      cpn,
       priority,
       confidentiality,
-    }
-    requestWaybill(data)
+    };
+    requestWaybill(data).then((res) => {
+      console.log(res);
+      setAlertOpen(true);
+      setDialogOpen(false);
+      setAlertContent(res.waybill);
+    });
   }
+
   return (
-    <CustomDialog
-      title="Yêu cầu mã"
-      style="mb-2"
-      dialogContent={
-        <div>
-          <DialogHeader>
-            <DialogTitle>Đơn xin mã vận đơn</DialogTitle>
-            <DialogDescription>Điền đầy đủ thông tin.</DialogDescription>
-          </DialogHeader>
-          <form>
-            {column.slice(0, 4).map((col) => {
-              return (
-                <div key={col} className="mt-2">
-                  <div className="mb-1">
-                    <Label htmlFor="name">{col}</Label>
+    <div>
+      <CustomDialog
+        open={dialogOpen}
+        onOpenChange={setDialogOpen}
+        title="Yêu cầu mã"
+        style="mb-2"
+        dialogContent={
+          <div>
+            <DialogHeader>
+              <DialogTitle>Đơn xin mã vận đơn</DialogTitle>
+              <DialogDescription>Điền đầy đủ thông tin.</DialogDescription>
+            </DialogHeader>
+            <form>
+              {column.slice(0, 2).map((col) => {
+                return (
+                  <div key={col} className="mt-2">
+                    <div className="mb-1">
+                      <Label htmlFor="name">{col}</Label>
+                    </div>
+                    {handleReturnComponent(col)}
                   </div>
-                  {handleReturnComponent(col)}
-                </div>
-              );
-            })}
-          </form>
-          <div className="flex gap-2">
-            {column.slice(4).map((col) => {
-              return (
-                <div key={col} className="mt-2 flex-1">
-                  <div className="mb-1">
-                    <Label htmlFor="name">{col}</Label>
+                );
+              })}
+            </form>
+            <div className="flex gap-2">
+              {column.slice(2).map((col) => {
+                return (
+                  <div key={col} className="mt-2 flex-1">
+                    <div className="mb-1">
+                      <Label htmlFor="name">{col}</Label>
+                    </div>
+                    <div className="w-full"> {handleReturnComponent(col)}</div>
                   </div>
-                  <div className="w-full"> {handleReturnComponent(col)}</div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
+            <DialogFooter className="mt-4">
+              <Button
+                type="submit"
+                className="bg-destructive"
+                onClick={() => {
+                  setDialogOpen(false);
+                }}
+              >
+                Hủy
+              </Button>
+              <Button type="submit" onClick={handleSubmit}>
+                Xác nhận
+              </Button>
+            </DialogFooter>
           </div>
-          <DialogFooter className="mt-4">
-            <Button type="submit" className="bg-destructive">
-              Hủy
-            </Button>
-            <Button type="submit" onClick={handleSubmit}>
+        }
+      />
+
+      <AlertDialog open={alertOpen} onOpenChange={setAlertOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>
+              <div className="flex justify-center ">Mã vận đơn của bạn</div>
+            </AlertDialogTitle>
+            <AlertDialogDescription>
+              <div className="flex justify-center items-center font-bold text-6xl mt-4 mb-4">
+                {alertContent}
+              </div>
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogAction
+              onClick={() => {
+                setAlertOpen(false);
+              }}
+            >
               Xác nhận
-            </Button>
-          </DialogFooter>
-        </div>
-      }
-    />
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+    </div>
   );
 }

@@ -36,7 +36,7 @@ export function CustomDropdownMenu({
           value={currentValue}
           onValueChange={(e) => {
             console.log(e);
-            setCurrentValue(e);
+            setCurrentValue(menuItem.find((item) => item.value === e)?.title || "");
             onItemSelected(e);
           }}
         >
