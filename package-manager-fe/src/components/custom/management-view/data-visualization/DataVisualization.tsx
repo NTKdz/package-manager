@@ -12,64 +12,67 @@ import {
 } from "@/interface/chartInterface";
 import BarChartCard from "./bar-chart-card-view/BarChartCard";
 import { format } from "date-fns";
+import { useSelector } from "react-redux";
+import { RootState } from "@/redux/store";
 
 export default function DataVisualization() {
+  const { dateQuery } = useSelector((state: RootState) => state.package);
   const [lineData, setLineData] = useState<SimpleLineChartProps[]>([]);
   const [barConfiData, setConfiBarData] = useState<SimpleBarChartProps[]>([]);
   const [barPriorityData, setPriorityBarData] = useState<SimpleBarChartProps[]>(
     []
   );
-  const [pieData, setPieData] = useState<SimplePieChartProps[]>([]);
   const {
     getLineChartData,
     getBarChartDataByConfiColumn,
     getBarChartDataByPriorityColumn,
-    getPieChartDate,
   } = StatsService();
   useEffect(() => {
-    getLineChartData().then((res) => {
-      setLineData(res);
-    });
+    console.log("date query", dateQuery.start, dateQuery.end);
+    if (dateQuery.end !== "" || dateQuery.start !== "") {
+      getLineChartData(dateQuery.start, dateQuery.end).then((res) => {
+        console.log("lineData", res);
+        setLineData(res);
+      });
 
-    getBarChartDataByConfiColumn().then((res) => {
-      setConfiBarData(
-        res?.map((item) => ({
-          ...item.barchartProperty,
-          date: format(new Date(item.date), "yyyy-MM-dd"),
-        }))
+      getBarChartDataByConfiColumn(dateQuery.start, dateQuery.end).then(
+        (res) => {
+          setConfiBarData(
+            res?.map((item) => ({
+              ...item.barchartProperty,
+              date: format(new Date(item.date), "yyyy-MM-dd"),
+            }))
+          );
+        }
       );
-    });
-    getBarChartDataByPriorityColumn().then((res) => {
-      setPriorityBarData(
-        res?.map((item) => ({
-          ...item.barchartProperty,
-          date: format(new Date(item.date), "yyyy-MM-dd"),
-        }))
+      getBarChartDataByPriorityColumn(dateQuery.start, dateQuery.end).then(
+        (res) => {
+          setPriorityBarData(
+            res?.map((item) => ({
+              ...item.barchartProperty,
+              date: format(new Date(item.date), "yyyy-MM-dd"),
+            }))
+          );
+        }
       );
-    });
-
-    getPieChartDate().then((res) => {
-      setPieData(res);
-    });
-  }, []);
+    }
+  }, [dateQuery.start, dateQuery.end]);
 
   return (
     <div className="w-full mb-4 rounded-lg min-w-0">
       <div className="h-[400px] bg-primary-foreground p-4 rounded-xl flex-[3]">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center justify-between gap-2">
+          <span className="font-bold">Thống kê theo phòng ban</span>
           <DateRangePicker />
         </div>
         {lineData && lineData.length > 0 && <SimpleLineChart data={lineData} />}
       </div>
 
       <div className="flex mt-4 gap-4 min-w-0">
-        <div className="w-full h-[360px] bg-primary-foreground p-4 rounded-xl flex-[1]">
-          <DateRangePicker />
-          {pieData && pieData.length > 0 && <SimplePieChart data={pieData} />}
-        </div>
         <div className="w-full min-w-0 h-[360px] bg-primary-foreground p-4 rounded-xl flex-[3]">
           {barConfiData && barConfiData.length > 0 && (
             <BarChartCard
+              title="Thống kê theo độ mật"
               keys={["MAT", "BINH_THUONG"]}
               barData={barConfiData}
             />
@@ -78,6 +81,7 @@ export default function DataVisualization() {
         <div className="w-full min-w-0 h-[360px] bg-primary-foreground p-4 rounded-xl flex-[3]">
           {barPriorityData && barPriorityData.length > 0 && (
             <BarChartCard
+              title="Thống kê theo mức độ ưu tiên"
               keys={["BINH_THUONG", "HOA_TOC", "KHAN", "THUONG_KHAN"]}
               barData={barPriorityData}
             />

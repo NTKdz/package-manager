@@ -1,7 +1,7 @@
 "use client";
 
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { addDays, format } from "date-fns";
+import { addDays, format, subDays } from "date-fns";
 import * as React from "react";
 import { DateRange } from "react-day-picker";
 
@@ -17,21 +17,35 @@ import {
   SelectContent,
   SelectItem,
   SelectTrigger,
-  SelectValue
+  SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setDateQuery } from "@/redux/slices/packageSlice";
 
 export function DateRangePicker({
   className,
 }: React.HTMLAttributes<HTMLDivElement>) {
+  const dispatch = useDispatch();
+  const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: new Date(2022, 0, 20),
-    to: addDays(new Date(2022, 0, 20), 20),
+    from: subDays(new Date(), 30),
+    to: new Date(),
   });
+
+  useEffect(() => {
+    dispatch(
+      setDateQuery({
+        start: format(subDays(new Date(), 30), "yyyy-MM-dd"),
+        end: format(new Date().toISOString(), "yyyy-MM-dd"),
+      })
+    );
+  }, []);
 
   return (
     <div className={cn("grid gap-2", className)}>
-      <Popover>
+      <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
           <Button
             id="date"
@@ -60,15 +74,36 @@ export function DateRangePicker({
           align="start"
           className="flex w-auto flex-col space-y-2 p-2"
         >
-          <Select onValueChange={(value) => {}}>
+          <Select
+            onValueChange={(value) => {
+              if (value === "week") {
+                setDate({ from: subDays(new Date(), 7), to: new Date() });
+                setDateQuery({
+                  start: format(subDays(new Date(), 7), "yyyy-MM-dd"),
+                  end: format(new Date(), "yyyy-MM-dd"),
+                });
+              } else if (value === "month") {
+                setDate({ from: subDays(new Date(), 30), to: new Date() });
+                setDateQuery({
+                  start: format(subDays(new Date(), 30), "yyyy-MM-dd"),
+                  end: format(new Date(), "yyyy-MM-dd"),
+                });
+              } else if (value === "year") {
+                setDate({ from: subDays(new Date(), 365), to: new Date() });
+                setDateQuery({
+                  start: format(subDays(new Date(), 365), "yyyy-MM-dd"),
+                  end: format(new Date(), "yyyy-MM-dd"),
+                });
+              }
+            }}
+          >
             <SelectTrigger>
               <SelectValue placeholder="Select" />
             </SelectTrigger>
             <SelectContent position="popper">
-              <SelectItem value="0">Today</SelectItem>
-              <SelectItem value="1">Tomorrow</SelectItem>
-              <SelectItem value="3">In 3 days</SelectItem>
-              <SelectItem value="7">In a week</SelectItem>
+              <SelectItem value="week">7 ngày trước</SelectItem>
+              <SelectItem value="month">30 ngày trước</SelectItem>
+              <SelectItem value="year">1 năm trước</SelectItem>
             </SelectContent>
           </Select>
           <div className="rounded-md border">
@@ -77,10 +112,25 @@ export function DateRangePicker({
               mode="range"
               defaultMonth={date?.from}
               selected={date}
-              onSelect={setDate}
+              onSelect={(e) => {
+                setDate({ from: e?.from, to: e?.to });
+              }}
               numberOfMonths={2}
             />
           </div>
+          <Button
+            onClick={() => {
+              dispatch(
+                setDateQuery({
+                  start: format(date?.from || "", "yyyy-MM-dd"),
+                  end: format(date?.to || "", "yyyy-MM-dd"),
+                })
+              );
+              setOpen(false);
+            }}
+          >
+            Xác nhận
+          </Button>
         </PopoverContent>
       </Popover>
     </div>

@@ -7,12 +7,15 @@ import com.mbamc.packagemanagerbe.dto.statistics.pie.PieChartDto;
 import com.mbamc.packagemanagerbe.dto.tables.HighestByDateDto;
 import com.mbamc.packagemanagerbe.dto.tables.HighestByDepartmentByDateDto;
 import com.mbamc.packagemanagerbe.service.StatisticsService;
+import com.mbamc.packagemanagerbe.util.DateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -27,32 +30,41 @@ public class StatisticsController {
     }
 
     @GetMapping("/line")
-    public ResponseEntity<List<LineChartDto>> getLineChart() {
-        List<LineChartDto> lineCharts = statisticsService.getLineChartData();
+    public ResponseEntity<List<LineChartDto>> getLineChart(
+            @RequestParam(value = "start", required = false) LocalDate start,
+            @RequestParam(value = "end", required = false) LocalDate end) {
+
+        List<LineChartDto> lineCharts = statisticsService.getLineChartData(start, end, DateHandler.getDateTrunc(start, end));
         return ResponseEntity.ok(lineCharts.stream().map(StatisticsConverter::lineToDto).collect(Collectors.toList()));
     }
 
     @GetMapping("/pie")
-    public ResponseEntity<List<PieChartDto>> getPieChart() {
-        List<PieChartDto> pieCharts = statisticsService.getPieChartData();
+    public ResponseEntity<List<PieChartDto>> getPieChart(
+            @RequestParam(value = "start", required = false) LocalDate start,
+            @RequestParam(value = "end", required = false) LocalDate end) {
+        List<PieChartDto> pieCharts = statisticsService.getPieChartData(start, end);
         return ResponseEntity.ok(pieCharts);
     }
 
     @GetMapping("/bar/priority")
-    public ResponseEntity<List<BarChartDto>> getBarChartByPriorityColumn() {
-        List<BarChartDto> barCharts = statisticsService.getBarChartDataByPriority();
+    public ResponseEntity<List<BarChartDto>> getBarChartByPriorityColumn(
+            @RequestParam(value = "start", required = false) LocalDate start,
+            @RequestParam(value = "end", required = false) LocalDate end) {
+        List<BarChartDto> barCharts = statisticsService.getBarChartDataByPriority(start, end, DateHandler.getDateTrunc(start, end));
         return ResponseEntity.ok(barCharts);
     }
 
     @GetMapping("/bar/confi")
-    public ResponseEntity<List<BarChartDto>> getBarChartByConfiColumn() {
-        List<BarChartDto> barCharts = statisticsService.getBarChartDataByConfidentiality();
+    public ResponseEntity<List<BarChartDto>> getBarChartByConfiColumn(
+            @RequestParam(value = "start", required = false) LocalDate start,
+            @RequestParam(value = "end", required = false) LocalDate end) {
+        List<BarChartDto> barCharts = statisticsService.getBarChartDataByConfidentiality(start, end, DateHandler.getDateTrunc(start, end));
         return ResponseEntity.ok(barCharts);
     }
 
     @GetMapping("/table/highest-packages")
-    public ResponseEntity<List<HighestByDateDto>> getHighestByDateData() {
-        List<HighestByDateDto> statsList = statisticsService.getHighestByDate("month");
+    public ResponseEntity<List<HighestByDateDto>> getHighestByDateData(@RequestParam(value = "type", required = false) String type) {
+        List<HighestByDateDto> statsList = statisticsService.getHighestByDate(type != null ? type : "day");
         return ResponseEntity.ok(statsList);
     }
 

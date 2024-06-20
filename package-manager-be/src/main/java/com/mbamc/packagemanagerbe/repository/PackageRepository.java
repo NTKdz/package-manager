@@ -20,7 +20,7 @@ public interface PackageRepository extends JpaRepository<Package, Long> {
             "AND (:priority IS NULL OR p.priority = :priority) " +
             "AND (:confidentiality IS NULL OR p.confidentiality = :confidentiality) " +
             "AND (:name IS NULL OR (LOWER(p.user.name) LIKE CONCAT('%', LOWER(:name), '%'))) " +
-            "ORDER BY p.requestedDate desc ")
+            "ORDER BY p.waybill desc ")
     Page<Package> getAllPackageByCriteria(
             @Param("date") Date date,
             @Param("name") String name,

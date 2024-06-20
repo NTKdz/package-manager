@@ -15,6 +15,8 @@ export default function SimpleBarChart({
   fill?: { id: string; match: { id: string } }[];
   groupMode?: "stacked" | "grouped";
 }) {
+  const valuesToShow = data.filter((_, i) => i % (Math.round(data.length/6)+1)*2 === 0);
+
   const colors = [
     "#0088FE",
     "#00C49F",
@@ -66,7 +68,6 @@ export default function SimpleBarChart({
         from: "color",
         modifiers: [["darker", 1.6]],
       }}
-      
       axisTop={null}
       axisRight={null}
       axisBottom={{
@@ -78,10 +79,11 @@ export default function SimpleBarChart({
         legendOffset: 32,
         truncateTickAt: 0,
         format: (value) => {
-          return format(new Date(value), 'yyyy-MM-dd');
-        }
+          return valuesToShow.find((vts) => vts.date === value)
+            ? format(new Date(value), "yyyy-MM-dd")
+            : "";
+        },
       }}
-
       axisLeft={{
         tickSize: 5,
         tickPadding: 5,

@@ -5,18 +5,20 @@ import { SimpleBarChartProps } from "@/interface/chartInterface";
 import React, { useState } from "react";
 
 export default function BarChartCard({
-    keys,
+  title,
+  keys,
   barData,
 }: {
-    keys:string[];
+  title: string;
+  keys: string[];
   barData: SimpleBarChartProps[];
 }) {
-  const [barMode, setBarMode] = useState<"stacked" | "grouped">("grouped");
+  const [barMode, setBarMode] = useState<"stacked" | "grouped">("stacked");
   return (
     <div className="h-full">
       <div className="w-full flex justify-between">
-        <DateRangePicker />
-        <Tabs defaultValue="grouped" className="w-[200px]">
+        <span className="font-bold">{title}</span>
+        <Tabs defaultValue="stacked" className="w-[200px]">
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger
               value="grouped"

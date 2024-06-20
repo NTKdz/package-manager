@@ -1,7 +1,7 @@
 package com.mbamc.packagemanagerbe.converter;
 
 import com.mbamc.packagemanagerbe.dto.statistics.line.LineChartDto;
-import com.mbamc.packagemanagerbe.response.LineChartQuery;
+import com.mbamc.packagemanagerbe.response.PieChartQuery;
 import com.mbamc.packagemanagerbe.dto.statistics.pie.PieChartDto;
 
 public class StatisticsConverter {
@@ -12,7 +12,7 @@ public class StatisticsConverter {
         return newLineChartDto;
     }
 
-    public static PieChartDto pieToDto(LineChartQuery query){
+    public static PieChartDto pieToDto(PieChartQuery query){
         PieChartDto newPieChartDto = new PieChartDto();
         newPieChartDto.setId(query.getId());
         newPieChartDto.setValue(query.getValue());

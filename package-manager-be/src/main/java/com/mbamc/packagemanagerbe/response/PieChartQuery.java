@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class LineChartQuery {
+public class PieChartQuery {
     public String id;
     public String label;
     public Long value;

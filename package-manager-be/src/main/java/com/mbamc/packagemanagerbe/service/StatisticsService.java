@@ -7,7 +7,7 @@ import com.mbamc.packagemanagerbe.response.DepartmentWithCount;
 import com.mbamc.packagemanagerbe.dto.statistics.line.LineChartDto;
 import com.mbamc.packagemanagerbe.dto.statistics.line.LineChartPoint;
 import com.mbamc.packagemanagerbe.dto.statistics.pie.PieChartDto;
-import com.mbamc.packagemanagerbe.response.LineChartQuery;
+import com.mbamc.packagemanagerbe.response.PieChartQuery;
 import com.mbamc.packagemanagerbe.dto.tables.HighestByDateDto;
 import com.mbamc.packagemanagerbe.dto.tables.HighestByDepartmentByDateDto;
 import com.mbamc.packagemanagerbe.model.Package;
@@ -30,9 +30,9 @@ public class StatisticsService {
         this.statisticsRepository = statisticsRepository;
     }
 
-    public List<LineChartDto> getLineChartData() {
-        List<DepartmentWithCount> departmentList = statisticsRepository.getDepartmentWithTotalResult(java.sql.Date.valueOf(LocalDate.of(2001, 1, 10)),
-                java.sql.Date.valueOf(LocalDate.of(2024, 10, 1)));
+    public List<LineChartDto> getLineChartData(LocalDate start, LocalDate end, String type) {
+        List<DepartmentWithCount> departmentList = statisticsRepository.getDepartmentWithTotalResult(java.sql.Date.valueOf(start),
+                java.sql.Date.valueOf(end), type);
         List<LineChartDto> lineChartDtos = new ArrayList<>();
         Set<String> departmentName = departmentList.stream().map(DepartmentWithCount::getDepartmentName).collect(Collectors.toCollection(TreeSet::new));
         departmentName.forEach(d -> lineChartDtos.add(new LineChartDto(d, departmentList.stream()
@@ -42,9 +42,9 @@ public class StatisticsService {
         return lineChartDtos;
     }
 
-    public List<PieChartDto> getPieChartData() {
-        List<LineChartQuery> pieChartList = statisticsRepository.getPieChartData(java.sql.Date.valueOf(LocalDate.of(2001, 1, 10)),
-                java.sql.Date.valueOf(LocalDate.of(2024, 10, 1)));
+    public List<PieChartDto> getPieChartData(LocalDate start,LocalDate end) {
+        List<PieChartQuery> pieChartList = statisticsRepository.getPieChartData(java.sql.Date.valueOf(start),
+                java.sql.Date.valueOf(end));
         return pieChartList.stream().map(StatisticsConverter::pieToDto).collect(Collectors.toList());
     }
 
@@ -56,9 +56,9 @@ public class StatisticsService {
         return statisticsRepository.getHighestByDepartmentByDate();
     }
 
-    public List<BarChartDto> getBarChartDataByPriority() {
-        List<PriConQuery<Package.Priority>> priorityQueryList = statisticsRepository.getPriorityCountByType(java.sql.Date.valueOf(LocalDate.of(2001, 1, 10)),
-                java.sql.Date.valueOf(LocalDate.of(2024, 10, 1)));
+    public List<BarChartDto> getBarChartDataByPriority(LocalDate start,LocalDate end,String type) {
+        List<PriConQuery<Package.Priority>> priorityQueryList = statisticsRepository.getPriorityCountByType(java.sql.Date.valueOf(start),
+                java.sql.Date.valueOf(end), type);
 
         List<BarChartDto> barChartDto = new ArrayList<>();
         Set<Date> dateList = priorityQueryList.stream().map(PriConQuery::getDate).collect(Collectors.toCollection(TreeSet::new));
@@ -74,9 +74,10 @@ public class StatisticsService {
         return barChartDto;
     }
 
-    public List<BarChartDto> getBarChartDataByConfidentiality() {
-        List<PriConQuery<Package.Confidentiality>> confidentialityQueryList = statisticsRepository.getConfidentialityCountByType(java.sql.Date.valueOf(LocalDate.of(2001, 1, 10)),
-                java.sql.Date.valueOf(LocalDate.of(2024, 10, 1)));
+    public List<BarChartDto> getBarChartDataByConfidentiality(LocalDate start,LocalDate end,String type) {
+        List<PriConQuery<Package.Confidentiality>> confidentialityQueryList = statisticsRepository
+                .getConfidentialityCountByType(java.sql.Date.valueOf(start),
+                        java.sql.Date.valueOf(end), type);
 
         List<BarChartDto> barChartDto = new ArrayList<>();
         Set<Date> dateList = confidentialityQueryList.stream().map(PriConQuery::getDate).collect(Collectors.toCollection(TreeSet::new));

@@ -10,7 +10,6 @@ const initialState = {
       requestedDate: "",
       department: "",
       company: "",
-      cpn: "",
       priority: "",
       confidentiality: "",
     },
@@ -21,9 +20,12 @@ const initialState = {
     name: "",
     requestedDate: "",
     department: "",
-    cpn: "",
     priority: "",
     confidentiality: "",
+  },
+  dateQuery: {
+    start: "",
+    end: "",
   },
   total: 0,
 };
@@ -58,10 +60,30 @@ export const packageSlice = createSlice({
     setTotal: (state, action: PayloadAction<number>) => {
       state.total = action.payload;
     },
+    setStartDate: (state, action: PayloadAction<string>) => {
+      state.dateQuery.start = action.payload;
+    },
+    setEndDate: (state, action: PayloadAction<string>) => {
+      state.dateQuery.end = action.payload;
+    },
+    setDateQuery: (
+      state,
+      action: PayloadAction<{ start: string; end: string }>
+    ) => {
+      state.dateQuery = action.payload;
+    },
   },
 });
 
-export const { setPackage, setQuery, setPageIndex, setPageSize,setTotal } =
-  packageSlice.actions;
+export const {
+  setPackage,
+  setQuery,
+  setPageIndex,
+  setPageSize,
+  setTotal,
+  setEndDate,
+  setStartDate,
+  setDateQuery
+} = packageSlice.actions;
 
 export default packageSlice.reducer;

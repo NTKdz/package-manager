@@ -2,9 +2,15 @@ import axios from "axios";
 
 const baseUrl = "http://localhost:8080/statistics";
 export default function StatsService() {
-  async function fetchData(endpoint:string,query?:string, type?:string) {
+  async function fetchData(
+    endpoint: string,
+    query?: { start: string; end: string },
+    type?: string
+  ) {
     try {
-      const response = await axios.get(`${baseUrl}${endpoint}`);
+      const response = await axios.get(`${baseUrl}${endpoint}`, {
+        params: query,
+      });
       if (response.status === 200) {
         console.log(response.data);
         return response.data;
@@ -16,20 +22,21 @@ export default function StatsService() {
     }
   }
 
-  async function getLineChartData() {
-    return await fetchData("/line");
+  async function getLineChartData(start: string, end: string) {
+    console.log("start", start, "end", end);
+    return await fetchData("/line", { start: start, end: end });
   }
 
-  async function getBarChartDataByConfiColumn() {
-    return await fetchData("/bar/confi");
+  async function getBarChartDataByConfiColumn(start: string, end: string) {
+    return await fetchData("/bar/confi", { start: start, end: end });
   }
 
-  async function getBarChartDataByPriorityColumn() {
-    return await fetchData("/bar/priority");
+  async function getBarChartDataByPriorityColumn(start: string, end: string) {
+    return await fetchData("/bar/priority", { start: start, end: end });
   }
 
-  async function getPieChartDate() {
-    return await fetchData("/pie");
+  async function getPieChartDate(start: string, end: string) {
+    return await fetchData("/pie", { start: start, end: end });
   }
 
   async function getHighestByDate() {
