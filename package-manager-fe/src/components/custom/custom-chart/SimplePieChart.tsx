@@ -1,24 +1,7 @@
-import { DataPoint, SimplePieChartProps } from "@/interface/chartInterface";
-import { useState } from "react";
+import { SimplePieChartProps } from "@/interface/chartInterface";
 import { ResponsivePie } from "@nivo/pie";
-const COLORS = [
-  "#0088FE",
-  "#00C49F",
-  "#FFBB28",
-  "#FF8042",
-  "#FF4560",
-  "#775DD0",
-  "#3DDC97",
-  "#FEB019",
-  "#546E7A",
-  "#26A69A",
-  "#D4E157",
-  "#FFB300",
-];
 
 export function SimplePieChart({ data }: { data: SimplePieChartProps[] }) {
-  const [activeIndex, setActiveIndex] = useState<number>(0);
-
   return (
     <ResponsivePie
       data={data}

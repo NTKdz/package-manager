@@ -13,13 +13,12 @@ public class DateHandler {
 
     public static String getDateTrunc(LocalDate start, LocalDate end) {
         long daysDiff = ChronoUnit.DAYS.between(start, end);
-//        if (daysDiff <= 90) {
-//            return "day";
-//        } else if (daysDiff <= 180) {
-//            return "week";
-//        } else {
-//            return "month";
-//        }
-        return "day";
+        if (daysDiff <= 90) {
+            return "1";
+        } else if (daysDiff <= 730) {
+            return "7";
+        } else {
+            return "30";
+        }
     }
 }

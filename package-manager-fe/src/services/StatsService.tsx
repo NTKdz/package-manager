@@ -4,15 +4,13 @@ const baseUrl = "http://localhost:8080/statistics";
 export default function StatsService() {
   async function fetchData(
     endpoint: string,
-    query?: { start: string; end: string },
-    type?: string
+    query?: { start: string; end: string }
   ) {
     try {
       const response = await axios.get(`${baseUrl}${endpoint}`, {
         params: query,
       });
       if (response.status === 200) {
-        console.log(response.data);
         return response.data;
       } else {
         console.error(`Error: Received status code ${response.status}`);
@@ -46,6 +44,10 @@ export default function StatsService() {
   async function getHighestByDepByDate() {
     return await fetchData("/table/highest-dep");
   }
+
+  async function getUserCount(start: string, end: string) {
+    return await fetchData("/table/user-count", { start: start, end: end });
+  }
   return {
     getLineChartData,
     getBarChartDataByConfiColumn,
@@ -53,5 +55,6 @@ export default function StatsService() {
     getPieChartDate,
     getHighestByDate,
     getHighestByDepByDate,
+    getUserCount,
   };
 }

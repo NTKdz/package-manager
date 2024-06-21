@@ -13,7 +13,7 @@ export default function HighestUseTable({
     <div>
       <CustomCard
         cardClass=""
-        cardTitle="Highest"
+        cardTitle="Danh sách mốc thời gian sử dụng nhiều nhất"
         cardDescription="Deploy your new project in one-click."
         cardContent={
           <div>

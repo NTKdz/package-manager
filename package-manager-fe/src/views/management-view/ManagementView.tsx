@@ -9,6 +9,8 @@ import { useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import StatisticsTableView from "./statistics-table-view/StatisticsTableView";
 import "./styles.css";
+import { Button } from "@/components/ui/button";
+import UploadService from "@/services/UploadService";
 
 export default function ManagementView() {
   const navigate = useNavigate();
@@ -16,12 +18,11 @@ export default function ManagementView() {
   const [currentLayout, setCurrentLayout] = useState(
     location.pathname.split("/")[2]
   );
-
   const [transition, setTransition] = useState(false);
 
   const { requestedPackage } = useSelector((state: RootState) => state.package);
   const { getPackageData } = TableService();
-
+  const { exportExcelFile } = UploadService();
   useEffect(() => {
     getPackageData();
   }, []);
@@ -89,6 +90,17 @@ export default function ManagementView() {
         </div>
       ) : (
         <div>
+          <div className="mb-2">
+            <Button
+              className="mr-2"
+              onClick={() => {
+                exportExcelFile();
+              }}
+            >
+              Xuất excel
+            </Button>
+            <Button>Nhập excel</Button>
+          </div>
           <DataTable columns={columns} data={requestedPackage} />
         </div>
       )}

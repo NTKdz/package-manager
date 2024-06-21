@@ -33,10 +33,10 @@ public class PackageService {
         return packageRepository.findAll();
     }
 
-    public List<Package> getAllPackagesByPageAndSize(Integer pageNumber, Integer pageSize) {
-        Pageable limitOne = PageRequest.of(pageNumber, pageSize);
-        return packageRepository.findAll(limitOne).getContent();
+    public List<Package> getAllPackageDecs(){
+        return packageRepository.getAllPackageDecs();
     }
+
 
     public Package getPackageById(long id) {
         return packageRepository.findById(id)

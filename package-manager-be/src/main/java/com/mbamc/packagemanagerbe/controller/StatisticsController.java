@@ -6,6 +6,7 @@ import com.mbamc.packagemanagerbe.dto.statistics.line.LineChartDto;
 import com.mbamc.packagemanagerbe.dto.statistics.pie.PieChartDto;
 import com.mbamc.packagemanagerbe.dto.tables.HighestByDateDto;
 import com.mbamc.packagemanagerbe.dto.tables.HighestByDepartmentByDateDto;
+import com.mbamc.packagemanagerbe.dto.tables.UserCountDto;
 import com.mbamc.packagemanagerbe.service.StatisticsService;
 import com.mbamc.packagemanagerbe.util.DateHandler;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,8 +32,8 @@ public class StatisticsController {
 
     @GetMapping("/line")
     public ResponseEntity<List<LineChartDto>> getLineChart(
-            @RequestParam(value = "start", required = false) LocalDate start,
-            @RequestParam(value = "end", required = false) LocalDate end) {
+            @RequestParam(value = "start") LocalDate start,
+            @RequestParam(value = "end") LocalDate end) {
 
         List<LineChartDto> lineCharts = statisticsService.getLineChartData(start, end, DateHandler.getDateTrunc(start, end));
         return ResponseEntity.ok(lineCharts.stream().map(StatisticsConverter::lineToDto).collect(Collectors.toList()));
@@ -40,24 +41,24 @@ public class StatisticsController {
 
     @GetMapping("/pie")
     public ResponseEntity<List<PieChartDto>> getPieChart(
-            @RequestParam(value = "start", required = false) LocalDate start,
-            @RequestParam(value = "end", required = false) LocalDate end) {
+            @RequestParam(value = "start") LocalDate start,
+            @RequestParam(value = "end") LocalDate end) {
         List<PieChartDto> pieCharts = statisticsService.getPieChartData(start, end);
         return ResponseEntity.ok(pieCharts);
     }
 
     @GetMapping("/bar/priority")
     public ResponseEntity<List<BarChartDto>> getBarChartByPriorityColumn(
-            @RequestParam(value = "start", required = false) LocalDate start,
-            @RequestParam(value = "end", required = false) LocalDate end) {
+            @RequestParam(value = "start") LocalDate start,
+            @RequestParam(value = "end") LocalDate end) {
         List<BarChartDto> barCharts = statisticsService.getBarChartDataByPriority(start, end, DateHandler.getDateTrunc(start, end));
         return ResponseEntity.ok(barCharts);
     }
 
     @GetMapping("/bar/confi")
     public ResponseEntity<List<BarChartDto>> getBarChartByConfiColumn(
-            @RequestParam(value = "start", required = false) LocalDate start,
-            @RequestParam(value = "end", required = false) LocalDate end) {
+            @RequestParam(value = "start") LocalDate start,
+            @RequestParam(value = "end") LocalDate end) {
         List<BarChartDto> barCharts = statisticsService.getBarChartDataByConfidentiality(start, end, DateHandler.getDateTrunc(start, end));
         return ResponseEntity.ok(barCharts);
     }
@@ -72,5 +73,14 @@ public class StatisticsController {
     public ResponseEntity<List<HighestByDepartmentByDateDto>> getHighestByDepByDate() {
         List<HighestByDepartmentByDateDto> statsList = statisticsService.getHighestByDepByDate();
         return ResponseEntity.ok(statsList);
+    }
+
+    @GetMapping("/table/user-count")
+    public ResponseEntity<UserCountDto> getCountUsersBetweenDates(
+            @RequestParam(value = "start") LocalDate start,
+            @RequestParam(value = "end") LocalDate end) {
+        Long count = statisticsService.getCountUsersBetweenDates(start, end);
+        UserCountDto userCountDto = new UserCountDto(start.toString() + " / " + end.toString(), count);
+        return ResponseEntity.ok(userCountDto);
     }
 }

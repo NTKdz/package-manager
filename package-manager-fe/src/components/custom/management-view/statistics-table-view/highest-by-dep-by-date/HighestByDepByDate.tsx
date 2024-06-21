@@ -5,11 +5,11 @@ export default function HighestByDepByDate({ data }: { data: any }) {
     <div>
       <CustomCard
         cardClass=""
-        cardTitle="Highest"
+        cardTitle="Danh sách phòng ban sử dụng nhiều nhất"
         cardDescription="Deploy your new project in one-click."
         cardContent={
           <div>
-            {data?.map((item: any,index:number) => {
+            {data?.slice(0,8).map((item: any,index:number) => {
               return (
                 <div key={index} className="w-full h-8 flex justify-between items-center flex-wrap">
                   <span>{item.depName}</span>

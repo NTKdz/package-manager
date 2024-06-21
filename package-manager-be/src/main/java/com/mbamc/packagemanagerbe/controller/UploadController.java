@@ -1,15 +1,21 @@
 package com.mbamc.packagemanagerbe.controller;
 
+import com.mbamc.packagemanagerbe.model.Package;
 import com.mbamc.packagemanagerbe.service.PackageService;
 import com.mbamc.packagemanagerbe.service.UploadService;
+import com.mbamc.packagemanagerbe.util.PackageExcelHandler;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.HttpStatus;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+
+import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
 
 @RestController
 @RequestMapping("/upload")
@@ -23,7 +29,7 @@ public class UploadController {
         this.uploadService=uploadService;
     }
 
-    @PostMapping("/packages")
+    @PostMapping("/import-excel")
     public ResponseEntity<String> uploadPackageExcel(@RequestParam("file") MultipartFile file) {
         String message = "";
         try {
@@ -36,5 +42,18 @@ public class UploadController {
             return ResponseEntity.status(HttpStatus.EXPECTATION_FAILED).body(message);
         }
 
+    }
+
+    @GetMapping("/export-to-excel")
+    public void exportIntoExcelFile(HttpServletResponse response) throws IOException {
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=Packages" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+        List<Package> packages = packageService.getAllPackageDecs();
+        PackageExcelHandler generator = new PackageExcelHandler(packages);
+        generator.export(response);
     }
 }

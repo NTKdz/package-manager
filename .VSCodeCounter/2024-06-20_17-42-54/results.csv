@@ -1,0 +1,110 @@
+"filename", "language", "HTML", "TypeScript", "JSON with Comments", "JSON", "CSS", "JavaScript", "TypeScript JSX", "XML", "Markdown", "Java", "Java Properties", "Batch", "comment", "blank", "total"
+"d:\KhoiDz\package-manager\.idea\codeStyles\Project.xml", "XML", 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 7
+"d:\KhoiDz\package-manager\.idea\codeStyles\codeStyleConfig.xml", "XML", 0, 0, 0, 0, 0, 0, 0, 5, 0, 0, 0, 0, 0, 0, 5
+"d:\KhoiDz\package-manager\.idea\modules.xml", "XML", 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 0, 0, 0, 8
+"d:\KhoiDz\package-manager\.idea\package-manager.iml", "XML", 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 0, 0, 0, 9
+"d:\KhoiDz\package-manager\.idea\vcs.xml", "XML", 0, 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 6
+"d:\KhoiDz\package-manager\.idea\workspace.xml", "XML", 0, 0, 0, 0, 0, 0, 0, 66, 0, 0, 0, 0, 0, 0, 66
+"d:\KhoiDz\package-manager\package-manager-be\.mvn\wrapper\maven-wrapper.properties", "Java Properties", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 0, 1, 3
+"d:\KhoiDz\package-manager\package-manager-be\mvnw.cmd", "Batch", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 118, 51, 37, 206
+"d:\KhoiDz\package-manager\package-manager-be\pom.xml", "XML", 0, 0, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 9, 81
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\PackageManagerBeApplication.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 6, 21
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\config\WebConfig.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 41, 3, 59
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\controller\AuthController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 3, 10
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\controller\PackageController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 105, 0, 0, 4, 19, 128
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\controller\StatisticsController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 65, 0, 0, 0, 12, 77
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\controller\UploadController.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 35, 0, 0, 0, 6, 41
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\converter\PackageConverter.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 42, 0, 0, 0, 7, 49
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\converter\StatisticsConverter.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 0, 7, 5, 31
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\statistics\bar\BarChartDto.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 16, 0, 0, 0, 5, 21
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\statistics\line\LineChartDto.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 4, 16
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\statistics\line\LineChartPoint.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 0, 0, 4, 12
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\statistics\pie\PieChartDto.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 3, 15
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\tables\HighestByDateDto.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 4, 18
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\tables\HighestByDepartmentByDateDto.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 3, 16
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\tables\PackageDto.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 4, 26
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\tables\PackageDtoTable.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 4, 16
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\dto\tables\UserDto.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 4, 15
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\model\Package.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 38, 0, 0, 0, 10, 48
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\model\User.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 10, 32
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\repository\PackageRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 7, 37
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\repository\StatisticsRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 40, 0, 0, 0, 10, 50
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\repository\UserRepository.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 11, 0, 0, 0, 3, 14
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\response\DepartmentWithCount.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 5, 18
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\response\PieChartQuery.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 14, 0, 0, 0, 3, 17
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\response\PriConQuery.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 3, 18
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\service\AuthService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 0, 0, 0, 2, 5
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\service\PackageService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 52, 0, 0, 4, 15, 71
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\service\StatisticsService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 77, 0, 0, 0, 19, 96
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\service\UploadService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 5, 32
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\service\UserService.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 19, 0, 0, 0, 6, 25
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\util\DateHandler.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 15, 0, 0, 7, 4, 26
+"d:\KhoiDz\package-manager\package-manager-be\src\main\java\com\mbamc\packagemanagerbe\util\PackageExcelHandler.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 139, 0, 0, 1, 26, 166
+"d:\KhoiDz\package-manager\package-manager-be\src\main\resources\application.properties", "Java Properties", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 8, 0, 3, 0, 11
+"d:\KhoiDz\package-manager\package-manager-be\src\test\java\com\mbamc\packagemanagerbe\PackageManagerBeApplicationTests.java", "Java", 0, 0, 0, 0, 0, 0, 0, 0, 0, 9, 0, 0, 0, 5, 14
+"d:\KhoiDz\package-manager\package-manager-fe\.eslintrc.cjs", "JavaScript", 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 1, 19
+"d:\KhoiDz\package-manager\package-manager-fe\README.md", "Markdown", 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 9, 31
+"d:\KhoiDz\package-manager\package-manager-fe\components.json", "JSON", 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 17
+"d:\KhoiDz\package-manager\package-manager-fe\index.html", "HTML", 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 14
+"d:\KhoiDz\package-manager\package-manager-fe\package-lock.json", "JSON", 0, 0, 0, 5969, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 5970
+"d:\KhoiDz\package-manager\package-manager-fe\package.json", "JSON", 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 61
+"d:\KhoiDz\package-manager\package-manager-fe\postcss.config.js", "JavaScript", 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 0, 1, 7
+"d:\KhoiDz\package-manager\package-manager-fe\public\vite.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"d:\KhoiDz\package-manager\package-manager-fe\src\App.css", "CSS", 0, 0, 0, 0, 3, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3
+"d:\KhoiDz\package-manager\package-manager-fe\src\App.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 3, 16
+"d:\KhoiDz\package-manager\package-manager-fe\src\assets\react.svg", "XML", 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 1
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-card\CustomCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 31, 0, 0, 0, 0, 0, 0, 2, 33
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-chart\SimpleBarChart.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 125, 0, 0, 0, 0, 0, 0, 4, 129
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-chart\SimpleLineChart.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 97, 0, 0, 0, 0, 0, 0, 2, 99
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-chart\SimplePieChart.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 139, 0, 0, 0, 0, 0, 0, 3, 142
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-date-picker\CustomDateRangePicker.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 133, 0, 0, 0, 0, 0, 0, 6, 139
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-dialog\CustomDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 30, 0, 0, 0, 0, 0, 0, 2, 32
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-dropdown-menu\CustomDropdownMenu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 0, 4, 53
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\custom-tabs\CustomTabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 4, 24
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\data-table\Columns.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 71, 0, 0, 0, 0, 0, 0, 2, 73
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\data-table\DataTable.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 210, 0, 0, 0, 0, 0, 2, 10, 222
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\homeview\RequestPackageDialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 219, 0, 0, 0, 0, 0, 0, 9, 228
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\management-view\data-visualization\DataVisualization.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 89, 0, 0, 0, 0, 0, 0, 5, 94
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\management-view\data-visualization\bar-chart-card-view\BarChartCard.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 49, 0, 0, 0, 0, 0, 0, 3, 52
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\management-view\data-visualization\data.ts", "TypeScript", 0, 405, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 408
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\management-view\statistics-table-view\highest-by-dep-by-date\HighestByDepByDate.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 27, 0, 0, 0, 0, 0, 0, 2, 29
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\management-view\statistics-table-view\highest-use-table\HighestUseTable.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 42, 0, 0, 0, 0, 0, 0, 4, 46
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\nav-bar\NavBar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 99, 0, 0, 0, 0, 0, 0, 8, 107
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\custom\nav-bar\styles.css", "CSS", 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\alert-dialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 126, 0, 0, 0, 0, 0, 0, 14, 140
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\button.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 52, 0, 0, 0, 0, 0, 0, 6, 58
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\calendar.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 66, 0, 0, 0, 0, 0, 0, 5, 71
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\card.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 68, 0, 0, 0, 0, 0, 0, 9, 77
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\checkbox.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 4, 29
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\dialog.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 108, 0, 0, 0, 0, 0, 0, 13, 121
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\dropdown-menu.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 186, 0, 0, 0, 0, 0, 0, 18, 204
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\input.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 5, 26
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\label.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 5, 25
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\popover.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 7, 32
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\select.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 150, 0, 0, 0, 0, 0, 0, 13, 163
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\table.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 110, 0, 0, 0, 0, 0, 0, 11, 121
+"d:\KhoiDz\package-manager\package-manager-fe\src\components\ui\tabs.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 47, 0, 0, 0, 0, 0, 0, 7, 54
+"d:\KhoiDz\package-manager\package-manager-fe\src\hooks\useCallData.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 7, 0, 0, 0, 0, 0, 0, 2, 9
+"d:\KhoiDz\package-manager\package-manager-fe\src\index.css", "CSS", 0, 0, 0, 0, 56, 0, 0, 0, 0, 0, 0, 0, 0, 21, 77
+"d:\KhoiDz\package-manager\package-manager-fe\src\interface\chartInterface.ts", "TypeScript", 0, 14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3, 17
+"d:\KhoiDz\package-manager\package-manager-fe\src\interface\packageInterface.ts", "TypeScript", 0, 44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 5, 49
+"d:\KhoiDz\package-manager\package-manager-fe\src\lib\utils.ts", "TypeScript", 0, 5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 7
+"d:\KhoiDz\package-manager\package-manager-fe\src\main.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 2, 15
+"d:\KhoiDz\package-manager\package-manager-fe\src\redux\slices\loadingSlice.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 15, 0, 0, 0, 0, 0, 1, 4, 20
+"d:\KhoiDz\package-manager\package-manager-fe\src\redux\slices\packageSlice.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 86, 0, 0, 0, 0, 0, 0, 4, 90
+"d:\KhoiDz\package-manager\package-manager-fe\src\redux\store.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 2, 14
+"d:\KhoiDz\package-manager\package-manager-fe\src\routes.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 37, 0, 0, 0, 0, 0, 0, 2, 39
+"d:\KhoiDz\package-manager\package-manager-fe\src\services\StatsService.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 50, 0, 0, 0, 0, 0, 0, 8, 58
+"d:\KhoiDz\package-manager\package-manager-fe\src\services\TableService.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 70, 0, 0, 0, 0, 0, 2, 7, 79
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\LayOut.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 4, 29
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\auth-view\SignIn.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 6, 0, 0, 0, 0, 0, 0, 2, 8
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\home-view\HomeView.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 4, 24
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\management-view\ManagementView.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 88, 0, 0, 0, 0, 0, 0, 10, 98
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\management-view\statistics-table-view\StatisticsTableView.tsx", "TypeScript JSX", 0, 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 0, 4, 50
+"d:\KhoiDz\package-manager\package-manager-fe\src\views\management-view\styles.css", "CSS", 0, 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
+"d:\KhoiDz\package-manager\package-manager-fe\src\vite-env.d.ts", "TypeScript", 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 2
+"d:\KhoiDz\package-manager\package-manager-fe\tailwind.config.js", "JavaScript", 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 1, 0, 77
+"d:\KhoiDz\package-manager\package-manager-fe\tsconfig.json", "JSON with Comments", 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 4, 31
+"d:\KhoiDz\package-manager\package-manager-fe\tsconfig.node.json", "JSON", 0, 0, 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 12
+"d:\KhoiDz\package-manager\package-manager-fe\vite.config.ts", "TypeScript", 0, 11, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 13
+"Total", "-", 13, 479, 25, 6057, 81, 100, 2922, 175, 22, 947, 10, 118, 127, 580, 11656

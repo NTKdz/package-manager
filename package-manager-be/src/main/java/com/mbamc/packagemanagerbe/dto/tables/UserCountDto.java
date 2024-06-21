@@ -1,13 +1,17 @@
 package com.mbamc.packagemanagerbe.dto.tables;
 
 import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-@Data
+import java.time.LocalDate;
+
 @AllArgsConstructor
 @NoArgsConstructor
-public class UserDto {
-    private Long id;
-    private String name;
+@Setter
+@Getter
+public class UserCountDto {
+    String date;
+    Long count;
 }

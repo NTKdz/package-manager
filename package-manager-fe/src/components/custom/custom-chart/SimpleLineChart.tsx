@@ -3,27 +3,13 @@ import { ResponsiveLine, Serie } from "@nivo/line";
 import { format } from "date-fns";
 
 export default function SimpleLineChart({ data }: { data: SimpleLineChartProps[] }) {
-  const colors = [
-    "#1f77b4",
-    "#ff7f0e",
-    "#2ca02c",
-    "#d62728",
-    "#9467bd",
-    "#8c564b",
-    "#e377c2",
-    "#7f7f7f",
-    "#bcbd22",
-    "#17becf",
-    "#aec7e8",
-    "#ffbb78",
-  ];
   return (
     <ResponsiveLine
       data={data as Serie[] }
       margin={{ top: 20, right: 110, bottom: 70, left: 50 }}
       xScale={{
         type: 'time',
-        format: '%Y-%m-%d',
+        format: '%Y-%m-%dT%H:%M:%S.%L%Z',
       }}
       yScale={{
         type: "linear",

@@ -1,19 +1,15 @@
-import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useEffect, useState } from "react";
-import SimpleBarChart from "../../custom-chart/SimpleBarChart";
-import SimpleLineChart from "../../custom-chart/SimpleLineChart";
-import { SimplePieChart } from "../../custom-chart/SimplePieChart";
-import { DateRangePicker } from "../../custom-date-picker/CustomDateRangePicker";
-import StatsService from "@/services/StatsService";
 import {
   SimpleBarChartProps,
-  SimpleLineChartProps,
-  SimplePieChartProps,
+  SimpleLineChartProps
 } from "@/interface/chartInterface";
-import BarChartCard from "./bar-chart-card-view/BarChartCard";
-import { format } from "date-fns";
-import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
+import StatsService from "@/services/StatsService";
+import { format } from "date-fns";
+import { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
+import SimpleLineChart from "../../custom-chart/SimpleLineChart";
+import { DateRangePicker } from "../../custom-date-picker/CustomDateRangePicker";
+import BarChartCard from "./bar-chart-card-view/BarChartCard";
 
 export default function DataVisualization() {
   const { dateQuery } = useSelector((state: RootState) => state.package);
@@ -38,7 +34,8 @@ export default function DataVisualization() {
       getBarChartDataByConfiColumn(dateQuery.start, dateQuery.end).then(
         (res) => {
           setConfiBarData(
-            res?.map((item) => ({
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            res?.map((item: { barchartProperty: any; date: string | number | Date; }) => ({
               ...item.barchartProperty,
               date: format(new Date(item.date), "yyyy-MM-dd"),
             }))
@@ -48,7 +45,8 @@ export default function DataVisualization() {
       getBarChartDataByPriorityColumn(dateQuery.start, dateQuery.end).then(
         (res) => {
           setPriorityBarData(
-            res?.map((item) => ({
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            res?.map((item: { barchartProperty: any; date: string | number | Date; }) => ({
               ...item.barchartProperty,
               date: format(new Date(item.date), "yyyy-MM-dd"),
             }))
@@ -56,6 +54,7 @@ export default function DataVisualization() {
         }
       );
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateQuery.start, dateQuery.end]);
 
   return (

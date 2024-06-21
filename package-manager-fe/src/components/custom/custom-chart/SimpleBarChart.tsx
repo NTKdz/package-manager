@@ -16,28 +16,12 @@ export default function SimpleBarChart({
   groupMode?: "stacked" | "grouped";
 }) {
   const valuesToShow = data.filter((_, i) => i % (Math.round(data.length/6)+1)*2 === 0);
-
-  const colors = [
-    "#0088FE",
-    "#00C49F",
-    "#FFBB28",
-    "#FF8042",
-    "#FF66CC",
-    "#6699FF",
-    "#FF9966",
-    "#33CCCC",
-    "#99CC00",
-    "#FF3300",
-    "#CCFF66",
-    "#FFCC00",
-  ]; // Add more colors as needed
-
   return (
     <ResponsiveBar
       data={data}
       keys={keys}
       indexBy={indexBy}
-      margin={{ top: 20, right: 110, bottom: 70, left: 60 }}
+      margin={{ top: 20, right: 140, bottom: 70, left: 45 }}
       padding={0.3}
       valueScale={{ type: "linear" }}
       indexScale={{ type: "band", round: true }}
