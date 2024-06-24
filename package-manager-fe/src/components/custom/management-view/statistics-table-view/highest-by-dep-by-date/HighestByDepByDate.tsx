@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import CustomCard from "@/components/custom/custom-card/CustomCard";
 
 export default function HighestByDepByDate({ data }: { data: any }) {
@@ -6,7 +7,7 @@ export default function HighestByDepByDate({ data }: { data: any }) {
       <CustomCard
         cardClass=""
         cardTitle="Danh sách phòng ban sử dụng nhiều nhất"
-        cardDescription="Deploy your new project in one-click."
+        cardDescription=""
         cardContent={
           <div>
             {data?.slice(0,8).map((item: any,index:number) => {

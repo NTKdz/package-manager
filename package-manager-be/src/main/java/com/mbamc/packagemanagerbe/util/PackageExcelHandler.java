@@ -81,6 +81,7 @@ public class PackageExcelHandler {
         font.setFontHeight(14);
         style.setFont(font);
 
+        long j=0;
         for (Package requestPackage : packages) {
             Row row = sheet.createRow(rowCount++);
             int columnCount = 0;
@@ -93,6 +94,7 @@ public class PackageExcelHandler {
             createCell(row, columnCount++, requestPackage.getUser().getCompany(), style);
             createCell(row, columnCount++, requestPackage.getConfidentiality().toString(), style);
             createCell(row, columnCount++, requestPackage.getPriority().toString(), style);
+            System.out.println(requestPackage.getWaybill());
         }
     }
 

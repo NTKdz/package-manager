@@ -24,6 +24,10 @@ export function CustomDropdownMenu({
 }) {
   const [currentValue, setCurrentValue] = React.useState(value);
 
+  React.useEffect(() => {
+    console.log("change here", value);
+    if (!value) setCurrentValue("");
+  }, [value]);
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -36,7 +40,9 @@ export function CustomDropdownMenu({
           value={currentValue}
           onValueChange={(e) => {
             console.log(e);
-            setCurrentValue(menuItem.find((item) => item.value === e)?.title || "");
+            setCurrentValue(
+              menuItem.find((item) => item.value === e)?.title || ""
+            );
             onItemSelected(e);
           }}
         >

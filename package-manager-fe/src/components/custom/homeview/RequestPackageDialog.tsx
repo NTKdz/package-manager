@@ -29,8 +29,8 @@ export default function RequestPackageDialog() {
   const [userFullName, setUserFullName] = useState("nguyen the khoi");
   const [department, setDepartment] = useState("");
   const [company, setCompany] = useState("");
-  const [priority, setPriority] = useState("Bình thường");
-  const [confidentiality, setConfidentiality] = useState("Bình thường");
+  const [priority, setPriority] = useState("");
+  const [confidentiality, setConfidentiality] = useState("");
   const [cpn, setCpn] = useState("");
   const [alertOpen, setAlertOpen] = useState(false);
   const [alertContent, setAlertContent] = useState("");

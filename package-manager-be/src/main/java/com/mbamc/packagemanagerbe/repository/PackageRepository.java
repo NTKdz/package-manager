@@ -16,12 +16,14 @@ public interface PackageRepository extends JpaRepository<Package, Long> {
 
     @Query("SELECT p FROM Package p " +
             "WHERE (cast(:date as date) IS NULL OR p.requestedDate > :date) " +
+            "AND (:waybill IS NULL OR p.waybill = :waybill) " +
             "AND (:department IS NULL OR p.user.department = :department) " +
             "AND (:priority IS NULL OR p.priority = :priority) " +
             "AND (:confidentiality IS NULL OR p.confidentiality = :confidentiality) " +
             "AND (:name IS NULL OR (LOWER(p.user.name) LIKE CONCAT('%', LOWER(:name), '%'))) " +
             "ORDER BY p.waybill desc ")
     Page<Package> getAllPackageByCriteria(
+            @Param("waybill") Long waybill,
             @Param("date") Date date,
             @Param("name") String name,
             @Param("department") String department,

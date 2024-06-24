@@ -28,7 +28,12 @@ export default function StatisticsTableView() {
         console.log("user-count", res);
         setUserCount(res);
       });
+      getHighestByDepByDate(dateQuery.start, dateQuery.end).then((res) => {
+        console.log("dsads", res);
+        setHighestByDepByDate(res);
+      });
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [dateQuery]);
 
@@ -36,11 +41,6 @@ export default function StatisticsTableView() {
     getHighestByDate().then((res) => {
       console.log("dsads", res);
       setHighestData(res);
-    });
-
-    getHighestByDepByDate().then((res) => {
-      console.log("dsads", res);
-      setHighestByDepByDate(res);
     });
   }, []);
   return (

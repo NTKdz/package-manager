@@ -11,15 +11,15 @@ export default function UserCountTable({
       <CustomCard
         cardClass=""
         cardTitle="Số lượng người dùng trong khoảng thời gian"
-        cardDescription="Deploy your new project in one-click."
+        cardDescription=""
         cardContent={
           <div>
             <div className="w-full text-center">
               <div className="text-lg mx-auto text-center">
-                <span>{data.date}</span>
+                <span>{data && data.date}</span>
               </div>
               <div className="text-8xl mx-auto text-center">
-                <span>{data.count}</span>
+                <span>{data && data.count}</span>
               </div>
             </div>
           </div>

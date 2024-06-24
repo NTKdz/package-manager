@@ -10,11 +10,13 @@ export interface PackageInterface {
 }
 
 export interface RequestWaybillInterface {
-  user: string;
-  userFullName: string;
-  requestedDate: Date;
-  priority: string;
-  confidentiality: string;
+  waybill?: number | null;
+  user: string | null;
+  userFullName: string | null;
+  requestedDate: Date | null;
+  department?: string | null;
+  priority: string | null;
+  confidentiality: string | null;
 }
 
 function generatePackage(): PackageInterface {

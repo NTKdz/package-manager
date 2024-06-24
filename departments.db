@@ -1,0 +1,24 @@
+3,AMC0103,L1,Chi nhánh Đông Nam Bộ,"Tòa Nhà NaviTower số 91 Hoàng Văn Thụ, Phường Chánh Nghĩa, Thành phố Thủ Dầu Một, Tỉnh Bình Dương",V,2,ACTIVE
+4,AMC0106,L1,Vùng Hà Nội,"Tòa nhà MB số 03 Liễu Giai, Phường Liễu Giai, Quận Ba Đình, Thành phố Hà Nội",V,2,ACTIVE
+10,AMC0107,L1,Vùng Miền Bắc,"Tầng 5, toà nhà số 538 Cách Mạng Tháng 8, Phường 11, Quận 3, Thành phố Hồ Chí Minh",V,2,ACTIVE
+7,AMC0001,L1,MB Hội sở chính,"Số 77 Võ Văn Tần, Phường Tân An, Quận Ninh Kiều, Thành phố Cần Thơ",V,1,ACTIVE
+6,AMC0105,L1,Chi nhánh Tây Nam Bộ,"Tòa nhà MB Grandtower, số 18 Lê Văn Lương, Phường Trung Hòa, Quận Cầu Giấy, Thành phố Hà Nội",V,2,ACTIVE
+8,AMC0102,L1,Chi nhánh Miền Trung và Tây Nguyên,"Tầng 3, tòa nhà Vạn Tường số 174 Lê Đình Lý, Phường Hoà Thuận Tây, Quận Hải Châu,Thành phố Đà Nẵng",V,2,ACTIVE
+13,AMC010101,L2,Ban điều hành,,V,5,ACTIVE
+14,AMC010102,L2,Ban kiểm soát,,V,5,ACTIVE
+15,AMC010103,L2,Hội đồng Thành viên,,V,5,ACTIVE
+16,AMC010104,L2,Phòng Công nghệ Thông tin,,V,5,INACTIVE
+17,AMC010105,L2,Phòng Kiểm toán nội bộ,,V,5,ACTIVE
+18,AMC010106,L2,Phòng Quản trị rủi ro và pháp chế,,V,5,ACTIVE
+19,AMC010107,L2,Phòng Tài chính kế toán,,V,5,ACTIVE
+20,AMC010108,L2,Trung tâm Quản lý và Khai thác Tài sản,,V,5,INACTIVE
+21,AMC010109,L2,Trung tâm Tư vấn Thẩm định Tài sản,,V,5,INACTIVE
+22,AMC010110,L2,Trung tâm Xử lý Nợ,,V,5,INACTIVE
+23,AMC010111,L2,Văn phòng Công ty,,V,5,ACTIVE
+24,AMC010112,L2,Phòng Kế hoạch tổng hợp,,V,5,INACTIVE
+25,AMC010113,L2,Khối Thu hồi nợ Quản trị,,V,5,ACTIVE
+26,AMC010114,L2,Khối Tư vấn Thẩm định Tài sản,,V,5,ACTIVE
+27,AMC010115,L2,Khối Quản lý và Khai thác Tài sản,,V,5,ACTIVE
+28,AMC010116,L2,Trung tâm Công nghệ thông tin,,V,5,ACTIVE
+29,AMC010183,L2,Phòng Tổ chức nhân sự,,V,5,ACTIVE
+9,AMC0104,L1,Chi nhánh Hồ Chí Minh,"Số 03 Liễu Giai, Phường Liễu Giai, Quận Ba Đình, Thành phố Hà Nội",V,2,ACTIVE

@@ -54,8 +54,8 @@ public class StatisticsService {
         return statisticsRepository.getHighestByDate(type);
     }
 
-    public List<HighestByDepartmentByDateDto> getHighestByDepByDate() {
-        return statisticsRepository.getHighestByDepartmentByDate();
+    public List<HighestByDepartmentByDateDto> getHighestByDepByDate(LocalDate startDate, LocalDate endDate) {
+        return statisticsRepository.getHighestByDepartmentByDate(java.sql.Date.valueOf(startDate), java.sql.Date.valueOf(endDate));
     }
 
     public List<BarChartDto> getBarChartDataByPriority(LocalDate start, LocalDate end, String type) {

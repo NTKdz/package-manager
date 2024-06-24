@@ -41,8 +41,8 @@ export default function StatsService() {
     return await fetchData("/table/highest-packages");
   }
 
-  async function getHighestByDepByDate() {
-    return await fetchData("/table/highest-dep");
+  async function getHighestByDepByDate(start: string, end: string) {
+    return await fetchData("/table/highest-dep", { start: start, end: end });
   }
 
   async function getUserCount(start: string, end: string) {

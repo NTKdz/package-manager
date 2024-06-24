@@ -14,7 +14,7 @@ export default function HighestUseTable({
       <CustomCard
         cardClass=""
         cardTitle="Danh sách mốc thời gian sử dụng nhiều nhất"
-        cardDescription="Deploy your new project in one-click."
+        cardDescription=""
         cardContent={
           <div>
             {data?.slice(0,8).map((item: any, index: number) => {

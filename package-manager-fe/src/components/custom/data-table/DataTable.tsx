@@ -2,6 +2,7 @@ import {
   ColumnDef,
   flexRender,
   getCoreRowModel,
+  getFilteredRowModel,
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
@@ -31,17 +32,21 @@ import {
   DoubleArrowLeftIcon,
   DoubleArrowRightIcon,
 } from "@radix-ui/react-icons";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
+  filterRows?: { placeholder: string; component: ReactNode }[];
+  onFilterChange?: (filteredCol: string, value: string) => void;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
+  filterRows,
+  onFilterChange,
 }: DataTableProps<TData, TValue>) {
   const { getPackageData } = TableService();
   const { query, total } = useSelector((state: RootState) => state.package);
@@ -52,6 +57,7 @@ export function DataTable<TData, TValue>({
     getCoreRowModel: getCoreRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
     manualPagination: true,
+    getFilteredRowModel: getFilteredRowModel(),
     rowCount: total,
   });
 
@@ -59,16 +65,16 @@ export function DataTable<TData, TValue>({
 
   useEffect(() => {
     table.setPageSize(query.size);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-  
+
   useEffect(() => {
     console.log("query", query);
     getPackageData({
       ...query,
       page: table.getState().pagination.pageIndex,
     });
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, pageIndex]);
 
   function onPageIndexChange(pageIndex: number) {
@@ -102,6 +108,12 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
+            <TableRow>
+              {filterRows &&
+                filterRows.map((item, index) => {
+                  return <TableCell key={index}> {item.component} </TableCell>;
+                })}
+            </TableRow>
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow

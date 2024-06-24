@@ -17,7 +17,7 @@ import java.util.List;
 public interface StatisticsRepository extends JpaRepository<Package, Long> {
 
     @Query(nativeQuery = true, value =
-                    "WITH time_series AS ( SELECT generate_series( " +
+            "WITH time_series AS ( SELECT generate_series( " +
                     ":startDate, :endDate, " +
                     "cast(:type as integer) * INTERVAL '1 day' ) AS series_time ), intervals AS ( " +
                     "SELECT series_time, COALESCE(lead(series_time) OVER (ORDER BY series_time), (SELECT MAX(date_request) FROM packages) + INTERVAL '1 day') AS next_series_time " +
@@ -75,12 +75,13 @@ public interface StatisticsRepository extends JpaRepository<Package, Long> {
     List<PriConQueryInterface<Package.Confidentiality>> getConfidentialityCountByType(@Param("startDate") Date startDate, @Param("endDate") Date endDate, @Param("type") String type);
 
     @Query("SELECT new com.mbamc.packagemanagerbe.dto.tables.HighestByDateDto(DATE_TRUNC(:type, p.requestedDate), count(*)) from Package p " +
-            "group by 1 order by count(*) desc")
+            "GROUP BY 1 order by count(*) desc")
     List<HighestByDateDto> getHighestByDate(@Param("type") String type);
 
     @Query("SELECT new com.mbamc.packagemanagerbe.dto.tables.HighestByDepartmentByDateDto(p.user.department, count(*)) from Package p " +
-            "group by p.user.department order by count(*) desc")
-    List<HighestByDepartmentByDateDto> getHighestByDepartmentByDate();
+            "WHERE p.requestedDate >= :startDate AND p.requestedDate<= :endDate " +
+            "GROUP BY p.user.department order by count(*) desc")
+    List<HighestByDepartmentByDateDto> getHighestByDepartmentByDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     @Query(value = "SELECT COUNT(DISTINCT p.user_id) " +
             "FROM packages p " +

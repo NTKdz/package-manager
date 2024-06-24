@@ -70,8 +70,10 @@ public class StatisticsController {
     }
 
     @GetMapping("/table/highest-dep")
-    public ResponseEntity<List<HighestByDepartmentByDateDto>> getHighestByDepByDate() {
-        List<HighestByDepartmentByDateDto> statsList = statisticsService.getHighestByDepByDate();
+    public ResponseEntity<List<HighestByDepartmentByDateDto>> getHighestByDepByDate(
+            @RequestParam(value = "start") LocalDate start,
+            @RequestParam(value = "end") LocalDate end) {
+        List<HighestByDepartmentByDateDto> statsList = statisticsService.getHighestByDepByDate(start, end);
         return ResponseEntity.ok(statsList);
     }
 
