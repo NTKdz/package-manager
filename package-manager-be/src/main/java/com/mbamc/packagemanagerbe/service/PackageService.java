@@ -46,11 +46,11 @@ public class PackageService {
     public Page<Package> getAllPackageByCriteria(Long waybill,
                                                  Date date,
                                                  String name,
-
+                                                 String username,
                                                  String department,
                                                  Package.Priority priority,
                                                  Package.Confidentiality confidentiality, Pageable pageable) {
-        return packageRepository.getAllPackageByCriteria(waybill, date, name == null ? "" : name, department, priority, confidentiality, pageable);
+        return packageRepository.getAllPackageByCriteria(waybill, date, name == null ? "" : name, username == null ? "" : username, department, priority, confidentiality, pageable);
     }
 
     public List<Package> getAllPackageByUserName(String username) {

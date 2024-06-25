@@ -1,0 +1,16 @@
+spring:
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://uatsso.mbamc.com.vn/realms/demo
+          jwk-set-uri: ${spring.security.oauth2.resourceserver.jwt.issuer-uri}/protocol/openid-connect/certs
+#      client:
+#        registration:
+#          keycloak:
+#            client-id: package-manager
+#            client-secret: JfPdBuK26R0BsFvmau8ArGgIpHwfYjSy
+#            scope: openid+profile+email
+#        provider:
+#          keycloak:
+#            issuer-uri: http://localhost:8081/realms/package

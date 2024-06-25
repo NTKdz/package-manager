@@ -70,12 +70,13 @@ public class PackageController {
             @RequestParam(value = "waybill", required = false) Long waybill,
             @RequestParam(value = "requestedDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date date,
             @RequestParam(value = "name", required = false) String name,
+            @RequestParam(value = "username", required = false) String username,
             @RequestParam(value = "department", required = false) String department,
             @RequestParam(value = "priority", required = false) Package.Priority priority,
             @RequestParam(value = "confidentiality", required = false) Package.Confidentiality confidentiality,
             Pageable pageable) {
         PackageDtoTable packageDtoTable = new PackageDtoTable();
-        Page<Package> packages = packageService.getAllPackageByCriteria(waybill, date, name, department, priority, confidentiality, pageable);
+        Page<Package> packages = packageService.getAllPackageByCriteria(waybill, date, name, username, department, priority, confidentiality, pageable);
         List<PackageDto> packagesD = packages.getContent()
                 .stream().map(PackageConverter::toAminDto).
                 collect(Collectors.toList());

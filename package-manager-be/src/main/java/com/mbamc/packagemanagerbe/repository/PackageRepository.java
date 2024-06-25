@@ -21,11 +21,13 @@ public interface PackageRepository extends JpaRepository<Package, Long> {
             "AND (:priority IS NULL OR p.priority = :priority) " +
             "AND (:confidentiality IS NULL OR p.confidentiality = :confidentiality) " +
             "AND (:name IS NULL OR (LOWER(p.user.name) LIKE CONCAT('%', LOWER(:name), '%'))) " +
+            "AND (:username IS NULL OR (LOWER(p.user.username) LIKE CONCAT('%', LOWER(:username), '%'))) " +
             "ORDER BY p.waybill desc ")
     Page<Package> getAllPackageByCriteria(
             @Param("waybill") Long waybill,
             @Param("date") Date date,
             @Param("name") String name,
+            @Param("username") String username,
             @Param("department") String department,
             @Param("priority") Package.Priority priority,
             @Param("confidentiality") Package.Confidentiality confidentiality, Pageable pageable);
