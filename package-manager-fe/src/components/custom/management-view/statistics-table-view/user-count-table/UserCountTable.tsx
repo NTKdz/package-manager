@@ -1,5 +1,4 @@
 import CustomCard from "@/components/custom/custom-card/CustomCard";
-import { format } from "date-fns";
 
 export default function UserCountTable({
   data,

@@ -1,13 +1,12 @@
-import HighestUseTable from "@/components/custom/management-view/statistics-table-view/highest-use-table/HighestUseTable";
+import { SimplePieChart } from "@/components/custom/custom-chart/SimplePieChart";
 import HighestByDepByDate from "@/components/custom/management-view/statistics-table-view/highest-by-dep-by-date/HighestByDepByDate";
+import HighestUseTable from "@/components/custom/management-view/statistics-table-view/highest-use-table/HighestUseTable";
+import UserCountTable from "@/components/custom/management-view/statistics-table-view/user-count-table/UserCountTable";
+import { SimplePieChartProps } from "@/interface/chartInterface";
+import { RootState } from "@/redux/store";
 import StatsService from "@/services/StatsService";
 import { useEffect, useState } from "react";
-import { DateRangePicker } from "@/components/custom/custom-date-picker/CustomDateRangePicker";
-import { SimplePieChart } from "@/components/custom/custom-chart/SimplePieChart";
-import { SimplePieChartProps } from "@/interface/chartInterface";
 import { useSelector } from "react-redux";
-import { RootState } from "@/redux/store";
-import UserCountTable from "@/components/custom/management-view/statistics-table-view/user-count-table/UserCountTable";
 
 export default function StatisticsTableView() {
   const [highestData, setHighestData] = useState([]);

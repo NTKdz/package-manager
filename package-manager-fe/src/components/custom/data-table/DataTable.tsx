@@ -39,14 +39,12 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[];
   data: TData[];
   filterRows?: { placeholder: string; component: ReactNode }[];
-  onFilterChange?: (filteredCol: string, value: string) => void;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   filterRows,
-  onFilterChange,
 }: DataTableProps<TData, TValue>) {
   const { getPackageData } = TableService();
   const { query, total } = useSelector((state: RootState) => state.package);
@@ -69,7 +67,6 @@ export function DataTable<TData, TValue>({
   }, []);
 
   useEffect(() => {
-    console.log("query", query);
     getPackageData({
       ...query,
       page: table.getState().pagination.pageIndex,

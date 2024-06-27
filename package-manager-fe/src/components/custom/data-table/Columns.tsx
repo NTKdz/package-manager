@@ -1,4 +1,3 @@
-import { Checkbox } from "@/components/ui/checkbox";
 import { PackageInterface } from "@/interface/packageInterface";
 import { ColumnDef } from "@tanstack/react-table";
 
@@ -41,9 +40,11 @@ export const columns: ColumnDef<PackageInterface>[] = [
   {
     accessorKey: "priority",
     header: "Độ khẩn",
+    minSize: 1000,
   },
   {
     accessorKey: "confidentiality",
     header: "Độ mật",
+    minSize: 1000,
   },
 ];

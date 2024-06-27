@@ -1,13 +1,12 @@
 import CustomCard from "@/components/custom/custom-card/CustomCard";
 import { format } from "date-fns";
-import { useState } from "react";
 
 export default function HighestUseTable({
   data,
 }: {
   data: { date: string; count: number }[];
 }) {
-  const [type, setType] = useState<string>("day");
+  // const [type, setType] = useState<string>("day");
 
   return (
     <div>
@@ -17,7 +16,8 @@ export default function HighestUseTable({
         cardDescription=""
         cardContent={
           <div>
-            {data?.slice(0,8).map((item: any, index: number) => {
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            {data?.slice(0, 8).map((item: any, index: number) => {
               return (
                 <div
                   key={index}
@@ -26,7 +26,8 @@ export default function HighestUseTable({
                   <span>
                     {format(
                       item.date,
-                      type === "day" ? "yyyy-MM-dd" : "yyyy-MM"
+                      // type === "day" ? "yyyy-MM-dd" : "yyyy-MM"
+                      "yyyy-MM-dd"
                     )}
                   </span>
                   <div className="h-full flex items-end flex-1">

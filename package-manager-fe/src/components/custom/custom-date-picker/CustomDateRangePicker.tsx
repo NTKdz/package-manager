@@ -1,7 +1,7 @@
 "use client";
 
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { addDays, format, subDays } from "date-fns";
+import { format, subDays } from "date-fns";
 import * as React from "react";
 import { DateRange } from "react-day-picker";
 
@@ -20,9 +20,9 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
+import { setDateQuery } from "@/redux/slices/packageSlice";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { setDateQuery } from "@/redux/slices/packageSlice";
 
 export function DateRangePicker({
   className,

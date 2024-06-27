@@ -1,8 +1,7 @@
 import SimpleBarChart from "@/components/custom/custom-chart/SimpleBarChart";
-import { DateRangePicker } from "@/components/custom/custom-date-picker/CustomDateRangePicker";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { SimpleBarChartProps } from "@/interface/chartInterface";
-import React, { useState } from "react";
+import { useState } from "react";
 
 export default function BarChartCard({
   title,

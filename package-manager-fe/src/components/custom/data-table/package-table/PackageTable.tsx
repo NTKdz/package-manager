@@ -88,7 +88,7 @@ export default function PackageTable() {
               handleKeyDown(e);
             }}
           />
-          {filter.name && (
+          {filter.username && (
             <CiCircleRemove
               size={"20px"}
               className="absolute right-1 hover:cursor-pointer"

@@ -1,21 +1,12 @@
-import CustomDatePicker from "@/components/custom/custom-date-picker/CustomDatePicker";
-import { CustomDropdownMenu } from "@/components/custom/custom-dropdown-menu/CustomDropdownMenu";
-import { columns } from "@/components/custom/data-table/Columns";
-import { DataTable } from "@/components/custom/data-table/DataTable";
+import PackageTable from "@/components/custom/data-table/package-table/PackageTable";
 import DataVisualization from "@/components/custom/management-view/data-visualization/DataVisualization";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { RootState } from "@/redux/store";
-import TableService from "@/services/TableService";
 import UploadService from "@/services/UploadService";
-import { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import StatisticsTableView from "./statistics-table-view/StatisticsTableView";
-import { CiCircleRemove } from "react-icons/ci";
 import "./styles.css";
-import PackageTable from "@/components/custom/data-table/package-table/PackageTable";
 
 export default function ManagementView() {
   const navigate = useNavigate();
@@ -27,6 +18,7 @@ export default function ManagementView() {
   const { exportExcelFile } = UploadService();
 
   function handleChangeLayout(layout: string) {
+    console.log(transition);
     if (currentLayout !== layout) {
       switch (currentLayout) {
         case "chart":
