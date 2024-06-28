@@ -16,7 +16,6 @@ export default function HighestUseTable({
         cardDescription=""
         cardContent={
           <div>
-            // eslint-disable-next-line @typescript-eslint/no-explicit-any
             {data?.slice(0, 8).map((item: any, index: number) => {
               return (
                 <div

@@ -1,6 +1,5 @@
 package com.mbamc.packagemanagerbe.dto.users;
 
-
 import lombok.*;
 
 @Data
@@ -8,13 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @Getter
 @Setter
-public class UserInfoDto {
-    String id_token;
-    String access_token;
-    String refresh_token;
+public class userDto {
     String username;
-    String displayName;
+    String name;
     String department;
-    String role;
-    Boolean isFirstTimeLogin;
+    String company;
 }

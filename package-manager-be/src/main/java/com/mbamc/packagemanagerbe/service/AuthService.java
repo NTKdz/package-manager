@@ -24,7 +24,8 @@ public class AuthService {
         this.userService = userService;
     }
 
-    public HashMap<String, Object> getTokenFromAuthCode(String code, String clientId, String secret, String realmUrl, String callbackUrl) {
+    public HashMap<String, Object> getTokenFromAuthCode(String code, String clientId,
+                                                        String secret, String realmUrl, String callbackUrl) {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "application/x-www-form-urlencoded");
@@ -63,6 +64,41 @@ public class AuthService {
             HashMap<String, Object> res = new HashMap<>();
             res.put("status", false);
             res.put("error", ex.getMessage());
+            return res;
+        }
+    }
+
+    public HashMap<String, Object> getTokenFromRefreshToken(String rfToken, String clientId,
+                                String secret, String realmUrl) {
+        try {
+            HttpHeaders headers = new HttpHeaders();
+            headers.add("Content-Type", "application/x-www-form-urlencoded");
+            headers.add("X-Client", "vinorsoft-sso");
+            String originalInput = clientId + ":" + secret;
+            String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
+            headers.add("Authorization", "Basic " + encodedString);
+
+            HttpEntity<String> entity = new HttpEntity<String>(
+                    "refresh_token=" + rfToken + "&grant_type=refresh_token",
+                    headers
+            );
+
+            RestTemplate restTemplate = new RestTemplate();
+
+            ResponseEntity<HashMap> response = restTemplate.exchange(
+                    realmUrl + "protocol/openid-connect/token",
+                    HttpMethod.POST,
+                    entity,
+                    HashMap.class
+            );
+
+            HashMap<String, Object> res = response.getBody();
+            res.put("status", true);
+            return res;
+        } catch (Exception ex) {
+            System.out.println(ex.getMessage());
+            HashMap<String, Object> res = new HashMap<>();
+            res.put("status", false);
             return res;
         }
     }

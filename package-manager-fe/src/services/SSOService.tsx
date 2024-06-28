@@ -6,25 +6,37 @@ export default function SSOService() {
   async function getUserInfoSSO(code: string) {
     console.log("getinfo");
     try {
-      const response = await axios.get(`${baseUrl}/user`, {
-        params: {
-          code: code,
-          clientId: "package-manager",
-          realmUrl: "http://localhost:8081/realms/package/",
-          callbackUrl: "http://localhost:3000",
-        },
+      const response = await axios.post(`${baseUrl}/user`, {
+        code: code,
+        clientId: "package-manager",
+        realmUrl: "http://localhost:8081/realms/package/",
+        callbackUrl: "http://localhost:5173",
       });
       if (response.status === 200) {
+        console.log(response.data);
         const data: userInfo = response.data;
-        const { access_token, refresh_token } = data;
-        // Store tokens in localStorage or state as needed
+        const {
+          id_token,
+          access_token,
+          refresh_token,
+          displayName,
+          username,
+          role,
+          department
+        } = data;
+
+        localStorage.setItem("id_token", id_token);
         localStorage.setItem("access_token", access_token);
         localStorage.setItem("refresh_token", refresh_token);
+        localStorage.setItem("displayName", displayName);
+        localStorage.setItem("username", username);
+        localStorage.setItem("role", role);
+        localStorage.setItem("department", department);
 
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${access_token}`;
-        return data;
+        return response;
       } else {
         console.error(`Error: Received status code ${response.status}`);
       }

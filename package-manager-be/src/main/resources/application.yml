@@ -1,0 +1,8 @@
+#spring:
+#  security:
+#    oauth2:
+#      resourceserver:
+#        jwt:
+#          client-id: package-manager
+#          issuer-uri: http://stepup-keycloak:8080/realms/package
+#          jwk-set-uri: http://stepup-keycloak:8080/realms/package/protocol/openid-connect/certs

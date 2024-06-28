@@ -1,13 +1,20 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { FaArrowLeft, FaArrowRight, FaRegUserCircle } from "react-icons/fa";
 import { GoPackage } from "react-icons/go";
 import { IoIosStats } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
-const navOptions = ["Đơn hàng", "Người dùng", "Quản lý"];
+import ConfigView from "@/views/config-view/ConfigView";
+import { GrConfigure } from "react-icons/gr";
+
 export default function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [navOptions, setNavOptions] = useState<string[]>([
+    "Đơn hàng",
+    "Quản lý",
+    "Cài đặt",
+  ]);
   const [selectedTab, setSelectedTab] = useState<string>(
     location.pathname.startsWith("/order")
       ? "Đơn hàng"
@@ -19,10 +26,14 @@ export default function NavBar() {
   );
   const [isMinimized, setIsMinimized] = useState<boolean>(false);
 
+  useEffect(() => {
+    localStorage.getItem("role") !== "[admin]" &&
+      setNavOptions(["Đơn hàng", "Cài đặt"]);
+  }, []);
   function getIcon(option: string) {
     switch (option) {
-      case "Người dùng":
-        return <FaRegUserCircle />;
+      case "Cài đặt":
+        return <GrConfigure />;
 
       case "Quản lý":
         return <IoIosStats />;
@@ -34,10 +45,6 @@ export default function NavBar() {
 
   function navigateToPage(option: string) {
     switch (option) {
-      case "Người dùng":
-        navigate("/user");
-        break;
-
       case "Quản lý":
         navigate("/manage/chart");
         break;
@@ -68,33 +75,41 @@ export default function NavBar() {
             <FaArrowRight className="text-white w-6 h-6" />
           )}
         </div>
-        {navOptions.map((option) => (
-          <div
-            key={option}
-            className={`w-full h-10 ${
-              selectedTab === option ? "bg-primary-foreground" : "text-white"
-            } font-bold rounded-sm flex gap-2 items-center ${
-              !isMinimized && "pl-2"
-            } mb-2 hover:cursor-pointer hover:opacity-90 hover:bg-primary-foreground hover:text-primary ${
-              isMinimized && "justify-center"
-            } transition-all`}
-            onClick={() => {
-              setSelectedTab(option);
-              navigateToPage(option);
-            }}
-          >
-            {getIcon(option)}
+        {navOptions.map((option) =>
+          option !== "Cài đặt" ? (
+            <div
+              key={option}
+              className={`w-full h-10 ${
+                selectedTab === option ? "bg-primary-foreground" : "text-white"
+              } font-bold rounded-sm flex gap-2 items-center ${
+                !isMinimized && "pl-2"
+              } mb-2 hover:cursor-pointer hover:opacity-90 hover:bg-primary-foreground hover:text-primary ${
+                isMinimized && "justify-center"
+              } transition-all`}
+              onClick={() => {
+                if (option !== "Cài đặt") {
+                  setSelectedTab(option);
+                  navigateToPage(option);
+                }
+              }}
+            >
+              {getIcon(option)}
 
-            {!isMinimized && (
-              <span
-                className={`fadeIn
+              {!isMinimized && (
+                <span
+                  className={`fadeIn
               `}
-              >
-                {option}
-              </span>
-            )}
-          </div>
-        ))}
+                >
+                  {option}
+                </span>
+              )}
+            </div>
+          ) : (
+            <div key={option}>
+              <ConfigView isMinimized={isMinimized} />
+            </div>
+          )
+        )}
       </div>
       <div
         className={`w-${

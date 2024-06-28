@@ -18,6 +18,7 @@ const initialState = {
     size: 20,
     page: 0,
     name: "",
+    username: "",
     requestedDate: "",
     department: "",
     priority: "",
@@ -42,9 +43,9 @@ export const packageSlice = createSlice({
         size: number;
         page: number;
         name: string;
+        username: string;
         requestedDate: string;
         department: string;
-        cpn: string;
         priority: string;
         confidentiality: string;
       }>

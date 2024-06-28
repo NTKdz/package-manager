@@ -8,9 +8,14 @@ import { useSelector } from "react-redux";
 import { RootState } from "@/redux/store";
 import TableService from "@/services/TableService";
 import { columns } from "../Columns";
+import { useLocation } from "react-router-dom";
+import { setQuery } from "@/redux/slices/packageSlice";
 
 export default function PackageTable() {
-  const { requestedPackage } = useSelector((state: RootState) => state.package);
+  const location = useLocation();
+  const { requestedPackage, query } = useSelector(
+    (state: RootState) => state.package
+  );
   const { getPackageData } = TableService();
   const [filter, setFilter] = useState<{
     waybill: null | number;
@@ -31,12 +36,16 @@ export default function PackageTable() {
   });
 
   useEffect(() => {
-    getPackageData();
+    if (location.pathname.includes("/order"))
+      setQuery({
+        ...query,
+        username: localStorage.getItem("username") || "",
+      });
+
+      console.log(localStorage.getItem("username") )
   }, []);
 
-  useEffect(() => {
-    console.log(filter);
-  }, [filter]);
+  useEffect(() => {}, [filter]);
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
@@ -78,16 +87,18 @@ export default function PackageTable() {
       placeholder: "",
       component: (
         <div className="flex items-center relative">
-          <Input
-            type="text"
-            value={filter.username?.toString() || ""}
-            onChange={(e) => {
-              setFilter({ ...filter, username: e.target.value });
-            }}
-            onKeyDown={(e) => {
-              handleKeyDown(e);
-            }}
-          />
+          {!location.pathname.includes("/order") && (
+            <Input
+              type="text"
+              value={filter.username?.toString() || ""}
+              onChange={(e) => {
+                setFilter({ ...filter, username: e.target.value });
+              }}
+              onKeyDown={(e) => {
+                handleKeyDown(e);
+              }}
+            />
+          )}
           {filter.username && (
             <CiCircleRemove
               size={"20px"}

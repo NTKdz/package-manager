@@ -25,8 +25,8 @@ import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
-@RestController  // Change @Controller to @RestController for REST APIs
-@RequestMapping("/packages") // Set a base path for package-related endpoints
+@RestController
+@RequestMapping("/packages")
 public class PackageController {
     private final PackageService packageService;
     private final ModelMapper modelMapper;

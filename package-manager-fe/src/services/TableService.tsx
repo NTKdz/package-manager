@@ -1,4 +1,5 @@
 import { RequestWaybillInterface } from "@/interface/packageInterface";
+import { setDepartments } from "@/redux/slices/departmentSlice";
 import { setLoading } from "@/redux/slices/loadingSlice";
 import { setPackage, setTotal } from "@/redux/slices/packageSlice";
 import { RootState } from "@/redux/store";
@@ -40,10 +41,13 @@ export default function TableService() {
   async function getPackageByUserName(userName: string) {
     dispatch(setLoading(true));
     try {
-      const response = await axios.get(`${baseUrl}/user/${userName}`);
+      const response = await axios.get(baseUrl + "/query", {
+        params: { username: userName },
+      });
       if (response.status === 200) {
-        console.log(response.data);
-        dispatch(setPackage(response.data));
+        console.log("table", response.data);
+        dispatch(setPackage(response.data.data));
+        dispatch(setTotal(response.data.total));
       }
     } catch (e) {
       console.log((e as Error).message);
@@ -74,5 +78,25 @@ export default function TableService() {
     }
   }
 
-  return { getPackageData, requestWaybill, getPackageByUserName };
+  async function getDepartmentList() {
+    try {
+      const response = await axios.get(
+        "https://uatsuperapp.mbamc.com.vn/chat/api/v1/phoneBook/department/db"
+      );
+      console.log("department", response.data);
+      if (response.status === 200) {
+        console.log("department", response.data);
+        dispatch(setDepartments(response.data.data));
+      }
+    } catch (e) {
+      console.log((e as Error).message);
+    }
+  }
+
+  return {
+    getPackageData,
+    requestWaybill,
+    getPackageByUserName,
+    getDepartmentList,
+  };
 }

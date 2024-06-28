@@ -25,8 +25,10 @@ import { CustomDropdownMenu } from "../custom-dropdown-menu/CustomDropdownMenu";
 const column = ["Tên đăng nhập", "Tên người gửi", "Độ khẩn", "Độ mật"];
 
 export default function RequestPackageDialog() {
-  const [user, setUser] = useState("os.khoint");
-  const [userFullName, setUserFullName] = useState("nguyen the khoi");
+  const [user, setUser] = useState(localStorage.getItem("username") || "");
+  const [userFullName, setUserFullName] = useState(
+    localStorage.getItem("displayName") || ""
+  );
   const [department, setDepartment] = useState("");
   const [company, setCompany] = useState("");
   const [priority, setPriority] = useState("");
@@ -40,9 +42,9 @@ export default function RequestPackageDialog() {
   function standardizeName(name: string) {
     switch (name) {
       case "Tên đăng nhập":
-        return userFullName;
-      case "Tên người gửi":
         return user;
+      case "Tên người gửi":
+        return userFullName;
       case "Phòng ban":
         return department;
       case "Công ty":
