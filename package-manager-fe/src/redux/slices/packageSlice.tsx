@@ -52,6 +52,9 @@ export const packageSlice = createSlice({
     ) => {
       state.query = action.payload;
     },
+    setUserName: (state, action: PayloadAction<string>) => {
+      state.query.username = action.payload;
+    },
     setPageSize: (state, action: PayloadAction<number>) => {
       state.query.size = action.payload;
     },
@@ -84,7 +87,8 @@ export const {
   setTotal,
   setEndDate,
   setStartDate,
-  setDateQuery
+  setDateQuery,
+  setUserName
 } = packageSlice.actions;
 
 export default packageSlice.reducer;

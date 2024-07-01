@@ -1,51 +1,41 @@
-import React, { useEffect, useState } from "react";
-import { DataTable } from "../DataTable";
-import { CustomDropdownMenu } from "../../custom-dropdown-menu/CustomDropdownMenu";
-import { CiCircleRemove } from "react-icons/ci";
 import { Input } from "@/components/ui/input";
-import CustomDatePicker from "../../custom-date-picker/CustomDatePicker";
-import { useSelector } from "react-redux";
+import { setQuery } from "@/redux/slices/packageSlice";
 import { RootState } from "@/redux/store";
 import TableService from "@/services/TableService";
+import { formatDate } from "date-fns";
+import React, { useState } from "react";
+import { CiCircleRemove } from "react-icons/ci";
+import { useDispatch, useSelector } from "react-redux";
+import CustomDatePicker from "../../custom-date-picker/CustomDatePicker";
+import { CustomDropdownMenu } from "../../custom-dropdown-menu/CustomDropdownMenu";
 import { columns } from "../Columns";
-import { useLocation } from "react-router-dom";
-import { setQuery } from "@/redux/slices/packageSlice";
+import { DataTable } from "../DataTable";
+
+type FilterType = Partial<{
+  waybill: number;
+  name: string;
+  username: string;
+  requestedDate: string;
+  department: string;
+  priority: string;
+  confidentiality: string;
+}>;
 
 export default function PackageTable() {
-  const location = useLocation();
+  const dispatch = useDispatch();
   const { requestedPackage, query } = useSelector(
     (state: RootState) => state.package
   );
   const { getPackageData } = TableService();
-  const [filter, setFilter] = useState<{
-    waybill: null | number;
-    name: null | string;
-    username: null | string;
-    requestedDate: null | Date;
-    department: null | string;
-    priority: null | string;
-    confidentiality: null | string;
-  }>({
-    waybill: null,
-    name: null,
-    username: null,
-    requestedDate: null,
-    department: null,
-    priority: null,
-    confidentiality: null,
+  const [filter, setFilter] = useState<FilterType>({
+    waybill: undefined,
+    name: undefined,
+    username: undefined,
+    requestedDate: undefined,
+    department: undefined,
+    priority: undefined,
+    confidentiality: undefined,
   });
-
-  useEffect(() => {
-    if (location.pathname.includes("/order"))
-      setQuery({
-        ...query,
-        username: localStorage.getItem("username") || "",
-      });
-
-      console.log(localStorage.getItem("username") )
-  }, []);
-
-  useEffect(() => {}, [filter]);
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
@@ -53,6 +43,15 @@ export default function PackageTable() {
       getPackageData(filter);
     }
   }
+
+  const removeNullValues = (
+    obj: { [s: string]: unknown } | ArrayLike<unknown>
+  ) => {
+    return Object.fromEntries(
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      Object.entries(obj).filter(([_, v]) => v !== undefined)
+    );
+  };
 
   const filteredColumns = [
     {
@@ -75,8 +74,8 @@ export default function PackageTable() {
               size={"20px"}
               className="absolute right-1 hover:cursor-pointer"
               onClick={() => {
-                setFilter({ ...filter, waybill: null });
-                getPackageData({ ...filter, waybill: null });
+                setFilter({ ...filter, waybill: undefined });
+                getPackageData({ ...filter, waybill: undefined });
               }}
             />
           )}
@@ -104,8 +103,8 @@ export default function PackageTable() {
               size={"20px"}
               className="absolute right-1 hover:cursor-pointer"
               onClick={() => {
-                setFilter({ ...filter, username: null });
-                getPackageData({ ...filter, username: null });
+                setFilter({ ...filter, username: undefined });
+                getPackageData({ ...filter, username: undefined });
               }}
             />
           )}
@@ -116,23 +115,25 @@ export default function PackageTable() {
       placeholder: "",
       component: (
         <div className="flex items-center relative">
-          <Input
-            type="text"
-            value={filter.name?.toString() || ""}
-            onChange={(e) => {
-              setFilter({ ...filter, name: e.target.value });
-            }}
-            onKeyDown={(e) => {
-              handleKeyDown(e);
-            }}
-          />
+          {!location.pathname.includes("/order") && (
+            <Input
+              type="text"
+              value={filter.name?.toString() || ""}
+              onChange={(e) => {
+                setFilter({ ...filter, name: e.target.value });
+              }}
+              onKeyDown={(e) => {
+                handleKeyDown(e);
+              }}
+            />
+          )}
           {filter.name && (
             <CiCircleRemove
               size={"20px"}
               className="absolute right-1 hover:cursor-pointer"
               onClick={() => {
-                setFilter({ ...filter, name: null });
-                getPackageData({ ...filter, name: null });
+                setFilter({ ...filter, name: undefined });
+                getPackageData({ ...filter, name: undefined });
               }}
             />
           )}
@@ -147,10 +148,28 @@ export default function PackageTable() {
             <CustomDatePicker
               clear={filter.requestedDate ? false : true}
               onChange={(date) => {
+                console.log({ ...removeNullValues(filter) }, "test");
                 setFilter({
                   ...filter,
-                  requestedDate: date ? new Date(date) : null,
+                  requestedDate: formatDate(
+                    date !== undefined ? date : "",
+                    "yyyy-MM-dd"
+                  ),
                 });
+
+                dispatch(
+                  setQuery({
+                    name: filter.name || "",
+                    username: filter.username || "",
+                    department: filter.department || "",
+                    priority: filter.priority || "",
+                    confidentiality: filter.confidentiality || "",
+                    page: query.page,
+                    size: query.size,
+                    ...removeNullValues(filter),
+                    requestedDate: date ? formatDate(date, "yyyy-MM-dd") : "",
+                  })
+                );
               }}
             />
             {filter.requestedDate && (
@@ -158,8 +177,8 @@ export default function PackageTable() {
                 size={"20px"}
                 className="absolute right-1 hover:cursor-pointer"
                 onClick={() => {
-                  setFilter({ ...filter, requestedDate: null });
-                  getPackageData({ ...filter, requestedDate: null });
+                  setFilter({ ...filter, requestedDate: undefined });
+                  getPackageData({ ...filter, requestedDate: undefined });
                 }}
               />
             )}
@@ -186,8 +205,8 @@ export default function PackageTable() {
               size={"20px"}
               className="absolute right-1 hover:cursor-pointer"
               onClick={() => {
-                setFilter({ ...filter, department: null });
-                getPackageData({ ...filter, department: null });
+                setFilter({ ...filter, department: undefined });
+                getPackageData({ ...filter, department: undefined });
               }}
             />
           )}
@@ -221,8 +240,8 @@ export default function PackageTable() {
               size={"20px"}
               className="absolute right-1 hover:cursor-pointer"
               onClick={() => {
-                setFilter({ ...filter, priority: null });
-                getPackageData({ ...filter, priority: null });
+                setFilter({ ...filter, priority: undefined });
+                getPackageData({ ...filter, priority: undefined });
               }}
             />
           )}
@@ -250,8 +269,8 @@ export default function PackageTable() {
               size={"20px"}
               className="absolute right-1 hover:cursor-pointer"
               onClick={() => {
-                setFilter({ ...filter, confidentiality: null });
-                getPackageData({ ...filter, confidentiality: null });
+                setFilter({ ...filter, confidentiality: undefined });
+                getPackageData({ ...filter, confidentiality: undefined });
               }}
             />
           )}

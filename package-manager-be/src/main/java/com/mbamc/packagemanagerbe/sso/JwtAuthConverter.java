@@ -1,4 +1,4 @@
-package com.mbamc.packagemanagerbe.config;
+package com.mbamc.packagemanagerbe.sso;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.converter.Converter;

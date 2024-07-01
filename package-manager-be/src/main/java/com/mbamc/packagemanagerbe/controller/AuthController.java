@@ -11,6 +11,7 @@ import com.mbamc.packagemanagerbe.service.AuthService;
 import com.mbamc.packagemanagerbe.service.UserService;
 import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,6 +25,8 @@ import java.util.Map;
 public class AuthController {
     private final AuthService authService;
     private final UserService userService;
+    @Value("${secret.token}")
+    private String secret;
 
     @Autowired
     public AuthController(AuthService authService, UserService userService) {
@@ -36,7 +39,7 @@ public class AuthController {
             @RequestBody LoginRequestDto loginRequestDto) {
         Map<String, Object> res = authService.getTokenFromAuthCode(loginRequestDto.getCode(),
                 loginRequestDto.getClientId(),
-                "t7lYljTN1a7OPRo7rqyEuudc6D2C3LcT",
+                secret,
                 loginRequestDto.getRealmUrl(),
                 loginRequestDto.getCallbackUrl());
         System.out.println(res);
@@ -54,7 +57,7 @@ public class AuthController {
     public ResponseEntity<Object> refreshTokenApp(@RequestBody RefreshRequestDto refreshRequestDto) {
         Map<String, Object> res = authService.getTokenFromRefreshToken(refreshRequestDto.getRfToken(),
                 refreshRequestDto.getClientId(),
-                "t7lYljTN1a7OPRo7rqyEuudc6D2C3LcT",
+                secret,
                 refreshRequestDto.getRealmUrl());
         return ResponseEntity.ok(res);
     }

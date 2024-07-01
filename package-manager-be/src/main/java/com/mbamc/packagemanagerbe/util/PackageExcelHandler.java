@@ -89,7 +89,7 @@ public class PackageExcelHandler {
             createCell(row, columnCount++, requestPackage.getWaybill(), style);
             createCell(row, columnCount++, requestPackage.getUser().getUsername(), style);
             createCell(row, columnCount++, requestPackage.getUser().getName(), style);
-            createCell(row, columnCount++, new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(requestPackage.getRequestedDate()), style);
+            createCell(row, columnCount++, new SimpleDateFormat("yyyy-MM-dd").format(requestPackage.getRequestedDate()), style);
             createCell(row, columnCount++, requestPackage.getUser().getDepartment(), style);
             createCell(row, columnCount++, requestPackage.getUser().getCompany(), style);
             createCell(row, columnCount++, requestPackage.getConfidentiality().toString(), style);

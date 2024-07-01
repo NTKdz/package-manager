@@ -5,23 +5,30 @@ import { setPackage, setTotal } from "@/redux/slices/packageSlice";
 import { RootState } from "@/redux/store";
 import axios from "axios";
 import { useDispatch, useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const baseUrl = "http://localhost:8080/packages";
 export default function TableService() {
+  const location = useLocation();
   const { query } = useSelector((state: RootState) => state.package);
   const dispatch = useDispatch();
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  async function getPackageData(query?: any) {
+  async function getPackageData(query?: any, type?: string) {
     dispatch(setLoading(true));
     try {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      const filteredQuery = Object.fromEntries(
+      let filteredQuery = Object.fromEntries(
         Object.entries(query).filter(
           ([_, value]) => value !== null && value !== ""
         )
       );
 
+      if (type === "username" || location.pathname.includes("/order"))
+        filteredQuery = {
+          ...filteredQuery,
+          username: localStorage.getItem("username"),
+        };
       console.log("filteredQuery", filteredQuery);
       const response = await axios.get(baseUrl + "/query", {
         params: filteredQuery,

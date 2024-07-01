@@ -74,12 +74,11 @@ public class AuthService {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.add("Content-Type", "application/x-www-form-urlencoded");
-            headers.add("X-Client", "vinorsoft-sso");
             String originalInput = clientId + ":" + secret;
             String encodedString = Base64.getEncoder().encodeToString(originalInput.getBytes());
             headers.add("Authorization", "Basic " + encodedString);
 
-            HttpEntity<String> entity = new HttpEntity<String>(
+            HttpEntity<String> entity = new HttpEntity<>(
                     "refresh_token=" + rfToken + "&grant_type=refresh_token",
                     headers
             );

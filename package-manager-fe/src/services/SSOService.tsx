@@ -10,7 +10,7 @@ export default function SSOService() {
         code: code,
         clientId: "package-manager",
         realmUrl: "http://localhost:8081/realms/package/",
-        callbackUrl: "http://localhost:5173",
+        callbackUrl: "http://localhost:5173/order",
       });
       if (response.status === 200) {
         console.log(response.data);
@@ -22,7 +22,7 @@ export default function SSOService() {
           displayName,
           username,
           role,
-          department
+          department,
         } = data;
 
         localStorage.setItem("id_token", id_token);
@@ -36,6 +36,8 @@ export default function SSOService() {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${access_token}`;
+
+        window.location.href = "http://localhost:5173/order";
         return response;
       } else {
         console.error(`Error: Received status code ${response.status}`);
@@ -44,5 +46,39 @@ export default function SSOService() {
       console.error(`Error fetching data from :`, e);
     }
   }
-  return { getUserInfoSSO };
+
+  async function getRefreshUserInfoSSO(code: string) {
+    console.log("refresh", code);
+    try {
+      const response = await axios.post(`${baseUrl}/refresh`, {
+        rfToken: code,
+        clientId: "package-manager",
+        realmUrl: "http://localhost:8081/realms/package/",
+        callbackUrl: "http://localhost:5173/order",
+      });
+
+      if (response.status === 200 && response.data.status) {
+        console.log(response.data);
+        const data: userInfo = response.data;
+        const { id_token, access_token, refresh_token } = data;
+
+        localStorage.setItem("id_token", id_token);
+        localStorage.setItem("access_token", access_token);
+        localStorage.setItem("refresh_token", refresh_token);
+
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${access_token}`;
+
+        console.log(response);
+        return response;
+      } else {
+        console.error(`Error: Received status code ${response.status}`);
+      }
+    } catch (e) {
+      console.error(`Error fetching data from :`, e);
+    }
+  }
+
+  return { getUserInfoSSO, getRefreshUserInfoSSO };
 }

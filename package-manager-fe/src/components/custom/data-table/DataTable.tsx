@@ -23,7 +23,11 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
-import { setPageIndex, setPageSize } from "@/redux/slices/packageSlice";
+import {
+  setPageIndex,
+  setPageSize,
+  setUserName,
+} from "@/redux/slices/packageSlice";
 import { RootState } from "@/redux/store";
 import TableService from "@/services/TableService";
 import {
@@ -67,11 +71,21 @@ export function DataTable<TData, TValue>({
   }, []);
 
   useEffect(() => {
-    getPackageData({
-      ...query,
-      page: table.getState().pagination.pageIndex,
-    });
-    console.log(query)
+    if (location.pathname.includes("/order")) {
+      setUserName(localStorage.getItem("username") || "");
+      getPackageData(
+        {
+          ...query,
+          page: table.getState().pagination.pageIndex,
+        },
+        "username"
+      );
+    } else
+      getPackageData({
+        ...query,
+        page: table.getState().pagination.pageIndex,
+      });
+    console.log(query);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, pageIndex]);
 

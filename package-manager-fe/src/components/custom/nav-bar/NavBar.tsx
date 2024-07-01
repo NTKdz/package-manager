@@ -1,11 +1,11 @@
+import ConfigView from "@/views/config-view/ConfigView";
 import { useEffect, useState } from "react";
-import { FaArrowLeft, FaArrowRight, FaRegUserCircle } from "react-icons/fa";
+import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { GoPackage } from "react-icons/go";
+import { GrConfigure } from "react-icons/gr";
 import { IoIosStats } from "react-icons/io";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
-import ConfigView from "@/views/config-view/ConfigView";
-import { GrConfigure } from "react-icons/gr";
 
 export default function NavBar() {
   const navigate = useNavigate();

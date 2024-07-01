@@ -40,6 +40,7 @@ export default function LoginSetup({
   }, []);
 
   useEffect(() => {
+    
     if (clear) {
       setValue(localStorage.getItem("department") || "");
     }

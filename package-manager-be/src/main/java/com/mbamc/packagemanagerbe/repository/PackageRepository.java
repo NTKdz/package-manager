@@ -15,7 +15,7 @@ import java.util.List;
 public interface PackageRepository extends JpaRepository<Package, Long> {
 
     @Query("SELECT p FROM Package p " +
-            "WHERE (cast(:date as date) IS NULL OR p.requestedDate > :date) " +
+            "WHERE (cast(:date as date) IS NULL OR p.requestedDate = :date) " +
             "AND (:waybill IS NULL OR p.waybill = :waybill) " +
             "AND (:department IS NULL OR p.user.department = :department) " +
             "AND (:priority IS NULL OR p.priority = :priority) " +
