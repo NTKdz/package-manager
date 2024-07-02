@@ -12,10 +12,8 @@ export default function LayOut() {
   const { getDepartmentList } = TableService();
 
   useEffect(() => {
-    localStorage.getItem("department") === "none" &&
-      getDepartmentList().then(() => {
-        navigate("/config");
-      });
+    getDepartmentList();
+    localStorage.getItem("department") === "none" && navigate("/config");
   }, []);
 
   useEffect(() => {

@@ -28,11 +28,11 @@ export function CustomDropdownMenu({
     if (!value) setCurrentValue("");
   }, [value]);
   return (
-    <DropdownMenu>
+    <DropdownMenu modal={false}>
       <DropdownMenuTrigger asChild>
         <Input id="name" value={currentValue} className="col-span-3" />
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="sm:w-[100px] md:w-[300px]">
+      <DropdownMenuContent className="sm:w-[100px] md:w-[300px] max-h-[700px] overflow-scroll">
         <DropdownMenuLabel>{title}</DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuRadioGroup
