@@ -8,8 +8,11 @@ export default function LayOut() {
   const navigate = useNavigate();
   const { getDepartmentList } = TableService();
   useEffect(() => {
-    localStorage.getItem("department") === "none" && navigate("/config");
-    getDepartmentList();
+    console.log(localStorage.getItem("access_token"));
+    localStorage.getItem("department") === "none" &&
+      getDepartmentList().then(() => {
+        navigate("/config");
+      });
   }, []);
 
   const getTitle = () => {
@@ -24,7 +27,6 @@ export default function LayOut() {
   return (
     <div className="flex">
       <NavBar />
-
       <div className="mt-4 w-full min-w-0 mb-10">
         <div className="w-full pl-10">
           <h1 className="text-2xl font-bold">{getTitle()}</h1>
