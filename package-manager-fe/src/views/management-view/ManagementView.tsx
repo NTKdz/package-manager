@@ -38,7 +38,8 @@ export default function ManagementView() {
     }
   }
 
-  function onFileChange(e) {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  function onFileChange(e:any) {
     const file = e.target.files[0];
     importExcelFile(file);
     console.log(file);

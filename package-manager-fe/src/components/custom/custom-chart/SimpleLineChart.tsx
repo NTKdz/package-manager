@@ -6,7 +6,7 @@ export default function SimpleLineChart({ data }: { data: SimpleLineChartProps[]
   return (
     <ResponsiveLine
       data={data as Serie[] }
-      margin={{ top: 20, right: 110, bottom: 70, left: 50 }}
+      margin={{ top: 20, right: 140, bottom: 70, left: 50 }}
       xScale={{
         type: 'time',
         format: '%Y-%m-%dT%H:%M:%S.%L%Z',

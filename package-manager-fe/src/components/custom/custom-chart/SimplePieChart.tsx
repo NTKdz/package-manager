@@ -5,7 +5,7 @@ export function SimplePieChart({ data }: { data: SimplePieChartProps[] }) {
   return (
     <ResponsivePie
       data={data}
-      margin={{ top: 30, right: 80, bottom: 80, left: 80 }}
+      margin={{ top: 40, right: 200, bottom: 40, left: 160 }}
       innerRadius={0.5}
       padAngle={0.7}
       cornerRadius={3}
@@ -96,27 +96,19 @@ export function SimplePieChart({ data }: { data: SimplePieChartProps[] }) {
       ]}
       legends={[
         {
-          anchor: "bottom",
-          direction: "row",
+          anchor: 'right',
+          direction: 'column',
           justify: false,
-          translateX: 30,
-          translateY: 50,
-          itemsSpacing: 0,
-          itemWidth: 100,
-          itemHeight: 18,
-          itemTextColor: "#999",
-          itemDirection: "left-to-right",
+          translateX: 140,
+          translateY: 0,
+          itemsSpacing: 2,
+          itemWidth: 60,
+          itemHeight: 14,
+          itemTextColor: '#999',
+          itemDirection: 'left-to-right',
           itemOpacity: 1,
-          symbolSize: 18,
-          symbolShape: "circle",
-          effects: [
-            {
-              on: "hover",
-              style: {
-                itemTextColor: "#000",
-              },
-            },
-          ],
+          symbolSize: 14,
+          symbolShape: 'circle'
         },
       ]}
     />

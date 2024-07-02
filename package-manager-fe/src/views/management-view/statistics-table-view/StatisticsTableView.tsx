@@ -43,17 +43,17 @@ export default function StatisticsTableView() {
     });
   }, []);
   return (
-    <div className="w-full flex gap-4 mb-4 justify-start">
-      <div className="w-full h-[372px] bg-primary-foreground p-4 rounded-xl flex-[1]">
+    <div className="w-full flex flex-col xl:flex-row gap-4 mb-4 justify-start">
+      <div className="xl:w-[800px] h-[372px] bg-primary-foreground p-4 rounded-xl w-full">
         {pieData && pieData.length > 0 && <SimplePieChart data={pieData} />}
       </div>
-      <div className="w-[400px]">
+      <div className="xl:w-[400px]  w-full">
         <HighestUseTable data={highestData} />
       </div>
-      <div className="w-[400px]">
+      <div className="xl:w-[400px]  w-full">
         <HighestByDepByDate data={highestByDepByDate} />
       </div>
-      <div className="w-[400px]">
+      <div className="xl:w-[400px]  w-full">
         <UserCountTable data={userCount} />
       </div>
     </div>

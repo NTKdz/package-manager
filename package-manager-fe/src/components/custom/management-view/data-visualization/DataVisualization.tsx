@@ -67,7 +67,7 @@ export default function DataVisualization() {
         {lineData && lineData.length > 0 && <SimpleLineChart data={lineData} />}
       </div>
 
-      <div className="flex mt-4 gap-4 min-w-0">
+      <div className="flex md:flex-row flex-col mt-4 gap-4 min-w-0">
         <div className="w-full min-w-0 h-[360px] bg-primary-foreground p-4 rounded-xl flex-[3]">
           {barConfiData && barConfiData.length > 0 && (
             <BarChartCard

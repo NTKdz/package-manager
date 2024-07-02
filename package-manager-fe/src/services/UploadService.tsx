@@ -39,7 +39,7 @@ export default function UploadService() {
   function importExcelFile(file: File) {
     if (!file || file.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
       console.error("Invalid file type. Please upload an Excel file (.xlsx).");
-      alert("Sai định dạng, xin đăng tải tệp dạng (.xlsx).");
+      alert("Sai định dạng, xin vui lòng đăng tải tệp dạng (.xlsx).");
       return;
     }
     const formData = new FormData();
