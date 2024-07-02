@@ -12,7 +12,6 @@ export default function LayOut() {
   const { getDepartmentList } = TableService();
 
   useEffect(() => {
-    console.log(localStorage.getItem("access_token"));
     localStorage.getItem("department") === "none" &&
       getDepartmentList().then(() => {
         navigate("/config");
