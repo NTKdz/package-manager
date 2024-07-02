@@ -15,8 +15,8 @@ export default function UserService() {
       if (response.status === 200) {
         console.log("table update", response);
         localStorage.setItem("department", response.data.department);
+        return response;
       }
-      return response;
     } catch (e) {
       console.log((e as Error).message);
     }

@@ -1,9 +1,15 @@
 import NavBar from "@/components/custom/nav-bar/NavBar";
-import { Outlet, useLocation } from "react-router-dom";
+import { useEffect } from "react";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export default function LayOut() {
   const location = useLocation();
+  const navigate = useNavigate();
 
+  useEffect(() => {
+    localStorage.getItem("department") === "none" && navigate("/config");
+  }, []);
+  
   const getTitle = () => {
     if (location.pathname.startsWith("/order") || location.pathname === "/") {
       return "Trang chủ";

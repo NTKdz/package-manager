@@ -84,7 +84,7 @@ public class AuthController {
                 userDto.setName(claims.get("name").toString());
                 userDto.setUsername(claims.get("preferred_username").toString());
                 userDto.setCompany("MBAMC");
-                userDto.setDepartment(null);
+                userDto.setDepartment("none");
                 if (userService.createUser(userDto) == null) {
                     throw new RuntimeException("Failed to create a new user");
                 }

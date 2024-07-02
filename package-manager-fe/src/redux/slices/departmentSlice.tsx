@@ -1,16 +1,28 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-  departments: [{
-    departmentCd: "AMC010113",
-    id: "25",
-    lever: "L2",
-    departmentName: "Khối Thu hồi nợ Quản trị",
-    addRess: null,
-    type: "V",
-    parentId: "5",
-    status: "ACTIVE",
-  }],
+  departments: [
+    {
+      departmentCd: "AMC010113",
+      id: "25",
+      lever: "L2",
+      departmentName: "Khối Thu hồi nợ Quản trị",
+      addRess: null,
+      type: "V",
+      parentId: "5",
+      status: "ACTIVE",
+    },
+    {
+      departmentCd: "AMC0101131",
+      id: "25",
+      lever: "L2",
+      departmentName: "Khối Thu hồi nợ Quản t2rị",
+      addRess: null,
+      type: "V",
+      parentId: "5",
+      status: "ACTIVE",
+    },
+  ],
 };
 export const departmentSlice = createSlice({
   name: "department",

@@ -123,7 +123,14 @@ export default function RequestPackageDialog() {
   }
 
   function handleSubmit() {
-    const requestedDate = new Date();
+    const now = new Date();
+    const vietnamTimeOffset = 7 * 60;
+    const localTimeOffset = now.getTimezoneOffset();
+    const offsetDifference = vietnamTimeOffset - localTimeOffset;
+    const requestedDate = new Date(
+      now.getTime() + offsetDifference * 60 * 1000
+    );
+
     console.log({
       user,
       userFullName,

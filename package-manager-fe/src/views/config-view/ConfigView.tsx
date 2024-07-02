@@ -15,6 +15,7 @@ import UserService from "@/services/UserService";
 import React from "react";
 import { GrConfigure } from "react-icons/gr";
 import LoginSetup from "./LoginSetup";
+import { useNavigate } from "react-router-dom";
 export default function ConfigView({
   isMinimized,
   defaultOpen = false,
@@ -24,6 +25,7 @@ export default function ConfigView({
   defaultOpen?: boolean;
   disableTrigger?: boolean;
 }) {
+  const navigate = useNavigate();
   const [open, setOpen] = React.useState(defaultOpen);
   const [value, setValue] = React.useState("");
   const [clear, setClear] = React.useState(false);
@@ -69,7 +71,9 @@ export default function ConfigView({
                       localStorage?.getItem("username") || "",
                       value
                     ).then((res) => {
-                      if (res && res.status === 200) setOpen(false);
+                      if (res && res.status === 200) {
+                        setOpen(false);
+                      }
                     });
                   }}
                 >
@@ -82,7 +86,10 @@ export default function ConfigView({
               onClick={() => {
                 updateUser(localStorage?.getItem("username") || "", value).then(
                   (res) => {
-                    if (res && res.status === 200) setOpen(false);
+                    if (res && res.status === 200) {
+                      setOpen(false);
+                      navigate("/order");
+                    }
                   }
                 );
               }}

@@ -3,6 +3,7 @@ import LayOut from "./views/LayOut";
 import SignIn from "./views/auth-view/SignIn";
 import HomeView from "./views/home-view/HomeView";
 import ManagementView from "./views/management-view/ManagementView";
+import ConfigView from "./views/config-view/ConfigView";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +34,7 @@ export const router = createBrowserRouter([
         path: "/SignUp",
         element: <SignIn />,
       },
+      { path: "/config", element: <ConfigView defaultOpen={true} disableTrigger={true}/> },
     ],
   },
 ]);

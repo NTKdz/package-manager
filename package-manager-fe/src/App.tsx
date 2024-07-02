@@ -9,7 +9,6 @@ import axios from "axios";
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = React.useState(false);
-  const [isFirstTimeLogin, setIsFirstTimeLogin] = React.useState(false);
   const { getUserInfoSSO, getRefreshUserInfoSSO } = SSOService();
 
   useEffect(() => {
@@ -30,40 +29,75 @@ function App() {
         });
       console.log("Authorization code:", code);
       getUserInfoSSO(code ?? "").then((res) => {
-        console.log(res?.data.isFirstTimeLogin);
-        setIsFirstTimeLogin(res?.data.isFirstTimeLogin);
+        console.log(res?.data.isFirstTimeLogin, "isFirstTimeLogin");
         setIsAuthenticated(true);
       });
     } else {
-      parseJwt(localStorage.getItem("access_token") || "");
+      setupTokenRefresh();
     }
-    
   }, []);
 
   const parseJwt = (token: string) => {
-    const decode = JSON.parse(atob(token.split(".")[1]));
-    if (decode.exp * 1000 < new Date().getTime()) {
-      getRefreshUserInfoSSO(localStorage.getItem("refresh_token") || "").then(
-        () => {
+    try {
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const decode = JSON.parse(atob(base64));
+
+      if (decode.exp * 1000 < new Date().getTime()) {
+        getRefreshUserInfoSSO(localStorage.getItem("refresh_token") || "").then(
+          () => {
+            setIsAuthenticated(true);
+          }
+        );
+        console.log("Time Expired");
+      } else {
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${localStorage.getItem("access_token")}`;
+        setIsAuthenticated(true);
+      }
+    } catch (error) {
+      console.error("Failed to parse JWT:", error);
+    }
+  };
+
+  const setupTokenRefresh = () => {
+    const checkInterval = 1000; // Check every 5 minutes
+    const token = localStorage.getItem("access_token");
+    if (token) {
+      const base64Url = token.split(".")[1];
+      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+      const decode = JSON.parse(atob(base64));
+      // setInterval(() => {
+      //   if (decode.exp * 1000 < new Date().getTime()) {
+      //     getRefreshUserInfoSSO(
+      //       localStorage.getItem("refresh_token") || ""
+      //     ).then(() => {
+      //       setIsAuthenticated(true);
+      //     });
+      //     console.log("Time Expired");
+      //   } else {
+      //     console.log("Token is still valid");
+      //   }
+      // }, checkInterval);
+
+      if (decode.exp * 1000 > new Date().getTime()) {
+        console.log("Token is still valid")
+        axios.defaults.headers.common[
+          "Authorization"
+        ] = `Bearer ${localStorage.getItem("access_token")}`;
+        setIsAuthenticated(true);
+        getRefreshUserInfoSSO(
+          localStorage.getItem("refresh_token") || ""
+        ).then(() => {
           setIsAuthenticated(true);
-        }
-      );
-      console.log("Time Expired");
-    } else {
-      axios.defaults.headers.common[
-        "Authorization"
-      ] = `Bearer ${localStorage.getItem("access_token")}`;
-      setIsAuthenticated(true);
+        });
+      }
     }
   };
 
   return (
-    <>
-      {isFirstTimeLogin && (
-        <ConfigView defaultOpen={true} disableTrigger={true} />
-      )}
-      {isAuthenticated && <RouterProvider router={router}></RouterProvider>}
-    </>
+    <>{isAuthenticated && <RouterProvider router={router}></RouterProvider>}</>
   );
 }
 
