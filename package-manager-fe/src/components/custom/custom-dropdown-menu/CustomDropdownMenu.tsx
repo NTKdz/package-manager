@@ -25,7 +25,6 @@ export function CustomDropdownMenu({
   const [currentValue, setCurrentValue] = React.useState(value);
 
   React.useEffect(() => {
-    console.log("change here", value);
     if (!value) setCurrentValue("");
   }, [value]);
   return (
@@ -39,7 +38,6 @@ export function CustomDropdownMenu({
         <DropdownMenuRadioGroup
           value={currentValue}
           onValueChange={(e) => {
-            console.log(e);
             setCurrentValue(
               menuItem.find((item) => item.value === e)?.title || ""
             );

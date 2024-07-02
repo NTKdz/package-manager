@@ -1,12 +1,16 @@
 import NavBar from "@/components/custom/nav-bar/NavBar";
+import { resetQuery } from "@/redux/slices/packageSlice";
 import TableService from "@/services/TableService";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export default function LayOut() {
   const location = useLocation();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { getDepartmentList } = TableService();
+
   useEffect(() => {
     console.log(localStorage.getItem("access_token"));
     localStorage.getItem("department") === "none" &&
@@ -14,6 +18,10 @@ export default function LayOut() {
         navigate("/config");
       });
   }, []);
+
+  useEffect(() => {
+    dispatch(resetQuery());
+  }, [location.pathname]);
 
   const getTitle = () => {
     if (location.pathname.startsWith("/order") || location.pathname === "/") {

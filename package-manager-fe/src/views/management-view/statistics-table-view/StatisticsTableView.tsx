@@ -20,15 +20,12 @@ export default function StatisticsTableView() {
   useEffect(() => {
     if (dateQuery.end !== "" || dateQuery.start !== "") {
       getPieChartDate(dateQuery.start, dateQuery.end).then((res) => {
-        console.log("pieData", res);
         setPieData(res);
       });
       getUserCount(dateQuery.start, dateQuery.end).then((res) => {
-        console.log("user-count", res);
         setUserCount(res);
       });
       getHighestByDepByDate(dateQuery.start, dateQuery.end).then((res) => {
-        console.log("dsads", res);
         setHighestByDepByDate(res);
       });
     }
@@ -38,13 +35,12 @@ export default function StatisticsTableView() {
 
   useEffect(() => {
     getHighestByDate().then((res) => {
-      console.log("dsads", res);
       setHighestData(res);
     });
   }, []);
   return (
     <div className="w-full flex flex-col xl:flex-row gap-4 mb-4 justify-start">
-      <div className="xl:w-[800px] h-[372px] bg-primary-foreground p-4 rounded-xl w-full">
+      <div className="xl:w-[600px] h-[372px] bg-primary-foreground p-4 rounded-xl w-full">
         {pieData && pieData.length > 0 && <SimplePieChart data={pieData} />}
       </div>
       <div className="xl:w-[400px]  w-full">

@@ -131,13 +131,6 @@ export default function RequestPackageDialog() {
       now.getTime() + offsetDifference * 60 * 1000
     );
 
-    console.log({
-      user,
-      userFullName,
-      requestedDate,
-      priority,
-      confidentiality,
-    });
     const data: RequestWaybillInterface = {
       user,
       userFullName,
@@ -146,7 +139,6 @@ export default function RequestPackageDialog() {
       confidentiality,
     };
     requestWaybill(data).then((res) => {
-      console.log(res);
       setAlertOpen(true);
       setDialogOpen(false);
       setAlertContent(res.waybill);

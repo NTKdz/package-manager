@@ -40,7 +40,6 @@ export default function PackageTable() {
 
   function handleKeyDown(e: React.KeyboardEvent<HTMLInputElement>) {
     if (e.key === "Enter") {
-      console.log("enter");
       getPackageData(filter);
     }
   }
@@ -149,7 +148,6 @@ export default function PackageTable() {
             <CustomDatePicker
               clear={filter.requestedDate ? false : true}
               onChange={(date) => {
-                console.log({ ...removeNullValues(filter) }, "test");
                 setFilter({
                   ...filter,
                   requestedDate: formatDate(

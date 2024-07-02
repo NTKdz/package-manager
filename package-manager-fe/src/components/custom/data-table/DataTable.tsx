@@ -85,7 +85,6 @@ export function DataTable<TData, TValue>({
         ...query,
         page: table.getState().pagination.pageIndex,
       });
-    console.log(query);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query, pageIndex]);
 

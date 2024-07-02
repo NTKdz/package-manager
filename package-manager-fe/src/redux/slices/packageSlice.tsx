@@ -76,6 +76,9 @@ export const packageSlice = createSlice({
     ) => {
       state.dateQuery = action.payload;
     },
+    resetQuery: (state) => {
+      state.query = initialState.query;
+    }
   },
 });
 
@@ -88,7 +91,8 @@ export const {
   setEndDate,
   setStartDate,
   setDateQuery,
-  setUserName
+  setUserName,
+  resetQuery
 } = packageSlice.actions;
 
 export default packageSlice.reducer;

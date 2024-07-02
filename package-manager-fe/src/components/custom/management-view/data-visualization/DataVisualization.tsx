@@ -24,10 +24,8 @@ export default function DataVisualization() {
     getBarChartDataByPriorityColumn,
   } = StatsService();
   useEffect(() => {
-    console.log("date query", dateQuery.start, dateQuery.end);
     if (dateQuery.end !== "" || dateQuery.start !== "") {
       getLineChartData(dateQuery.start, dateQuery.end).then((res) => {
-        console.log("lineData", res);
         setLineData(res);
       });
 

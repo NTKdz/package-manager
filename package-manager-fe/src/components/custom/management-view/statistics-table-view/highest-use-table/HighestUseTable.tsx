@@ -20,7 +20,7 @@ export default function HighestUseTable({
               return (
                 <div
                   key={index}
-                  className="w-full h-8 flex justify-between items-center flex-wrap "
+                  className="w-full min-h-8 flex justify-between items-center"
                 >
                   <span>
                     {format(

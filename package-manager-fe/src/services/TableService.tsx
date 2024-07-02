@@ -29,12 +29,10 @@ export default function TableService() {
           ...filteredQuery,
           username: localStorage.getItem("username"),
         };
-      console.log("filteredQuery", filteredQuery);
       const response = await axios.get(baseUrl + "/query", {
         params: filteredQuery,
       });
       if (response.status === 200) {
-        console.log("table", response.data);
         dispatch(setPackage(response.data.data));
         dispatch(setTotal(response.data.total));
       }
@@ -69,7 +67,6 @@ export default function TableService() {
       const response = await axios.post(baseUrl, param);
       console.log(response.status, response.data);
       if (response.status === 201 || response.status === 200) {
-        console.log("fdsfds");
         getPackageData(query);
         return response.data;
       } else {

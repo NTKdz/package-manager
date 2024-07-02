@@ -167,7 +167,6 @@ export const tokenInfo = (token: string): TokenInfo => {
     res.signed = parts[0] + "." + parts[1];
     res.content.expired = false;
   } catch (_ex) {
-    console.log(_ex);
     res.content.exp = 0;
     res.content.expired = true;
   }
