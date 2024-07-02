@@ -37,62 +37,57 @@ function App() {
     }
   }, []);
 
-  const parseJwt = (token: string) => {
-    try {
-      const base64Url = token.split(".")[1];
-      const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-      const decode = JSON.parse(atob(base64));
+  // const parseJwt = (token: string) => {
+  //   try {
+  //     const base64Url = token.split(".")[1];
+  //     const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  //     const decode = JSON.parse(atob(base64));
 
-      if (decode.exp * 1000 < new Date().getTime()) {
-        getRefreshUserInfoSSO(localStorage.getItem("refresh_token") || "").then(
-          () => {
-            setIsAuthenticated(true);
-          }
-        );
-        console.log("Time Expired");
-      } else {
-        axios.defaults.headers.common[
-          "Authorization"
-        ] = `Bearer ${localStorage.getItem("access_token")}`;
-        setIsAuthenticated(true);
-      }
-    } catch (error) {
-      console.error("Failed to parse JWT:", error);
-    }
-  };
+  //     if (decode.exp * 1000 < new Date().getTime()) {
+  //       getRefreshUserInfoSSO(localStorage.getItem("refresh_token") || "").then(
+  //         () => {
+  //           setIsAuthenticated(true);
+  //         }
+  //       );
+  //       console.log("Time Expired");
+  //     } else {
+  //       axios.defaults.headers.common[
+  //         "Authorization"
+  //       ] = `Bearer ${localStorage.getItem("access_token")}`;
+  //       setIsAuthenticated(true);
+  //     }
+  //   } catch (error) {
+  //     console.error("Failed to parse JWT:", error);
+  //   }
+  // };
 
   const setupTokenRefresh = () => {
-    const checkInterval = 1000; // Check every 5 minutes
+    const checkInterval = 1 * 60 * 1000;
     const token = localStorage.getItem("access_token");
     if (token) {
       const base64Url = token.split(".")[1];
       const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
       const decode = JSON.parse(atob(base64));
-      // setInterval(() => {
-      //   if (decode.exp * 1000 < new Date().getTime()) {
-      //     getRefreshUserInfoSSO(
-      //       localStorage.getItem("refresh_token") || ""
-      //     ).then(() => {
-      //       setIsAuthenticated(true);
-      //     });
-      //     console.log("Time Expired");
-      //   } else {
-      //     console.log("Token is still valid");
-      //   }
-      // }, checkInterval);
+      setInterval(() => {
+        if (decode.exp * 1000 < new Date().getTime()) {
+          getRefreshUserInfoSSO(
+            localStorage.getItem("refresh_token") || ""
+          ).then(() => {
+            setIsAuthenticated(true);
+          });
+          console.log("Time Expired");
+        } else {
+          console.log("Token is still valid");
+        }
+      }, checkInterval);
 
       if (decode.exp * 1000 > new Date().getTime()) {
-        console.log("Token is still valid")
+        console.log("Token is still valid");
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${localStorage.getItem("access_token")}`;
-        setIsAuthenticated(true);
-        getRefreshUserInfoSSO(
-          localStorage.getItem("refresh_token") || ""
-        ).then(() => {
-          setIsAuthenticated(true);
-        });
-      }
+       
+      } setIsAuthenticated(true);
     }
   };
 

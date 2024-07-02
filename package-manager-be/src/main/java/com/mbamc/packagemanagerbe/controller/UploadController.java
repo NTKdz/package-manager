@@ -17,6 +17,7 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
 
 @RestController
@@ -35,6 +36,11 @@ public class UploadController {
     @PreAuthorize("hasRole('admin')")
     public ResponseEntity<String> uploadPackageExcel(@RequestParam("file") MultipartFile file) {
         String message = "";
+        if (!Objects.equals(file.getContentType(), "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet")) {
+            message = "Invalid file type. Please upload an Excel file (.xlsx).";
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(message);
+        }
+
         try {
             uploadService.savePackage(file);
             message = "Uploaded the file successfully: " + file.getOriginalFilename();

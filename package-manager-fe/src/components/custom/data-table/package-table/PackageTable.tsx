@@ -26,6 +26,7 @@ export default function PackageTable() {
   const { requestedPackage, query } = useSelector(
     (state: RootState) => state.package
   );
+  const { departments } = useSelector((state: RootState) => state.departments);
   const { getPackageData } = TableService();
   const [filter, setFilter] = useState<FilterType>({
     waybill: undefined,
@@ -190,14 +191,15 @@ export default function PackageTable() {
       placeholder: "",
       component: (
         <div className="flex items-center relative">
-          <Input
-            type="text"
-            value={filter.department?.toString() || ""}
-            onChange={(e) => {
-              setFilter({ ...filter, department: e.target.value });
-            }}
-            onKeyDown={(e) => {
-              handleKeyDown(e);
+          <CustomDropdownMenu
+            title="Phòng ban"
+            value={filter.department || ""}
+            menuItem={departments.map((department) => {
+              return { title: department.departmentName, value: department.departmentName };
+            })}
+            onItemSelected={(value) => {
+              setFilter({ ...filter, department: value });
+              getPackageData({ ...filter, department: value });
             }}
           />
           {filter.department && (

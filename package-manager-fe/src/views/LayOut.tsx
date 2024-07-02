@@ -1,15 +1,17 @@
 import NavBar from "@/components/custom/nav-bar/NavBar";
+import TableService from "@/services/TableService";
 import { useEffect } from "react";
 import { Outlet, useLocation, useNavigate } from "react-router-dom";
 
 export default function LayOut() {
   const location = useLocation();
   const navigate = useNavigate();
-
+  const { getDepartmentList } = TableService();
   useEffect(() => {
     localStorage.getItem("department") === "none" && navigate("/config");
+    getDepartmentList();
   }, []);
-  
+
   const getTitle = () => {
     if (location.pathname.startsWith("/order") || location.pathname === "/") {
       return "Trang chủ";

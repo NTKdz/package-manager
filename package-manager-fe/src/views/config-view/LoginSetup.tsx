@@ -40,7 +40,6 @@ export default function LoginSetup({
   }, []);
 
   useEffect(() => {
-    
     if (clear) {
       setValue(localStorage.getItem("department") || "");
     }
@@ -76,7 +75,7 @@ export default function LoginSetup({
         </PopoverTrigger>
         <PopoverContent className="w-full p-0">
           <Command>
-            <CommandInput placeholder="Search framework..." className="h-9" />
+            <CommandInput placeholder="Tìm phòng ban..." className="h-9" />
             <CommandList>
               <CommandEmpty>No framework found.</CommandEmpty>
               <CommandGroup>
