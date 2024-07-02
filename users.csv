@@ -1,9 +1,10 @@
 4,mbamc,ur,bao quy,quynh
-3,mbamc,hrs\n,Tran Thanh Nam,os.Nam
+3,mbamc,"hrs
+",Tran Thanh Nam,os.Nam
 2,mbamc,3212121321,Nguyen Thi Loan,os.loan
 5,MBAMC,MB Hội sở chính,quynh nguyen the,os.quynh
-6,MBAMC,\N,loan da,os.nam
-7,MBAMC,\N,loan da,os.test
-8,MBAMC,\N,3412 4321,os.test1
+6,MBAMC,,loan da,os.nam
+7,MBAMC,,loan da,os.test
+8,MBAMC,,3412 4321,os.test1
 9,MBAMC,Ban kiểm soát,quynh 2,new
 1,mbamc,Ban điều hành,Nguyen The Khoi,os.khoint
