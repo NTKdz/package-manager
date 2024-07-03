@@ -69,7 +69,7 @@ public class UploadController {
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=\"" + filename + "\"";
         response.setHeader(headerKey, headerValue);
-        List<Package> packages = packageService.getAllPackageDecs(startDate, endDate).stream().limit(200).collect(Collectors.toList());
+        List<Package> packages = packageService.getAllPackageDecs(startDate, endDate);
         PackageExcelHandler generator = new PackageExcelHandler(packages);
         generator.export(response);
     }

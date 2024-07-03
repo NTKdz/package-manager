@@ -6,6 +6,10 @@ import com.mbamc.packagemanagerbe.model.Package;
 import com.mbamc.packagemanagerbe.model.User;
 import com.mbamc.packagemanagerbe.repository.UserRepository;
 import org.apache.poi.ss.usermodel.*;
+import org.apache.poi.xssf.streaming.SXSSFCell;
+import org.apache.poi.xssf.streaming.SXSSFRow;
+import org.apache.poi.xssf.streaming.SXSSFSheet;
+import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFFont;
@@ -29,12 +33,12 @@ import java.time.LocalDateTime;
 
 public class PackageExcelHandler {
     List<Package> packages;
-    private static XSSFWorkbook workbook;
-    private XSSFSheet sheet;
+    private static SXSSFWorkbook workbook;
+    private SXSSFSheet sheet;
 
     public PackageExcelHandler(List<Package> packages) {
         this.packages = packages;
-        workbook = new XSSFWorkbook();
+        workbook = new SXSSFWorkbook();
     }
 
     private void writeHeaderLine() {
@@ -43,10 +47,19 @@ public class PackageExcelHandler {
         Row row = sheet.createRow(0);
 
         CellStyle style = workbook.createCellStyle();
-        XSSFFont font = workbook.createFont();
-        font.setBold(true);
+        XSSFFont font = (XSSFFont) workbook.createFont();
+        font.setBold(font.getBold());
         font.setFontHeight(16);
         style.setFont(font);
+
+        sheet.setColumnWidth(0, 5000); // Waybill
+        sheet.setColumnWidth(1, 5000); // Username
+        sheet.setColumnWidth(2, 8000); // Name
+        sheet.setColumnWidth(3, 5000); // Requested Date
+        sheet.setColumnWidth(4, 8000); // Department
+        sheet.setColumnWidth(5, 4000); // Company
+        sheet.setColumnWidth(6, 6000); // Confidentiality
+        sheet.setColumnWidth(7, 6000); // Priority
 
         createCell(row, 0, "Mã vận đơn", style);
         createCell(row, 1, "Người dùng", style);
@@ -59,7 +72,6 @@ public class PackageExcelHandler {
     }
 
     private void createCell(Row row, int columnCount, Object value, CellStyle style) {
-        sheet.autoSizeColumn(columnCount);
         Cell cell = row.createCell(columnCount);
         if (value instanceof Integer) {
             cell.setCellValue((Integer) value);
@@ -77,15 +89,14 @@ public class PackageExcelHandler {
         int rowCount = 1;
 
         CellStyle style = workbook.createCellStyle();
-        XSSFFont font = workbook.createFont();
-        font.setFontHeight(14);
+        XSSFFont font = (XSSFFont) workbook.createFont();
+        font.setBold(font.getBold());
+        font.setFontHeight(16);
         style.setFont(font);
 
-        long j=0;
+        int columnCount = 0;
         for (Package requestPackage : packages) {
             Row row = sheet.createRow(rowCount++);
-            int columnCount = 0;
-
             createCell(row, columnCount++, requestPackage.getWaybill(), style);
             createCell(row, columnCount++, requestPackage.getUser().getUsername(), style);
             createCell(row, columnCount++, requestPackage.getUser().getName(), style);
@@ -94,6 +105,8 @@ public class PackageExcelHandler {
             createCell(row, columnCount++, requestPackage.getUser().getCompany(), style);
             createCell(row, columnCount++, requestPackage.getConfidentiality().toString(), style);
             createCell(row, columnCount++, requestPackage.getPriority().toString(), style);
+
+            columnCount = 0;
         }
     }
 

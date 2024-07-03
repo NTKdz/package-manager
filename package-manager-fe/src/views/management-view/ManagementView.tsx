@@ -87,6 +87,7 @@ export default function ManagementView() {
                 type="file"
                 className="cursor-pointer "
                 onChange={onFileChange}
+                title="Nhập dữ liệu từ file Excel. Dung luơng tệp tối đa 50MB."
               />
             </div>
           </div>

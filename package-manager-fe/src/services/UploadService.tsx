@@ -37,7 +37,7 @@ export default function UploadService() {
     }
   }
 
-  function importExcelFile(file: File) {
+  async function importExcelFile(file: File) {
     if (
       !file ||
       file.type !==
@@ -50,8 +50,13 @@ export default function UploadService() {
     const formData = new FormData();
     formData.append("file", file, file.name);
     try {
-      const response = axios.post(`${baseUrl}/import-excel`, formData);
-      console.log(response, "import ");
+      const response = await axios.post(`${baseUrl}/import-excel`, formData);
+      if (response.status === 200) {
+        alert("Dữ liệu đã được nhập thành công");
+      } else {
+        alert("Dữ liệu nhập không thành công. Vui lòng thử lại.");
+        console.error(`Error: Received status code ${response.status}`);
+      }
     } catch (e) {
       console.error(`Error importing file:`, e);
     }
