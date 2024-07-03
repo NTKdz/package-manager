@@ -30,7 +30,7 @@ export function DateRangePicker({
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
   const [date, setDate] = React.useState<DateRange | undefined>({
-    from: subDays(new Date(), 30),
+    from: subDays(new Date(), 30), 
     to: new Date(),
   });
 

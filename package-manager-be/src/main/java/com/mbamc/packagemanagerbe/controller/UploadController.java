@@ -13,9 +13,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.sql.Date;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-import java.util.Date;
+
 import java.util.List;
 import java.util.Objects;
 import java.util.stream.Collectors;
@@ -29,7 +30,7 @@ public class UploadController {
     @Autowired
     public UploadController(PackageService packageService, UploadService uploadService) {
         this.packageService = packageService;
-        this.uploadService=uploadService;
+        this.uploadService = uploadService;
     }
 
     @PostMapping("/import-excel")
@@ -55,14 +56,20 @@ public class UploadController {
 
     @GetMapping("/export-to-excel")
     @PreAuthorize("hasRole('admin')")
-    public void exportIntoExcelFile(HttpServletResponse response) throws IOException {
+    public void exportIntoExcelFile(@RequestParam(value = "startDate", required = false) Date startDate,
+                                    @RequestParam(value = "endDate", required = false) Date endDate,
+                                    HttpServletResponse response) throws IOException {
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd");
-        String currentDateTime = dateFormatter.format(new Date());
+
+        String formattedStartDate = startDate != null ? dateFormatter.format(startDate) : "start";
+        String formattedEndDate = endDate != null ? dateFormatter.format(endDate) : "end";
+        String filename = "Packages_" + formattedStartDate + "_to_" + formattedEndDate + ".xlsx";
+
         String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=Packages" + currentDateTime + ".xlsx";
+        String headerValue = "attachment; filename=\"" + filename + "\"";
         response.setHeader(headerKey, headerValue);
-        List<Package> packages = packageService.getAllPackageDecs().stream().limit(100).collect(Collectors.toList());
+        List<Package> packages = packageService.getAllPackageDecs(startDate, endDate).stream().limit(200).collect(Collectors.toList());
         PackageExcelHandler generator = new PackageExcelHandler(packages);
         generator.export(response);
     }

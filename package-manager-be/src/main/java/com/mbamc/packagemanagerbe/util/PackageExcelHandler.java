@@ -94,7 +94,6 @@ public class PackageExcelHandler {
             createCell(row, columnCount++, requestPackage.getUser().getCompany(), style);
             createCell(row, columnCount++, requestPackage.getConfidentiality().toString(), style);
             createCell(row, columnCount++, requestPackage.getPriority().toString(), style);
-            System.out.println(requestPackage.getWaybill());
         }
     }
 

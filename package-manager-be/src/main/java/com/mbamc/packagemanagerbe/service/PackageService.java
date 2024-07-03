@@ -3,15 +3,12 @@ package com.mbamc.packagemanagerbe.service;
 import com.mbamc.packagemanagerbe.model.Package;
 import com.mbamc.packagemanagerbe.repository.PackageRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Limit;
 import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class PackageService {
@@ -33,8 +30,8 @@ public class PackageService {
         return packageRepository.findAll();
     }
 
-    public List<Package> getAllPackageDecs() {
-        return packageRepository.getAllPackageDecs();
+    public List<Package> getAllPackageDecs(Date startDate, Date endDate) {
+        return packageRepository.getAllPackageDecs(startDate,endDate);
     }
 
 

@@ -1,13 +1,13 @@
 import PackageTable from "@/components/custom/data-table/package-table/PackageTable";
 import DataVisualization from "@/components/custom/management-view/data-visualization/DataVisualization";
-import { Button } from "@/components/ui/button";
+import ExcelHandler from "@/components/custom/management-view/excel-handler/ExcelHandler";
+import { Input } from "@/components/ui/input";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import UploadService from "@/services/UploadService";
 import { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import StatisticsTableView from "./statistics-table-view/StatisticsTableView";
 import "./styles.css";
-import { Input } from "@/components/ui/input";
 
 export default function ManagementView() {
   const navigate = useNavigate();
@@ -16,7 +16,7 @@ export default function ManagementView() {
     location.pathname.split("/")[2]
   );
   const [transition, setTransition] = useState(false);
-  const { exportExcelFile, importExcelFile } = UploadService();
+  const { importExcelFile } = UploadService();
 
   function handleChangeLayout(layout: string) {
     console.log(transition);
@@ -39,11 +39,12 @@ export default function ManagementView() {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  function onFileChange(e:any) {
+  function onFileChange(e: any) {
     const file = e.target.files[0];
     importExcelFile(file);
     console.log(file);
   }
+
   return (
     <div className="w-full px-10 mt-4">
       <div className="absolute top-4 right-8">
@@ -79,14 +80,7 @@ export default function ManagementView() {
       ) : (
         <div>
           <div className="mb-2 flex">
-            <Button
-              className="mr-2"
-              onClick={() => {
-                exportExcelFile();
-              }}
-            >
-              Xuất excel
-            </Button>
+            <ExcelHandler />
             <div className="cursor-pointer w-[300px]">
               <Input
                 id="picture"

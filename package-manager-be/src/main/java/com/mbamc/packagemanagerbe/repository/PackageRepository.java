@@ -37,6 +37,8 @@ public interface PackageRepository extends JpaRepository<Package, Long> {
     List<Package> getAllPackageByUserName(@Param("username") String username);
 
     @Query("select p from Package p " +
+            "where (cast(:startDate as date ) is null or p.requestedDate >= :startDate) "+
+            "And (cast(:endDate as date ) is null or p.requestedDate <= :endDate) "+
             "order by p.waybill desc ")
-    List<Package> getAllPackageDecs();
+    List<Package> getAllPackageDecs(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

@@ -4,15 +4,16 @@ const baseUrl = "http://localhost:8080/upload";
 export default function UploadService() {
   async function fetchData(
     endpoint: string,
-    query?: { start: string; end: string }
+    query?: { startDate?: string; endDate?: string }
   ) {
     try {
       const response = await axios.get(`${baseUrl}${endpoint}`, {
-        responseType: "blob",
         params: query,
+        responseType: "blob",
       });
 
       if (response.status === 200) {
+        alert("Dữ liệu đã được xuất thành công");
         console.log("Data fetched successfully");
         const blob = new Blob([response.data], {
           type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
@@ -37,7 +38,11 @@ export default function UploadService() {
   }
 
   function importExcelFile(file: File) {
-    if (!file || file.type !== "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet") {
+    if (
+      !file ||
+      file.type !==
+        "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"
+    ) {
       console.error("Invalid file type. Please upload an Excel file (.xlsx).");
       alert("Sai định dạng, xin vui lòng đăng tải tệp dạng (.xlsx).");
       return;
@@ -46,13 +51,17 @@ export default function UploadService() {
     formData.append("file", file, file.name);
     try {
       const response = axios.post(`${baseUrl}/import-excel`, formData);
-      console.log(response,"import ");
+      console.log(response, "import ");
     } catch (e) {
       console.error(`Error importing file:`, e);
     }
   }
-  async function exportExcelFile() {
-    fetchData("/export-to-excel");
+  async function exportExcelFile(start: string, end: string) {
+    const query: { startDate?: string; endDate?: string } = {};
+    if (start) query.startDate = start;
+    if (end) query.endDate = end;
+
+    fetchData("/export-to-excel", query);
   }
   return { exportExcelFile, importExcelFile };
 }
