@@ -14,12 +14,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.oauth2.jwt.Jwt;
 import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.web.multipart.MultipartFile;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -74,7 +75,23 @@ public class PackageController {
             @RequestParam(value = "department", required = false) String department,
             @RequestParam(value = "priority", required = false) Package.Priority priority,
             @RequestParam(value = "confidentiality", required = false) Package.Confidentiality confidentiality,
+            @AuthenticationPrincipal Jwt jwt,
             Pageable pageable) {
+        Collection<String> roles = new HashSet<>();
+        Map<String, Object> resourceAccess = jwt.getClaim("resource_access");
+        if (resourceAccess != null) {
+            Map<String, Object> packageManagerResource = (Map<String, Object>) resourceAccess.get("package-manager");
+            if (packageManagerResource != null && packageManagerResource.get("roles") != null) {
+                roles.addAll((Collection<String>) packageManagerResource.get("roles"));
+            }
+        }
+
+        boolean isAdmin = roles.contains("admin");
+        if (!isAdmin) {
+            username = jwt.getClaim("preferred_username");
+            System.out.println("Roles: " + roles);
+            System.out.println("Username: " + username);
+        }
         PackageDtoTable packageDtoTable = new PackageDtoTable();
         Page<Package> packages = packageService.getAllPackageByCriteria(waybill, date, name, username, department, priority, confidentiality, pageable);
         List<PackageDto> packagesD = packages.getContent()
