@@ -12,6 +12,10 @@ export default function LayOut() {
   const { getDepartmentList } = TableService();
 
   useEffect(() => {
+    window.addEventListener("storage", () => {
+      console.log("Change to local storage!");
+      localStorage.getItem("access_token") !== null && getDepartmentList();
+    });
     getDepartmentList();
     localStorage.getItem("department") === "none" && navigate("/config");
   }, []);

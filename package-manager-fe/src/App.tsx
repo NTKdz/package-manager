@@ -14,7 +14,7 @@ function App() {
     const accessToken = localStorage.getItem("access_token");
     const refreshToken = localStorage.getItem("refresh_token");
 
-    if (!accessToken || parseJwt(accessToken)) {
+    if (!accessToken || parseJwt(accessToken) || !refreshToken) {
       if (!refreshToken || parseJwt(refreshToken)) {
         const url = new URL(window.location.href);
         const code = url.searchParams.get("code");
@@ -76,7 +76,15 @@ function App() {
         axios.defaults.headers.common[
           "Authorization"
         ] = `Bearer ${localStorage.getItem("access_token")}`;
+      } else {
+        console.log("Token is expired");
+        getRefreshUserInfoSSO(localStorage.getItem("refresh_token") || "").then(
+          () => {
+            setIsAuthenticated(true);
+          }
+        );
       }
+
       setIsAuthenticated(true);
     }
   };

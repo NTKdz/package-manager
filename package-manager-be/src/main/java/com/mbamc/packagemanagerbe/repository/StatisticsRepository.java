@@ -35,7 +35,7 @@ public interface StatisticsRepository extends JpaRepository<Package, Long> {
 
     @Query("SELECT new com.mbamc.packagemanagerbe.response.PieChartQuery( p.user.department, p.user.department, COUNT(p.user.department)) FROM Package p " +
             "WHERE p.requestedDate >= :startDate AND p.requestedDate <= :endDate " +
-            "GROUP BY p.user.department ")
+            "GROUP BY p.user.department HAVING p.user.department IS NOT NULL")
     List<PieChartQuery> getPieChartData(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 
     @Query(nativeQuery = true, value =

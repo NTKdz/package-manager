@@ -207,9 +207,9 @@ export default function RequestPackageDialog() {
               <div className="flex justify-center ">Mã vận đơn của bạn</div>
             </AlertDialogTitle>
             <AlertDialogDescription>
-              <div className="flex justify-center items-center font-bold text-6xl mt-4 mb-4">
+              <span className="flex justify-center items-center font-bold text-6xl mt-4 mb-4">
                 {alertContent}
-              </div>
+              </span>
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>

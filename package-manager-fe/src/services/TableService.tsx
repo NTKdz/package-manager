@@ -85,7 +85,12 @@ export default function TableService() {
   async function getDepartmentList() {
     try {
       const response = await axios.get(
-        "https://uatsuperapp.mbamc.com.vn/chat/api/v1/phoneBook/department/db"
+        "https://uatsuperapp.mbamc.com.vn/chat/api/v1/phoneBook/department/db",
+        {
+          headers: {
+            Authorization: null,
+          },
+        }
       );
       console.log("department", response.data);
       if (response.status === 200) {

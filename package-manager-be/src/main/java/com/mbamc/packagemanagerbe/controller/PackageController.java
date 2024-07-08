@@ -85,13 +85,11 @@ public class PackageController {
                 roles.addAll((Collection<String>) packageManagerResource.get("roles"));
             }
         }
-
         boolean isAdmin = roles.contains("admin");
         if (!isAdmin) {
             username = jwt.getClaim("preferred_username");
-            System.out.println("Roles: " + roles);
-            System.out.println("Username: " + username);
         }
+
         PackageDtoTable packageDtoTable = new PackageDtoTable();
         Page<Package> packages = packageService.getAllPackageByCriteria(waybill, date, name, username, department, priority, confidentiality, pageable);
         List<PackageDto> packagesD = packages.getContent()
