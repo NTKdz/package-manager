@@ -59,15 +59,22 @@ function App() {
       const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
       const decode = JSON.parse(atob(base64));
       setInterval(() => {
-        if (decode.exp * 1000 < new Date().getTime()) {
-          getRefreshUserInfoSSO(
-            localStorage.getItem("refresh_token") || ""
-          ).then(() => {
-            setIsAuthenticated(true);
-          });
-          console.log("Time Expired");
-        } else {
-          console.log("Token is still valid");
+        const newToken = localStorage.getItem("access_token");
+        if (newToken) {
+          const base64Url = newToken.split(".")[1];
+          const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+          const decode = JSON.parse(atob(base64));
+
+          if (decode.exp * 1000 < new Date().getTime()) {
+            getRefreshUserInfoSSO(
+              localStorage.getItem("refresh_token") || ""
+            ).then(() => {
+              setIsAuthenticated(true);
+            });
+            console.log("Time Expired");
+          } else {
+            console.log("Token is still valid");
+          }
         }
       }, checkInterval);
 

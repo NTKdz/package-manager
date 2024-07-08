@@ -82,7 +82,7 @@ public class PackageController {
         if (resourceAccess != null) {
             Map<String, Object> packageManagerResource = (Map<String, Object>) resourceAccess.get("package-manager");
             if (packageManagerResource != null && packageManagerResource.get("roles") != null) {
-                roles.addAll((Collection<String>) packageManagerResource.get("roles"));
+                    roles.addAll((Collection<String>) packageManagerResource.get("roles"));
             }
         }
         boolean isAdmin = roles.contains("admin");
