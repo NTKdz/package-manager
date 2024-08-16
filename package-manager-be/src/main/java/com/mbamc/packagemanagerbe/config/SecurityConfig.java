@@ -31,5 +31,4 @@ public class SecurityConfig {
         http.sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
     }
-
 }

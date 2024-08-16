@@ -1,5 +1,7 @@
 package com.mbamc.packagemanagerbe.sso;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.convert.converter.Converter;
 import org.springframework.lang.NonNull;
@@ -21,7 +23,7 @@ import java.util.stream.Stream;
 
 @Component
 public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationToken> {
-
+    private static final Logger logger = LoggerFactory.getLogger(JwtAuthConverter.class);
     private final JwtGrantedAuthoritiesConverter jwtGrantedAuthoritiesConverter =
             new JwtGrantedAuthoritiesConverter();
 
@@ -32,16 +34,22 @@ public class JwtAuthConverter implements Converter<Jwt, AbstractAuthenticationTo
 
     @Override
     public AbstractAuthenticationToken convert(@NonNull Jwt jwt) {
+        logger.info("Decoded JWT: {}", jwt.getClaims());
+        System.out.println(jwt.getClaims());
         Collection<GrantedAuthority> authorities = Stream.concat(
                 jwtGrantedAuthoritiesConverter.convert(jwt).stream(),
                 extractResourceRoles(jwt).stream()
         ).collect(Collectors.toSet());
-
-        return new JwtAuthenticationToken(
-                jwt,
-                authorities,
-                getPrincipleClaimName(jwt)
-        );
+        try {
+            return new JwtAuthenticationToken(
+                    jwt,
+                    authorities,
+                    getPrincipleClaimName(jwt)
+            );
+        } catch (Exception e) {
+            logger.error("Error during JWT conversion", e);
+            throw e;
+        }
     }
 
     private String getPrincipleClaimName(Jwt jwt) {

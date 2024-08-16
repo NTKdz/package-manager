@@ -4,6 +4,7 @@ import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { GoPackage } from "react-icons/go";
 import { GrConfigure } from "react-icons/gr";
 import { IoIosStats } from "react-icons/io";
+import { CiCalendar } from "react-icons/ci";
 import { useLocation, useNavigate } from "react-router-dom";
 import "./styles.css";
 
@@ -11,6 +12,7 @@ export default function NavBar() {
   const navigate = useNavigate();
   const location = useLocation();
   const [navOptions, setNavOptions] = useState<string[]>([
+    "Lịch trình",
     "Đơn hàng",
     "Quản lý",
     "Cài đặt",
@@ -22,6 +24,8 @@ export default function NavBar() {
       ? "Người dùng"
       : location.pathname.startsWith("/manage")
       ? "Quản lý"
+      : location.pathname.startsWith("/scheduler")
+      ? "Lịch trình"
       : "Đơn hàng"
   );
   const [isMinimized, setIsMinimized] = useState<boolean>(false);
@@ -34,17 +38,20 @@ export default function NavBar() {
     switch (option) {
       case "Cài đặt":
         return <GrConfigure />;
-
       case "Quản lý":
         return <IoIosStats />;
-
       case "Đơn hàng":
         return <GoPackage />;
+      case "Lịch trình":
+        return <CiCalendar />;
     }
   }
 
   function navigateToPage(option: string) {
     switch (option) {
+      case "Lịch trình":
+        navigate("/scheduler");
+        break;
       case "Quản lý":
         navigate("/manage/chart");
         break;
