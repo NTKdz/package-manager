@@ -1,7 +1,7 @@
-import { useCallback, useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-export default function SchedulerView() {
+export default function CustomScheduler() {
   const navigate = useNavigate();
   const [isDragging, setDragging] = useState(false);
   const [isFixed, setIsFixed] = useState(false);
@@ -143,7 +143,6 @@ export default function SchedulerView() {
       tableRef.current.style.cursor = "grab";
     }
   };
-
   return (
     <div>
       <table
@@ -161,12 +160,11 @@ export default function SchedulerView() {
           ))}
         </thead>
         <tbody className="">
-          {Array.from({ length: 100 }, () => {
+          {Array.from({ length: 24 }, () => {
             return (
               <tr className="relative ">
                 <td
                   className={`min-w-[200px] font-bold sticky left-0 top-0 bg-white`}
-                  ref={fixedCellRef}
                 >
                   Nguyen the khoi Nguyen the khoi Nguyen the khoi Nguyen the
                   khoi Nguyen the khoi Nguyen the khoi Nguyen the khoi Nguyen
@@ -175,17 +173,9 @@ export default function SchedulerView() {
                 {Array.from({ length: 31 }, () => (
                   <td
                     className="min-w-[300px] hover:bg-primary hover:text-white"
-                    onClick={() => {
-                      if (clickable) navigate("./test");
-                    }}
+                    onClick={() => {}}
                   >
-                    {appointments.map((appointment) => {
-                      return (
-                        <div>
-                          <p>- {appointment.title}</p>
-                        </div>
-                      );
-                    })}
+                    dsdasd
                   </td>
                 ))}
               </tr>
